@@ -220,6 +220,7 @@ function delFolder(dir) {
 }
 function checkNewVersion(fromAbout = false) {
     console.info(`checkNewVersion:fromAbout:${fromAbout}`);
+    return Promise.reject();
     checkUpdateLater(60 * 60 * 1000);
     let pms = new Promise((resolve, reject) => {
         let appCfg = (0, AppSystemConfigMainHelper_1.getAppSystemConfig)();

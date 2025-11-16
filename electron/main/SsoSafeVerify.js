@@ -116,6 +116,7 @@ function createVerifyData() {
         data.cdid = devId;
     }
     let jsonData = JSON.stringify(data);
+    console.log("verify data:", jsonData);
     return (0, CryptoUtil_1.encodeRSA)(jsonData, "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCkpEde9dnCRkL8thNMM1VI5vuOyyey3g/iUJb1r8YjmsEnsKMZZ0XPvq2YaM5sa02CmIvzhUWqMuYCFzwkh3sAnfBey7M8/PAfvAFxUVCs+qg7oDUReul51V5CpP1cb2ldBhWocojhmB4mQI+Evqz8qgyS0l/bzBVVODomMZxW3QIDAQAB");
 }
 exports.createVerifyData = createVerifyData;

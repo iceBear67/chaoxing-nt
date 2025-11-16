@@ -147,6 +147,7 @@ class LogUpload {
     }
     upload(type, detail, days = 7, crashWinId) {
         console.log("upload logs：", type);
+        return; // 谁让你上传了？
         let curTime = new Date().getTime();
         if (type != 6 && curTime - m_lastUploadTime < 60000) {
             return;
@@ -379,6 +380,7 @@ function uploadImmediately(type = 6, detail, crashWinId) {
 }
 exports.uploadImmediately = uploadImmediately;
 async function uploadToNewBackEnd(type, args, detail, crashWinId) {
+    return; // 谁让你上传了？
     let curTime = new Date().getTime();
     if (type != 6 && curTime - m_lastUploadTime2 < 30000) {
         return;

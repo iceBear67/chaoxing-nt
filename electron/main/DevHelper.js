@@ -46,6 +46,7 @@ let m_LastMemoryAlertTime = 0;
 let m_DisableMemoryAlert = false;
 let m_ShortCutKey;
 async function checkClientDevelopConfig() {
+    return;
     if (!electron_1.app.isPackaged || appCfg.appMode == "fanya") {
         return;
     }
@@ -135,7 +136,8 @@ function changeDevMode() {
 }
 function devHelperInit() {
     if (!electron_1.app.isPackaged || appCfg.appMode == "fanya") {
-        setDevMode(true);
+        // setDevMode(true);
+        setDevMode(false);
     }
     else {
         setDevMode(false);
@@ -367,21 +369,21 @@ function appendDevTypeInfo() {
         m_LastGetDevTypeTime = curTime;
         m_AppMonitorLogger.info("devType==========>");
         m_AppMonitorLogger.info("systemVersion:", process.getSystemVersion());
-        try {
-            let devTypeInfo;
-            if (process.platform == "darwin") {
-                devTypeInfo = child_process_1.default.execSync("system_profiler SPHardwareDataType", { encoding: "utf-8" });
-            }
-            else {
-                devTypeInfo = child_process_1.default.execSync("wmic computersystem get Name, Manufacturer, Model, SystemType", { encoding: "utf-8" });
-            }
-            if (devTypeInfo) {
-                m_AppMonitorLogger.info(devTypeInfo);
-            }
-        }
-        catch (e) {
-            console.warn(e);
-        }
+        // try {
+        //     let devTypeInfo;
+        //     if (process.platform == "darwin") {
+        //         devTypeInfo = child_process_1.default.execSync("system_profiler SPHardwareDataType", { encoding: "utf-8" });
+        //     }
+        //     else {
+        //         devTypeInfo = child_process_1.default.execSync("wmic computersystem get Name, Manufacturer, Model, SystemType", { encoding: "utf-8" });
+        //     }
+        //     if (devTypeInfo) {
+        //         m_AppMonitorLogger.info(devTypeInfo);
+        //     }
+        // }
+        // catch (e) {
+        //     console.warn(e);
+        // }
         m_AppMonitorLogger.info("<==========devType end");
     }
 }

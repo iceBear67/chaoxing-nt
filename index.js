@@ -1,4 +1,3 @@
-require("./module/compile/lib/Jscx");
 let processArgs = process.argv;
 console.log("processArgs:", process.argv.length);
 if (process.platform == "win32" && processArgs.length > 1) {

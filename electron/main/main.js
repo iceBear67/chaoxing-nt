@@ -75,6 +75,7 @@ if (proArgsV.length > 1) {
         }
     }
 }
+debugState = 0;
 if (debugState == 1) {
     electron_1.app.exit();
     return;
