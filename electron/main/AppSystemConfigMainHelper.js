@@ -16,7 +16,7 @@ function getAppSystemConfig() {
         cfg.appMode = "normal";
     }
     if (cfg.autoUpdate == undefined) {
-        cfg.autoUpdate = true;
+        cfg.autoUpdate = false;
     }
     if (cfg.messageReminder == undefined) {
         cfg.messageReminder = true;
@@ -25,7 +25,7 @@ function getAppSystemConfig() {
         cfg.messageReminderSound = false;
     }
     if (cfg.windowShakeNotification == undefined) {
-        cfg.windowShakeNotification = true;
+        cfg.windowShakeNotification = false;
     }
     if (cfg.clearMessageRedDot == undefined) {
         cfg.clearMessageRedDot = true;

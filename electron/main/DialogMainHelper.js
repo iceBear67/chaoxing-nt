@@ -114,7 +114,7 @@ function openCommonDialog(pWindow, options) {
             winOptions.modal = false;
         }
         else {
-            winOptions.modal = true;
+            winOptions.modal = false;
         }
         if (winOptions.id == "closeVideo_Pip" || winOptions.id == "openPip_Video") {
             let screenWin = (0, BrowserHelper_1.getWindowInWindowMap)(WinId_1.default.screenToolsWindowUUID);
