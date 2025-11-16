@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/translateSetting.css">
+</head>
+
+<body>
+    <div class="translate_setting">
+        <div class="frame">
+            <header>
+                <div class="left">
+                    <i class="red close"></i>
+                </div>
+                <span id="showTitle"></span>
+                <div class="right">
+                    <i class="close redAct"></i>
+                </div>
+            </header>
+        </div>
+        <div class="content_setting">
+            <div class="sidebar">
+                <div id="sidebarMenu" class="sidebar_menu">
+                    <button data-target="section1">
+                        <div class="captions_icon"></div>
+                        <div class="captions_icon_select"></div>
+                        <div class="captions_name">字幕设置</div>
+                    </button>
+                    <button data-target="section2">
+                        <div class="microphone_icon"></div>
+                        <div class="microphone_icon_select"></div>
+                        <div class="microphone_name">音频设置</div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <section id="section1" class="captions_content">
+                    <div class="show_bg_setting">显示设置</div>
+                    <div class="checkbox_content">
+                        <input type="checkbox" name="" id="" checked>
+                        <div class="hide_bg">隐藏背景</div>
+                    </div>
+                    <div class="checkbox_content_tip">开启后将隐藏字幕背景，鼠标移入再显示</div>
+                    <div class="show_style_setting">样式设置</div>
+                    <div class="bg_opcity"><span class="bg_opcity_title">背景不透明度 </span> <span
+                            class="bg_opcity_value">（推荐70%）</span></div>
+                    <div class="opcity_style">
+                        <div class="progress">
+                            <div class="progress_content"></div>
+                            <div class="progress_content_active"></div>
+                            <div class="slide_button"></div>
+                            <!-- <div class="progress_scale">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="progress_size">
+                            </div> -->
+                        </div>
+                        <div class="progress_data">70%</div>
+                    </div>
+                    <div class="color_select">文字颜色</div>
+                    <div class="color_content">
+                        <div class="color_write">
+                            <div class="color_write_select"></div>
+                        </div>
+                        <div class="color_blue"></div>
+                        <div class="color_green"></div>
+                        <div class="color_yellow"></div>
+                        <div class="color_purple"></div>
+                        <div class="other_color_select"></div>
+                    </div>
+                    <div class="size_select">文字大小</div>
+                    <div class="size_content">
+                        <div class="size_content_select">
+                            <div class="select_text">中 (默认)</div>
+                            <div class="icon_down"></div>
+                            <div class="icon_down_hover"></div>
+                            <div class="icon_up"></div>
+                        </div>
+                        <div class="size_select_options"></div>
+                    </div>
+
+                </section>
+                <section id="section2" class="microphone_content">
+                    <div class="mike_setting">
+                        <div class="mike_title">麦克风</div>
+                        <div class="mike_select">
+                            <div class="mike_select_text"></div>
+                            <div class="mike_icon_down"></div>
+                            <div class="mike_icon_down_hover"></div>
+                            <div class="mike_icon_up"></div>
+                        </div>
+                        <div class="mike_select_options">
+                        </div>
+                    </div>
+                    <div class="start_mike_test">点击进行麦克风测试</div>
+                    <div class="stop_mike_test">停止测试</div>
+                    <div class="mike_volume">
+                        <div class="volume_icon"></div>
+                        <div class="volume_size">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <!--国际化开始-->
+    <script>
+        let isEnLanguage = false;
+        window.i18 = {
+            '设置': 'Settings',
+            '字幕设置': 'Subtitle setting',
+            '音频设置': 'Audio Setting',
+            '显示设置': 'Display setting',
+            '隐藏背景': "Hide background",
+            '开启后将隐藏字幕背景，鼠标移入再显示': 'After open will be closed caption background, the mouse moved to show again',
+            '样式设置': 'Style setting',
+            '背景不透明度': 'Background opacity',
+            '（推荐70%）': '(70% recommended)',
+            '文字颜色': 'Text color',
+            '文字大小': 'Text size',
+            '中（默认）': 'Medium (default)',
+            '特小': 'Extra small',
+            '小': 'small',
+            '大': 'big',
+            '特大': 'outsize',
+            '麦克风': 'microphone',
+            '点击进行麦克风测试': 'Click to test the microphone',
+            '停止测试': 'Stop testing',
+        }
+        //国际化文本
+        const getI18Value = function (key) {
+            if (isEnLanguage && window.i18) {
+                let value = window.i18[key];
+                if (value) {
+                    return value;
+                }
+                console.log("no value,key=" + key)
+            }
+            return key;
+        }
+    </script>
+    <!--国际化结束-->
+    <script>
+        $(document).ready(async function () {
+            let appMode = await RendererProcessHelper.getAppMode()
+            let appSystemConfig = await RendererProcessHelper.getSysStoreData('appSystemConfig')
+            console.log('appSystemConfig', appSystemConfig);
+            if (appSystemConfig.language == "en_US") {
+                isEnLanguage = true
+                $('.size_content').css("width", '156px')
+                $('.size_select_options').css("width", '156px')
+                $('.mike_select_options').css("left", '84px')
+            } else {
+                isEnLanguage = false
+            }
+            $('.captions_name').text(getI18Value("字幕设置"));
+            $('.microphone_name').text(getI18Value("音频设置"));
+            $('.show_bg_setting').text(getI18Value("显示设置"));
+            $('.hide_bg').text(getI18Value("隐藏背景"));
+            $('.checkbox_content_tip').text(getI18Value("开启后将隐藏字幕背景，鼠标移入再显示"));
+            $('.show_style_setting').text(getI18Value("样式设置"));
+            $('.bg_opcity_title').text(getI18Value("背景不透明度"));
+            $('.bg_opcity_value').text(getI18Value("（推荐70%）"));
+            $('.color_select').text(getI18Value("文字颜色"));
+            $('.size_select').text(getI18Value("文字大小"));
+            $('.mike_title').text(getI18Value("麦克风"));
+            $('.start_mike_test').text(getI18Value("点击进行麦克风测试"));
+            $('.stop_mike_test').text(getI18Value("停止测试"));
+
+
+            const fontSizes = [20, 24, 28, 32, 36];
+            const sizeOptionsText = [getI18Value('特小'), getI18Value('小'), getI18Value('中（默认）'), getI18Value('大'), getI18Value('特大')];
+            let isIconUp = false;
+            let isSpeakerIconUp = false;
+            let isMikeIconUp = false;
+            let mikeList = []
+            $("#showTitle").text(getI18Value('设置'))
+            let useDevName = '';
+            let currentDeviceId = ''
+            let mediaStream;
+            let audioContext;
+            let analyser;
+
+            let isMac = window.RendererProcessHelper.getPlatform
+            if (isMac == "darwin") {
+                $(".left").css("display", "flex");
+            } else {
+                $(".right").css("display", "flex");
+            }
+            // 默认触发第一个菜单项的点击事件
+            $('#sidebarMenu button:first-child').click();
+            let isVisibleBg = true
+            let isVisibleBgRes = await RendererProcessHelper.getSysStoreData('isVisibleBackground')
+            if (isVisibleBgRes !== undefined) {
+                isVisibleBg = isVisibleBgRes
+            }
+            if(appMode == "fanya") {
+                isVisibleBgRes = false
+            }
+            $('.checkbox_content input[type="checkbox"]').prop('checked', isVisibleBgRes)
+            let fontColor = '#ffffff'
+            let fontColorRes = await RendererProcessHelper.getSysStoreData('SpeechFontColor')
+            if (fontColorRes !== undefined) {
+                fontColor = fontColorRes
+            }
+            selectWrite(fontColor, false)
+            let fontSize = 28; // 默认字体大小
+            let fontSizeRes = await RendererProcessHelper.getSysStoreData('SpeechFontSize')
+            if (fontSizeRes !== undefined) {
+                fontSize = fontSizeRes
+            }
+            const fontSizeIndex = fontSizes.indexOf(fontSize);
+            $(".select_text").text(sizeOptionsText[fontSizeIndex])
+
+            let opacity = 0.7;
+            let opacityRes = await RendererProcessHelper.getSysStoreData('backgroundOpacity');
+            console.log('opacityRes', opacityRes);
+            if (opacityRes !== undefined) {
+                opacity = opacityRes
+            }
+
+            initializePage()
+
+            $('.size_content_select').on('pointerenter', function () {
+                if (!isIconUp) {
+                    $(this).addClass('hovered');
+                    $(".icon_down_hover").show();
+                    $(".icon_down").hide();
+                }
+            });
+            $('.size_content_select').on('pointerleave', function () {
+                if (!isIconUp) {
+                    $(this).removeClass('hovered');
+                    $(".icon_down_hover").hide();
+                    $(".icon_down").show();
+                }
+            });
+            $('.size_content_select').click(function () {
+                if (isIconUp) {
+                    $(".icon_up").hide();
+                    $(".icon_down_hover").show();
+                    $(this).removeClass('clicked');
+                    $(".size_select_options").hide()
+                } else {
+                    $(".icon_down").hide();
+                    $(".icon_down_hover").hide();
+                    $(".icon_up").show();
+                    $(this).addClass('clicked');
+                    $(".size_select_options").show()
+                }
+                isIconUp = !isIconUp;
+            });
+
+            // const bgOpcitys = [0, 20, 40, 60, 80, 100];
+            // bgOpcitys.forEach(function (bgOpcity, index) {
+            //     const divElement = $('<div class="opcity_size"></div>');
+            //     divElement.text(bgOpcitys[index]);
+            //     $('.progress_size').append(divElement);
+            // })
+
+            fontSizes.forEach(function (size, index) {
+                const divElement = $('<div class="select_option"></div>');
+                const iconElement = $('<span class="select_icon"></span>');
+                divElement.text(sizeOptionsText[index]);
+
+                divElement.on('pointerenter', function () {
+                    $(this).addClass('select_option_hovered');
+                });
+                divElement.on('pointerleave', function () {
+                    $(this).removeClass('select_option_hovered');
+                });
+
+                divElement.click(function () {
+                    $('.select_option').removeClass('select_option_clicked');
+                    $('.select_icon').hide();
+                    $(this).addClass('select_option_clicked');
+                    $(this).find('.select_icon').show(); // 仅显示当前选中的图标元素
+                    const selectedFontSize = fontSizes[index];
+                    console.log(selectedFontSize, sizeOptionsText[index]);
+                    $(".select_text").text(sizeOptionsText[index])
+                    RendererProcessHelper.setSysStoreData( 'SpeechFontSize', size )
+                    RendererProcessHelper.sendToOtherPage("changeSpeechFontSize", { 'fontSize': size }, 'speech_recognition')
+                });
+
+                if (fontSize === size) {
+                    divElement.addClass('select_option_clicked');
+                    iconElement.show(); // 显示默认选中项的图标
+                } else {
+                    iconElement.hide(); // 隐藏其他项的图标
+                }
+                divElement.append(iconElement);
+                $('.size_select_options').append(divElement);
+            });
+
+            $('.mike_select').on('pointerenter', function () {
+                if (!isMikeIconUp) {
+                    $(this).addClass('hovered');
+                    $(".mike_icon_down_hover").show();
+                    $(".mike_icon_down").hide();
+                }
+            });
+            $('.mike_select').on('pointerleave', function () {
+                if (!isMikeIconUp) {
+                    $(this).removeClass('hovered');
+                    $(".mike_icon_down_hover").hide();
+                    $(".mike_icon_down").show();
+                }
+            });
+            $('.mike_select').click(async function () {
+                if (isMikeIconUp) {
+                    $(".mike_icon_up").hide();
+                    $(".mike_icon_down_hover").show();
+                    $(this).removeClass('clicked');
+                    $(".mike_select_options").hide();
+                } else {
+                    $(".mike_icon_down").hide();
+                    $(".mike_icon_down_hover").hide();
+                    $(".mike_icon_up").show();
+                    $(this).addClass('clicked');
+                    $(".mike_select_options").show();
+                }
+                isMikeIconUp = !isMikeIconUp;
+            });
+
+
+            $('.start_mike_test').click(() => {
+                $('.stop_mike_test').show()
+                $('.start_mike_test').hide()
+                // 获取麦克风访问权限并开始监听
+                // console.log('获取麦克风访问权限并开始监听', currentDeviceId);
+                navigator.mediaDevices.getUserMedia({ audio: { deviceId: currentDeviceId } })
+                    .then(handleSuccess)
+                    .catch(handleError);
+
+            })
+            $('.stop_mike_test').click(() => {
+                $('.stop_mike_test').hide()
+                $('.start_mike_test').show()
+                // 停止监听麦克风
+                if (mediaStream) {
+                    mediaStream.getTracks().forEach(track => track.stop());
+                    mediaStream = null; // 将 mediaStream 设置为 null，表示已停止监听
+                }
+                $('.volume_size > div').css('background-color', '#E1E3E6')
+            })
+
+            function handleSuccess(stream) {
+                // 存储麦克风流、音频上下文和分析器
+                mediaStream = stream;
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                // 设置分析器参数
+                analyser.fftSize = 256;
+                const bufferLength = analyser.frequencyBinCount;
+                const dataArray = new Uint8Array(bufferLength);
+                // 创建媒体流源节点并将其连接到分析器
+                const mediaStreamSource = audioContext.createMediaStreamSource(stream);
+                mediaStreamSource.connect(analyser);
+
+                // 处理音频数据的函数
+                function processAudio() {
+                    // 检查是否停止监听麦克风，如果是，则不再执行后续代码
+                    if (!mediaStream) {
+                        return;
+                    }
+
+                    analyser.getByteFrequencyData(dataArray);
+                    const volume = dataArray.reduce((acc, val) => acc + val, 0) / bufferLength;
+                    // 将音量映射到 0 到 100 的范围
+                    const mappedVolume = (volume / 255) * 100;
+                    // console.log('volume', volume, mappedVolume);
+                    let volumeVal = Math.round(mappedVolume)
+                    TestMikeVolunm(volumeVal)
+                    // 循环调用处理音频数据的函数
+                    requestAnimationFrame(processAudio);
+                }
+                // 开始处理音频数据
+                processAudio();
+            }
+            // 处理麦克风访问失败的回调函数
+            function handleError(error) {
+                console.error('Error accessing microphone:', error);
+            }
+            $(".close").click(() => {
+                window.close();
+                // 停止监听麦克风
+                if (mediaStream) {
+                    mediaStream.getTracks().forEach(track => track.stop());
+                    mediaStream = null; // 将 mediaStream 设置为 null，表示已停止监听
+                }
+            })
+            $(document).on('click', function (event) {
+                const target = $(event.target);
+                if (!target.closest('.size_content').length) {
+                    $('.size_content_select').removeClass('hovered');
+                    $('.size_content_select').removeClass('clicked');
+                    $(".icon_down_hover").hide();
+                    $(".icon_up").hide();
+                    $(".icon_down").show();
+                    $('.size_select_options').hide();
+                    isIconUp = false;
+                }
+            });
+            $(document).on('click', function (event) {
+                const target = $(event.target);
+                if (!target.closest('.mike_setting').length) {
+                    $('.mike_select').removeClass('hovered');
+                    $('.mike_select').removeClass('clicked');
+                    $(".mike_icon_down_hover").hide();
+                    $(".mike_icon_up").hide();
+                    $(".mike_icon_down").show();
+                    $('.mike_select_options').hide();
+                    isMikeIconUp = false;
+                }
+            });
+
+            const progressBar = $('.progress_content');
+            const progressBarActive = $('.progress_content_active');
+            const slideButton = $('.slide_button');
+            const progressBarWidth = progressBar.width();
+
+            progressBarActive.css('width', opacity * 100 + '%');
+            const progressBarActiveWidth = progressBarActive.width();
+            slideButton.css('left', progressBarActiveWidth);
+            $(".progress_data").text(parseInt(opacity * 100) + '%')
+            // 定义按钮的最小位置和最大位置
+            const minPosition = -4;
+            const maxPosition = progressBarWidth;
+
+            // 监听按钮的鼠标按下事件
+            slideButton.on('mousedown touchstart', function (event) {
+                event.preventDefault(); // 阻止默认行为
+                // 获取鼠标按下时的初始位置
+                const initialMouseX = event.type === 'touchstart' ? event.touches[0].pageX : event.pageX;
+                // 获取按钮的当前位置
+                const currentButtonPosition = slideButton.position().left > 0 ? slideButton.position().left : 0;
+                // 监听文档的鼠标移动事件
+                $(document).on('mousemove touchmove', function (event) {
+                    event.preventDefault(); // 阻止默认行为
+                    let mouseMoveX = event.type === 'touchmove' ? event.touches[0].pageX : event.pageX;
+                    const moveX = mouseMoveX - initialMouseX;
+                    // 计算按钮的新位置
+                    let newButtonPosition = currentButtonPosition + moveX;
+                    // 限制按钮位置在进度条范围内
+                    newButtonPosition = Math.max(minPosition, Math.min(newButtonPosition, maxPosition - 4));
+                    slideButton.css('left', newButtonPosition);
+
+                    // 更新进度条的进度
+                    let newButton = currentButtonPosition + moveX;
+                    newButton = Math.max(minPosition + 4, Math.min(newButton, maxPosition));
+                    // console.log('newButton', newButton);
+                    const progress = (newButton / maxPosition) * 100;
+                    updateProgress(progress);
+                });
+
+                // 监听文档的鼠标松开事件
+                $(document).on('mouseup touchend', function () {
+                    // 停止监听鼠标移动事件和鼠标松开事件
+                    $(document).off('mousemove touchmove');
+                    $(document).off('mouseup touchend');
+                });
+            });
+
+            // 更新进度条的进度
+            function updateProgress(progress) {
+                // 改变进度条的宽度或显示进度数值
+                progressBarActive.css('width', progress + '%');
+                // console.log('width', progress);
+                let progressData = progress > 0 ? Math.ceil(progress) : 0
+                $(".progress_data").text(progressData + '%')
+                RendererProcessHelper.setSysStoreData('backgroundOpacity', progressData / 100 );
+                RendererProcessHelper.sendToOtherPage("changeBackgroundOpacity", { 'backgroundOpacity': progressData / 100 }, 'speech_recognition')
+            }
+            async function initializePage() {
+                try {
+                    useDevName = await RendererProcessHelper.getSysStoreData('useDevMikeName')
+                    console.log('useDevName', useDevName)
+                    const microphonesList = await RendererProcessHelper.getAudioDevList(); // 获取麦克风设备列表
+                    console.log('设置里麦克风设备列表', microphonesList);
+                    const microphonesLabel = microphonesList.map(item => item.label)
+                    console.log('microphonesLabel', microphonesLabel);
+                    if (microphonesLabel && microphonesLabel.length > 0) {
+                        mikeList = microphonesLabel;
+                        if (!microphonesLabel.includes(useDevName)) {
+                            useDevName = microphonesLabel[0]
+                            RendererProcessHelper.setSysStoreData('useDevMikeName', microphonesLabel[0] )
+                        }
+                        let selectMike = microphonesList.filter(info => info.label == useDevName)
+                        currentDeviceId = selectMike[0].deviceId
+                        $(".mike_select_text").text(useDevName)
+                        const uniqueMikeList = [...new Set(mikeList)];
+                        uniqueMikeList.forEach(function (item, index) {
+                            const mikeOne = $('<div class="mike_select_option_one"></div>');
+                            const mikeSelectIcon = $('<span class="mike_select_icon"></span>');
+                            // console.log(mikeOne);
+                            mikeOne.text(item);
+                            mikeOne.on('pointerenter', function () {
+                                $(this).addClass('mike_select_option_one_hovered');
+                            });
+                            mikeOne.on('pointerleave', function () {
+                                $(this).removeClass('mike_select_option_one_hovered');
+                            });
+                            mikeOne.click(async function () {
+                                $('.mike_select_option_one').removeClass('mike_select_option_one_clicked');
+                                $('.mike_select_icon').hide();
+                                $(this).addClass('mike_select_option_one_clicked');
+                                $(this).find('.mike_select_icon').show(); // 仅显示当前选中的图标元素
+                                $(".mike_select_text").text(item)
+                                RendererProcessHelper.setSysStoreData('useDevMikeName', item )
+                                // SpeechRecognitionHelper.setAudioDev(item)
+                                let selectMike = microphonesList.filter(info => info.label == item)
+                                console.log('selectMike', item, selectMike);
+                                currentDeviceId = selectMike[0].deviceId
+                                RendererProcessHelper.sendToOtherPage("changeTranslateMike", { 'deviceId': selectMike[0].deviceId }, 'speech_recognition')
+                                // 点击切换麦克风时， 如果正在检测音量， 则先停止，再开始
+                                if (mediaStream) {
+                                    mediaStream.getTracks().forEach(track => track.stop());
+                                    mediaStream = null; // 将 mediaStream 设置为 null，表示已停止监听
+                                    // console.log('切换麦克风时重新开始监听', currentDeviceId);
+                                    navigator.mediaDevices.getUserMedia({ audio: { deviceId: currentDeviceId } })
+                                        .then(newMediaStream => {
+                                            // 在成功获取新的 mediaStream 后再进行处理
+                                            handleSuccess(newMediaStream);
+                                        })
+                                        .catch(handleError);
+                                }
+
+
+
+                            });
+
+                            if (useDevName == item) {
+                                mikeOne.addClass('mike_select_option_one_clicked');
+                                mikeSelectIcon.show(); // 显示默认选中项的图标
+                            } else {
+                                mikeSelectIcon.hide(); // 隐藏其他项的图标
+                            }
+                            mikeOne.append(mikeSelectIcon);
+                            $('.mike_select_options').append(mikeOne);
+                        });
+                    }
+                } catch (error) {
+                    console.error('获取麦克风设备列表时出错', error);
+                }
+            }
+        })
+        $(".other_color_select").hide();
+        $(".icon_down_hover").hide();
+        $(".icon_up").hide();
+        $(".mike_icon_down_hover").hide();
+        $(".mike_icon_up").hide();
+        $(".size_select_options").hide()
+        $(".mike_select_options").hide()
+        $(".stop_mike_test").hide()
+
+        // 为侧边栏菜单项添加点击事件处理程序
+        $('#sidebarMenu button').click(function (event) {
+            event.preventDefault(); // 阻止默认链接行为
+            const target = $(this).data('target');
+
+            // 切换活动菜单项
+            $('#sidebarMenu .active').removeClass('active');
+            $(this).addClass('active');
+
+            // 切换内容区域
+            $('.content section').hide();
+            $('#' + target).show();
+            $('#sidebarMenu button').find('div:first-child').show()
+            $('#sidebarMenu button').find('div:nth-child(2)').hide()
+            $(this).find('div:first-child').hide();
+            $(this).find('div:nth-child(2)').show();
+        });
+
+        $(".color_write").click(() => {
+            fontColor = '#ffffff'
+            selectWrite(fontColor, true)
+        })
+        $(".color_blue").click(() => {
+            fontColor = '#599CFF'
+            selectWrite(fontColor, true)
+        })
+        $(".color_green").click(() => {
+            fontColor = '#59FFDC'
+            selectWrite(fontColor, true)
+        })
+        $(".color_yellow").click(() => {
+            fontColor = '#FFE3B6'
+            selectWrite(fontColor, true)
+        })
+        $(".color_purple").click(() => {
+            fontColor = '#E18AFF'
+            selectWrite(fontColor, true)
+        })
+
+        // 监听复选框选中事件
+        $('.checkbox_content input[type="checkbox"]').on('change', function () {
+            // 获取选中结果
+            const isChecked = $(this).prop('checked');
+            RendererProcessHelper.setSysStoreData('isVisibleBackground', isChecked )
+            RendererProcessHelper.sendToOtherPage("changeTranslateBg", { 'isVisibleBackground': isChecked }, 'speech_recognition')
+            console.log(isChecked);
+        });
+
+
+
+        function selectWrite(color, isClick) {
+            if (color == '#ffffff') {
+                $(".color_write_select").show()
+                $(".other_color_select").hide();
+            } else if (color == '#599CFF') {
+                $(".color_write_select").hide()
+                $(".other_color_select").show();
+                $(".other_color_select").css('left', '47px');
+            } else if (color == '#59FFDC') {
+                $(".color_write_select").hide()
+                $(".other_color_select").show();
+                $(".other_color_select").css('left', '90px');
+            } else if (color == '#FFE3B6') {
+                $(".color_write_select").hide()
+                $(".other_color_select").show();
+                $(".other_color_select").css('left', '131px');
+            } else if (color == '#E18AFF') {
+                $(".color_write_select").hide()
+                $(".other_color_select").show();
+                $(".other_color_select").css('left', '173px');
+            }
+
+            if (isClick) {
+                RendererProcessHelper.setSysStoreData( 'SpeechFontColor', fontColor )
+                RendererProcessHelper.sendToOtherPage("changeSpeechFontClolor", { 'fontColor': fontColor }, 'speech_recognition')
+            }
+        }
+        // 麦克风音量测试
+        function TestMikeVolunm(number) {
+            // 计算出每个子盒子代表的数值范围
+            const valueRange = 100 / $('.volume_size > div').length;
+            // console.log('valueRange', valueRange);
+            // 计算出当前数值所在的盒子位置(number*2.5 是因为返回数组较小，使其保持在正常的音量范围)
+            const currentIndex = Math.floor((number * 2.5 + valueRange / 2) / valueRange);
+            // console.log('currentIndex', currentIndex);
+            // 遍历每个子盒子，将颜色赋值给对应的盒子
+            $('.volume_size > div').each(function (index, el) {
+                if (index <= currentIndex) {
+                    $(el).css('background-color', '#32C722');
+                } else {
+                    $(el).css('background-color', '#E1E3E6');
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px; padding:0px;}
+body{font:12px/1.5 Microsoft YaHei,SimSun, Arial, Helvetica, sans-serif; color:#333; background:#FFF;}
+img{border:0px;}
+ul,ol{list-style-type:none;}
+h1,h2,h3,h4,h5,h6{ font-weight:normal;}
+table {border-collapse:collapse;border-spacing:0;}
+input,select,textarea{vertical-align:middle; outline:none; resize:none; font-family:Microsoft YaHei;}
+a{color:#333; text-decoration:none;}
+.clearfix{zoom:1; overflow:hidden;}
+.clear{ clear:both; font-size:0; height:0; line-height:0;}
+.clearAfter:after{ content:''; display:block; clear:both; font-size:0; height:0; line-height:0; overflow:hidden;}
+.fl{float:left;}
+.fr{float:right;}
+::-webkit-input-placeholder{ color:#ACB4BF; text-overflow:ellipsis; }
+:-moz-placeholder{ color:#ACB4BF !important; text-overflow:ellipsis; }
+::-moz-placeholder{ color:#ACB4BF !important; text-overflow:ellipsis; }
+:-ms-input-placeholder{ color:#ACB4BF !important; text-overflow:ellipsis; }
+

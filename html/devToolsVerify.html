@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>激活开发者工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .device-code {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .activation-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .activation-form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 300px;
+            font-size: 1em;
+        }
+
+        .activation-form button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="device-code" id="device-code">
+        设备码:
+        <span id="machine-id"></span>
+        <button id="btn_copy_code" disabled>复制设备码</button>
+    </div>
+    <form class="activation-form" id="activation-form">
+        <input type="text" id="activation-code" placeholder="请输入激活码" required>
+        <button type="submit">激活</button>
+
+    </form>
+
+    <script>
+        document.getElementById('activation-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const activationCode = document.getElementById('activation-code').value;
+            // alert('您输入的激活码是: ' + activationCode);
+            // 在这里可以添加更多的逻辑，比如验证激活码
+            window.MainWindowHelper.verifyActivationCode(activationCode).then(ret => {
+                if (ret) {
+                    alert('开发者工具激活成功');
+                } else {
+                    alert('开发者工具激活失败');
+
+                }
+            })
+        });
+
+        let machineId = RendererHelper.getMachineIdWithMacAddress();
+        if (machineId) {
+            document.getElementById('machine-id').textContent = machineId;
+            document.getElementById('btn_copy_code').disabled = false;
+            document.getElementById('btn_copy_code').onclick = function () {
+                navigator.clipboard.writeText(machineId)
+                    .then(() => {
+                        console.log("文字已成功复制到剪切板！");
+                    })
+                    .catch((err) => {
+                        console.error("复制失败:", err);
+                    });
+            }
+
+        } else {
+            document.getElementById('machine-id').textContent = '获取失败';
+        }
+    </script>
+</body>
+
+</html>

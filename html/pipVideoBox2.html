@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-size: 12px;
+			overflow: hidden;
+			background: #25282E;
+			-webkit-user-select: none;
+		}
+
+		ul,
+		ol,
+		li {
+			list-style-type: none;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-weight: normal;
+		}
+
+		.switchTop-box {
+			display: none;
+			width: 100%;
+			height: 40px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 9;
+		}
+
+		.switchTop {
+			height: 40px;
+			line-height: 40px;
+			padding: 0 10px;
+			background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0)));
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+
+		.switchTop_pos {
+			-webkit-box-flex: 1;
+			-ms-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			height: 100%;
+		}
+
+		.switchTop .item {
+			margin-left: 6px;
+			width: 20px;
+			height: 20px;
+		}
+
+		.switch_camera {
+			margin-right: 8px;
+			position: relative;
+		}
+
+		.switch_camera_btn {
+			width: 20px;
+			height: 20px;
+			float: right;
+			background: url(./images/switch_camera.png) no-repeat;
+			background-size: 20px auto;
+			position: relative;
+		}
+
+		.switch_camera_btn i {
+			width: 4px;
+			height: 3px;
+			position: absolute;
+			right: -4px;
+			top: 50%;
+			margin-top: -2px;
+			background: url("./images/switch_arrow.png") no-repeat;
+			background-size: 4px auto;
+		}
+
+		.switch_fullScreen {
+			background: url("./images/switch_fullscreen.png") no-repeat;
+			background-size: 20px auto;
+		}
+
+		.switch_close {
+			background: url("./images/swtich_close.png") no-repeat;
+			background-size: 20px auto;
+		}
+
+		.switch_camera_box {
+			min-width: 170px;
+			height: 106px;
+			padding: 10px 16px 0 16px;
+			background: rgba(37, 40, 46, 0.9);
+			box-sizing: border-box;
+			position: absolute;
+			right: -38px;
+			top: 23px;
+			text-align: left;
+			border-radius: 8px;
+			z-index: 999;
+			display: none;
+		}
+
+		.switch_camera_box:after {
+			content: "";
+			position: absolute;
+			right: 30px;
+			top: -4px;
+			width: 0;
+			height: 0;
+			border-right: 7px solid transparent;
+			border-left: 7px solid transparent;
+			border-bottom: 5px solid rgba(37, 40, 46, 0.9);
+		}
+
+		.switch_camera_box h2 {
+			font-size: 12px;
+			line-height: 18px;
+			color: #9E9EA1;
+			margin-bottom: 4px;
+		}
+
+		.control_setting_ul li {
+			height: 32px;
+			line-height: 32px;
+			position: relative;
+			padding: 0 0 0 20px;
+		}
+
+		.control_setting_ul li p {
+			font-size: 12px;
+			color: #EAEAEC;
+			text-align: left;
+			line-height: 32px;
+		}
+
+		.control_setting_ul li.cur {
+			background: url(./images/icon_setting.png) left center no-repeat;
+			background-size: 14px auto;
+		}
+
+		.switch_camera.active .switch_camera_btn i {
+			-webkit-transform: rotate(-180deg);
+			-webkit-transform-origin: center;
+		}
+
+		.switch_camera.active .switch_camera_box {
+			display: block;
+		}
+
+		.hover .switchTop-box {
+			display: block;
+		}
+
+		p {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.header {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 4px;
+			-webkit-app-region: no-drag;
+		}
+
+		.header .left-drag,
+		.header .right-drag {
+			position: absolute;
+			top: 0;
+		}
+
+		.bottom {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 4px;
+			-webkit-app-region: no-drag;
+		}
+
+		.bottom .left-drag,
+		.bottom .right-drag {
+			position: absolute;
+			bottom: 0;
+		}
+
+		.left-drag,
+		.right-drag {
+			-webkit-app-region: no-drag;
+			height: 20px;
+			width: 50px;
+		}
+
+		.left-drag {
+			left: 0;
+		}
+
+		.right-drag {
+			right: 0;
+		}
+
+		.canvas-cover {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: black;
+			z-index: 1;
+		}
+	</style>
+</head>
+
+<body style="height: 100vh;" class="hover">
+	<div class="topDiv" style="-webkit-app-region: drag;height: 100%;">
+		<div class="header">
+			<div class="left-drag"></div>
+			<div class="right-drag"></div>
+		</div>
+		<div class="switchTop-box">
+			<div class="switchTop">
+				<div class="switchTop_pos"></div>
+
+				<div class="item switch_fullScreen" style="-webkit-app-region: no-drag;"></div>
+				<div class="item switch_close" style="-webkit-app-region: no-drag;"></div>
+			</div>
+		</div>
+		<div class="canvas-cover"></div>
+		<div id="video_view" style="width:100%;height:100%;"></div>
+		<div class="bottom">
+			<div class="left-drag"></div>
+			<div class="right-drag"></div>
+		</div>
+	</div>
+</body>
+<script>
+	if (typeof module === "object") {
+		window.module = module;
+		module = undefined;
+	}
+</script>
+<script src="./js/jquery-3.5.1.min.js"></script>
+<script>
+	if (window.module) module = window.module;
+</script>
+<script>
+	// 工具栏
+	// //当窗口失去焦点时触发
+
+	// ipc通讯频道-被通讯
+	const pipVideoMessageFormMainChannel = "pipVideoMessageFormMain";
+	let currentDeviceId = "";
+
+	// ipc回调事件
+	let ipcRendererCallback = function (args, sys) {
+		if (!args || !args.cmd) {
+			return;
+		}
+		if (args.debug) {
+			console.log("[video.html][_meetVideoMessageFormMain_]收到投屏指令信号 指令 " + JSON.stringify(args));
+		}
+		if ("pipVideoData" == args.cmd) {
+			// 关闭
+			if (args.close) {
+				window.close();
+				return;
+			}
+
+		}
+	}
+
+
+	$(document).ready(function () {
+		let ua = navigator.userAgent.toLowerCase();
+		if (ua.indexOf("chaoxingclassroompc_") > -1) {
+			if (ua.indexOf('windows') > -1) {
+				$(".header_tools_windows").show();
+			} else {
+				$(".header_tools_mac").show();
+			}
+		}
+		// ipc通讯回调
+		RendererProcessHelper.registeCallback(pipVideoMessageFormMainChannel, ipcRendererCallback);
+		VideoRendererHelper.initRender(0, "video_view");
+
+		// 工具栏
+		//当窗口失去焦点时触发
+
+		RendererProcessHelper.registeCallback("window-blur", function () {
+			$('body').removeClass("hover");
+			// $(".switch_camera").removeClass("active");
+			//$(".topDiv").css("-webkit-app-region","");
+		});
+		//当窗口获得焦点时触发
+		RendererProcessHelper.registeCallback("window-focus", function () {
+			$('body').addClass("hover");
+			// $(".switch_camera").removeClass("active");
+			//$(".topDiv").css("-webkit-app-region","drag");
+		});
+		//视频开关操作
+		RendererProcessHelper.registeCallback("videoOper", (args) => {
+			if (args.op == "close") {
+				$('.canvas-cover').show();
+			} else if (args.op == "open") {
+				$('.canvas-cover').hide();
+			}
+		})
+	});
+
+	$(".switch_close").on("click", function () {
+		// closeBtnForWindowFunction();
+		window.close();
+	})
+	let isFullScreen = false;
+	$(".switch_fullScreen").on("click", function () {
+		if (isFullScreen) {
+			RendererProcessHelper.unFullScreenBtnForWindowFunction();
+		} else {
+			RendererProcessHelper.fullScreenBtnForWindowFunction();
+		}
+		isFullScreen = !isFullScreen;
+	})
+
+</script>
+
+</html>

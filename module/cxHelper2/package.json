@@ -1,0 +1,27 @@
+{
+  "name": "cxhelperplugin",
+  "version": "1.0.4",
+  "description": "",
+  "type": "commonjs",
+  "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "postinstall": "node ./script/install.js",
+    "publish2cx": "node ./script/publish2cx.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-addon-api": "8.3.1"
+  },
+  "files": [
+    "lib",
+    "mac",
+    "types",
+    "win_ia32",
+    "package.json",
+    "win_x64",
+    "script/install.js"
+  ]
+}

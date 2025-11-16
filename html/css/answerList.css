@@ -1,0 +1,302 @@
+.answer-list{
+    position: absolute;
+    top: 38px;
+    left: 14px;
+    z-index: 2;
+    box-sizing: border-box;
+}
+.answer-list *{
+    box-sizing: border-box;
+}
+.answer-list .answer-list-item{
+    width: 190px;
+    height: 29px;
+    background-color: rgba(31, 37, 48, .8);
+    border-radius: 100px;
+    padding: 0 12px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.answer-list .answer-list-item span{
+    display: inline-block;
+    font-size: 12px;
+    color: #C0C7CF;
+    cursor: default;
+}
+.answer-list .answer-list-item .name{
+    max-width: 38px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    margin-right: 4px;
+}
+.answer-list .answer-list-item .operation{
+    position: absolute;
+    right: 12px;
+}
+.answer-list .answer-list-item .cut{
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background-color: rgba(192, 199, 207, .2);
+    margin: 0 3px;
+}
+.answer-list .answer-list-item .operation>span{
+    color: #fff;
+    cursor: pointer;
+}
+.answer-list .answer-list-item .check{
+    color: #fff;
+    margin-right: 8px;
+    display: flex;
+    cursor: pointer;
+}
+.answer-list .answer-list-item .check .headcount{
+    max-width: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #fff;
+    cursor: pointer;
+}
+.answer-list .answer-list-item .refuse{
+    color: #FF4D55;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.clearfloat::after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+    font-size: 0;
+}
+  
+.modal-overlay {
+position: fixed;
+will-change: transform;
+z-index: 9999;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+opacity: 0;
+background-color: rgba(0, 0, 0, 0.5);
+-webkit-transition: 1ms opacity ease;
+transition: 1ms opacity ease;
+}
+
+.modal-overlay.modal-open {
+opacity: 1;
+}
+
+.modal {
+position: fixed;
+z-index: 10000;
+top: 50%;
+left: 50%;
+-webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+max-width: 80vw;
+-webkit-transition: 1ms opacity ease;
+transition: 1ms opacity ease;
+opacity: 0;
+border-radius: 10px;
+background-color: #fff;
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.modal * {
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.modal.modal-anchored {
+top: 2vh;
+-webkit-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+}
+
+.modal.modal-open {
+opacity: 1;
+}
+
+.modal .modal-header {
+height: 60px;
+-webkit-box-shadow: inset 0px -1px 0px #f2f2f2;
+        box-shadow: inset 0px -1px 0px #f2f2f2;
+}
+
+.modal .modal-header .modal-title {
+width: 70%;
+position: absolute;
+top: 20px;
+left: 30px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+font-size: 18px;
+color: #212126;
+font-weight: 600;
+}
+  
+.modal .modal-header .modal-close {
+background-color: #fff;
+position: absolute;
+top: 21px;
+right: 30px;
+border: 0;
+outline: none;
+cursor: pointer;
+}
+  
+.modal .modal-header .modal-close::after {
+    content: '';
+    display: block;
+    background: url(../images/model-close.png) center no-repeat;
+    background-size: 100% 100%;
+    width: 18px;
+    height: 18px;
+}
+  
+.modal .modal-content {
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-none;
+}
+  
+.modal .modal-content::-webkit-scrollbar {
+    display: none;  
+}
+.modal .modal-content>li{
+    height: 63px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0px -1px 0px #f2f2f2;
+    margin-left: 30px;
+    position: relative;
+}
+.modal .modal-content>li .head-pic{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.modal .modal-content>li .head-pic>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.modal .modal-content>li .user-info{
+    margin-left: 10px;
+}
+.modal .modal-content>li .user-info>span{
+    font-size: 14px;
+    color: #131B26;
+}
+.modal .modal-content>li .user-info .greyf{
+    color: #474C59;
+}
+.modal .modal-content>li .user-info>p{
+    font-size: 12px;
+    color: #8A8B99;
+}
+.modal .modal-content>li .operation{
+    position: absolute;
+    right: 30px;
+    font-size: 14px;
+    color: #3A8BFF;
+}
+.modal .modal-content>li .operation>span{
+    cursor: pointer;
+}
+.modal .modal-content>li .operation .cut{
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background-color: rgba(192, 199, 207);
+    margin: 0 5px;
+}
+.modal .modal-footer {
+    height: 66px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.modal .modal-footer > button {
+    width: 80px;
+    height: 32px;
+    background-color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+.modal .modal-footer .cancel {
+    border: 1px solid #0084FF;
+    color: #0084FF;
+}
+  
+.modal .modal-footer .confirm {
+    background-color: #0084FF;
+    color: #fff;
+    margin-left: 30px;
+}
+  
+.modal-overlay.fade-and-drop {
+    display: block;
+    opacity: 0;
+    -webkit-transition: 500ms opacity 500ms ease;
+    transition: 500ms opacity 500ms ease;
+}
+  
+.modal-overlay.fade-and-drop.modal-open {
+    top: 0;
+    -webkit-transition: 500ms opacity ease;
+    transition: 500ms opacity ease;
+    opacity: 1;
+}
+  
+.modal.fade-and-drop {
+    top: -300vh;
+    opacity: 1;
+    display: block;
+    -webkit-transition: 500ms top ease;
+    transition: 500ms top ease;
+}
+  
+.modal.fade-and-drop.modal-open {
+    top: 50%;
+    -webkit-transition: 500ms top 500ms ease;
+    transition: 500ms top 500ms ease;
+}
+  
+.modal.fade-and-drop.modal-open.modal-anchored {
+    -webkit-transition: 500ms top 500ms ease;
+    transition: 500ms top 500ms ease;
+}
+
+.fade-modal{
+    opacity: 0;
+    transition: 300ms opacity ease-in;
+}
+.fade-modal.fade-open{
+    opacity: 1;
+    transition: 500ms opacity ease;
+}
+
+.answer-list .answer-list-item .operation>span.red-font{
+    color: #FF4D55
+}

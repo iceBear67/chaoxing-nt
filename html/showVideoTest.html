@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>摄像头</title>
+    <link rel="stylesheet" type="text/css" href="css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style>
+        video {
+            transform: rotateY(180deg);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popCamera">
+        <!-- <div class="popCamera_head">
+            <h2 class="popCamera_h2">摄像头</h2>
+        </div> -->
+        <div class="popCamera_video"><video></video></div>
+        <div class="popCamera_tips">请保证面部始终置于摄像框中～</div>
+        <div class="popCamera_form">
+            <div class="dataSel fl">
+                <p class="dataSel_name"></p>
+                <ul class="dataSel_con" id="dev_list">
+                    <!-- <li value="1">全部</li>
+                    <li class="active" value="2">2020-2021学年第一学期</li>
+                    <li value="3">2020-2021学年第一学期</li>
+                    <li value="4">2020-2021学年第一学期</li> -->
+                </ul>
+            </div>
+            <a class="popCamera_bnt fr" href="#" onclick="window.close()">确定</a>
+        </div>
+    </div>
+
+
+</body>
+<script src="js/jquery-1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.nicescroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $('.dataSel_name').click(function () {
+        if ($(this).next().is(':visible')) {
+            $(this).next().slideUp(200)
+            $(this).parent().removeClass('dataSel_blue')
+            $(this).removeClass('dataSel_arrow')
+        } else {
+            $('.dataSel_con').hide()
+            $(this).next().slideDown(200)
+            $('.dataSel_con').parent().removeClass('dataSel_blue')
+            $('.dataSel_con').prev().removeClass('dataSel_arrow')
+            $(this).parent().addClass('dataSel_blue')
+            $(this).addClass('dataSel_arrow')
+        }
+    })
+    $('.dataSel_con').on('click', "li", function (event) {
+        $(this).parent().prev().text($(this).text())
+        $(this).parent().hide()
+        $(this).parent().parent().removeClass('dataSel_blue')
+        $(this).parent().prev().removeClass('dataSel_arrow')
+        var value = $(this).attr('value')
+        console.log(value)
+        $(this).parent().prev().attr('value', $(this).attr('value'))
+        $(this).addClass('active').siblings().removeClass('active')
+        let selDev = $(this).attr('value')
+        VideoTestHelper.changeDevSelected(selDev)
+        RendererHelper.setDataCache("selectedCamera", { id: selDev, name: $(this).text() });
+    })
+    $(document).mouseup(function (e) {
+        var _con = $('.dataSel');
+        if (!_con.is(e.target) && _con.has(e.target).length === 0) {
+            $('.dataSel_con').hide()
+            $('.dataSel_con').parent().removeClass('dataSel_blue')
+            $('.dataSel_con').prev().removeClass('dataSel_arrow')
+        }
+    })
+</script>
+
+</html>

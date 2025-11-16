@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频播放</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/videoPreview.css">
+</head>
+
+<body>
+    <div class="preview-video-box previewHandle">
+        <div class="videoCk">
+            <header>
+                <div class="left">
+                    <i class="red close"></i>
+                    <i class="yellow minimize"></i>
+                    <i class="green full-screen"></i>
+                    <i class="green exit-full-screen"></i>
+                </div>
+                <div class="right">
+                    <i class="minimize"></i>
+                    <i class="full-screen"></i>
+                    <i class="exit-full-screen"></i>
+                    <i class="close redAct"></i>
+                </div>
+            </header>
+            <div id="videoCk">
+                <video controls disablePictureInPicture="true" autoplay="true"></video>
+            </div>
+        </div>
+    </div>
+    <script src="./js/videoPreview.js"></script>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script>
+        window.RendererProcessHelper.registeCallback("pageLoadFinish", args => {
+            console.log("loadFinish");
+            // args.width = args.width + "px";
+            // args.height = args.height + "px";
+            document.querySelector("video").src = args.url;
+            // showVideoBox(args)
+
+            if (window.RendererProcessHelper.getPlatform() == "darwin") {
+                $(".right").hide()
+                $(".left").show()
+            } else {
+                $(".right").show()
+                $(".left").hide()
+            }
+            $(".exit-full-screen").hide();
+            $(".close").click(() => {
+                window.close();
+            })
+            $(".minimize").click(() => {
+                window.RendererProcessHelper.minBtnForWindowFunction();
+            })
+            $(".full-screen").click(() => {
+                window.RendererProcessHelper.maxBtnForWindowFunction();
+                $(".full-screen").hide();
+                $(".exit-full-screen").show();
+            })
+            $(".exit-full-screen").click(() => {
+                window.RendererProcessHelper.unMaxBtnForWindowFunction();
+                $(".exit-full-screen").hide();
+                $(".full-screen").show();
+            })
+        })
+        window.RendererProcessHelper.registeCallback("maximize", () => {
+            $(".full-screen").hide();
+            $(".exit-full-screen").show();
+        })
+        window.RendererProcessHelper.registeCallback("unmaximize", () => {
+            $(".exit-full-screen").hide();
+            $(".full-screen").show();
+        })
+    </script>
+</body>
+
+</html>

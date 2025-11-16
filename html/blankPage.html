@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .blank {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contain {
+            width: 350px;
+            height: 230px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .title {
+            width: 100%;
+            color: #8A8B99;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            letter-spacing: 0em;
+            text-align: center;
+        }
+
+        .network {
+            color: #3A8BFF;
+            cursor: pointer;
+        }
+
+        .reload {
+            color: #3A8BFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blank">
+        <div class="contain">
+            <img src="./images/bgc.png" alt="">
+            <div class="title">
+                当前页面加载失败，请检查你的<span class="network">网络设置</span>或点击<span class="reload">重新加载</span>
+            </div>
+        </div>
+        <!-- <div>
+            <div  ref="contanierRef" class="connenting_box">
+                正在连接...
+            </div>
+        </div> -->
+    </div>
+    <script>
+        const openSystemNetCenter = () => {
+            //@ts-expect-error  
+            jsBridge_Common_Oper.openSystemNetCenter()
+        }
+
+        const reloadView = () => {
+            //@ts-expect-error  
+            jsBridge_Common_Oper.reloadView()
+        }
+
+        document.querySelector(".network").addEventListener("click", openSystemNetCenter)
+        document.querySelector(".reload").addEventListener("click", reloadView)
+    </script>
+</body>
+
+</html>

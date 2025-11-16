@@ -1,0 +1,369 @@
+
+/* 多选框 start */
+
+/*checkbox 样式*/
+.ipt-checkbox {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    position: relative;
+    cursor: pointer;
+}
+
+.ipt-checkbox input[type=checkbox] {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.ipt-checkbox .icon-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: url("../images/group_discussion/dx_check.png") no-repeat center;
+    background-size: cover;
+}
+
+.ipt-checkbox-disabled {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    position: relative;
+}
+
+.ipt-checkbox-disabled input[type=checkbox] {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+}
+
+.ipt-checkbox-disabled .icon-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: url(../images/group_discussion/dx_check_disable.png) no-repeat;
+    background-size: cover;
+}
+
+input[type=checkbox]:checked + .icon-checkbox {
+    display: inline-block;
+    background: url("../images/group_discussion/dx_checked.png") no-repeat center;
+    background-size: cover;
+}
+
+
+/* 多选框 end */
+/* public  */
+.inlineMiddle{
+    display: inline-block;
+    vertical-align: middle;
+}
+.buttonBgBlue{
+    min-width: 72px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    font-size: 12px;
+    background-color: #0084FF;
+    color: #ffffff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    padding:0 12px;
+    margin:0 10px;
+}
+.colorfff{
+    color: #ffffff;
+}
+/* 首页的分组讨论样式表 */
+.groupDiscuss{
+    width: 100%;
+    height: 100%;
+    background-color: #292E34;
+}
+.groupDiscuss .groupDisTitle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    line-height: 20px;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.groupCenter{
+    position: absolute;
+    top: 40px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+}
+.groupCenter .gourpDisLeft{
+    position: relative;
+    width: 26%;
+    float: left;
+    height: 100%;
+    overflow-y: auto;
+    line-height: 20px;
+}
+.groupCenter .gourpDisRight{
+    width: 74%;
+    float: right;
+    background-color: #1A1D21;
+    height: 100%;
+    overflow-y: auto;
+}
+.groupCenter .list-title{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 18px 20px 14px 30px;
+    overflow: hidden;
+}
+
+.groupCenter .list-title .list-title-name{
+    color: #9FA1B3;
+}
+.groupCenter .list-title .list-title-manage{
+    color: #3A8BFF;
+    cursor: pointer;
+}
+
+.groupCenter .groupLists{
+    margin-top: 52px;
+}
+.groupCenter .groupLists li{
+    width: 100%;
+    font-size: 0;
+    padding: 13px 0;
+}
+.groupCenter .groupLists li:hover,.groupCenter .groupLists li.active{
+    background-color: #434C56;
+}
+.groupCenter .groupLists li>p{
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.groupCenter .groupLists .list-name{
+    color: #ffffff;
+    font-size: 14px;
+    width: 70%;
+    padding-left: 30px;
+}
+.groupCenter .groupLists .list-number{
+    color: #9FA1B3;
+    font-size: 12px;
+    width: 30%;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.groupCenter .groupMemberLists li{
+    font-size: 0;
+}
+.groupCenter .groupMemberLists li .list-avatar{
+    padding: 11px 10px 11px 30px;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.groupCenter .groupMemberLists li .list-avatar img{
+    width: 36px;
+    height: 36px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.groupCenter .groupMemberLists li .list-info{
+    padding: 10px 30px 9px 0;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.groupCenter .groupMemberLists li .list-info .list-info-name{
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 20px;
+}
+.groupCenter .groupMemberLists li .list-info .list-info-account{
+    font-size: 12px;
+    color: #8A8B99;
+    line-height: 17px;
+    margin-top: 2px;
+}
+
+.groupCenter .video-title{
+    padding: 20px;
+}
+.groupCenter .video-con{
+	height: calc(100% - 62px);
+	padding:0 20px;
+	box-sizing: border-box;
+}
+.groupCenter .groupVideoLists li{
+    width: calc(50% - 4px);
+    margin-right: 4px;
+    float: left;
+    height: 180px;
+    border-radius: 4px;
+    background: #0B0D0F;
+    margin-bottom: 4px;
+    position: relative;
+}
+.groupCenter .groupVideoLists li:nth-of-type(2n){
+    margin-right: 0;
+}
+
+.groupCenter .groupVideoLists li .videoPeople_state {
+    background: rgba(39,42,49,.8);
+    border-radius: 0px 8px 0px 4px;
+    height: 30px;
+    line-height: 30px;
+    padding: 6px 8px 6px 6px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.groupCenter .groupVideoLists li .videoPeople_state i{
+    width:18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: top;
+    margin:0 4px 0 0;
+}
+.groupCenter .groupVideoLists li .videoPeople_name{
+    font-size:12px;
+    color:#FFF;
+    display: inline-block;
+    vertical-align: top;
+    margin-left:2px;
+}
+.groupCenter .groupVideoLists li .ontalk {
+    background: url(../images/talk.png) no-repeat;
+    background-size: 18px auto;
+}
+.groupCenter .groupVideoLists li .videoPeople_state i {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 4px 0 0;
+}
+.groupCenter .groupVideoLists li .ontalk,
+.groupCenter .groupVideoLists li .onVideo {
+     cursor: pointer;
+ }
+.groupCenter .groupVideoLists li .ontalk.forbid {
+    background-position: 0 -18px;
+}
+.groupCenter .videoPeople_div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    background: #000;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+}
+.groupCenter .videoPeople_pc img{
+    width: 100%;
+    height: 100%;
+}
+
+.groupCenter .videoPeople_app img{
+    height: 100%;
+    width: auto;
+    margin: 0 auto;
+    display: inherit;
+}
+.groupCenter .groupSharing{
+    width: 100%;
+    height: 100%;
+}
+.groupCenter .groupSharing iframe{
+    width: 100%;
+    height: 354px;
+    background-color: #0B0D0F;
+}
+
+
+
+
+.groupDisBottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 30px 16px 30px;
+    box-sizing: border-box;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+.groupDisBottom .btn{
+    margin-left: 20px;
+}
+
+/* 新增的对比按钮 */
+.compareBox{
+    position: relative;
+    display: inline-block;
+    padding:4px 0;
+}
+.compareBox:hover .compareBtnHover{
+    display: block;
+}
+.compareBox .compareBtnHover{
+    position: absolute;
+    top: 30px;
+    right:0;
+    min-width: 108px;
+    display: none;
+    z-index: 1112;
+    padding-bottom: 10px;
+}
+.compareBox .compareBtnHover ul{
+    padding: 6px 0;
+    font-size: 12px;
+    color: #FFFFFF;
+    background-color: #353C46;
+    border-radius: 6px;
+}
+.compareBox .compareBtnHover li{
+    padding: 7px 17px 8px 18px;
+    cursor: pointer;
+}
+.compareBox .compareBtnHover li:hover{
+    background-color: #444A53;
+}

@@ -1,0 +1,40 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ErrorCode = void 0;
+exports.ErrorCode = {
+    audio_input_error: "audio_input_error",
+    audio_input_no_authority: "audio_input_no_authority",
+    audio_input_busy: "audio_input_busy",
+    audio_input_no_dev: "audio_input_no_dev",
+    video_input_no_authority: "video_input_no_authority",
+    video_input_busy: "video_input_busy",
+    video_input_error: "video_input_error",
+    video_input_no_dev: "video_input_no_dev",
+    video_input_dev_unplug: "video_input_dev_unplug",
+    operation_failed: "operation_failed",
+    no_network: "no_network",
+    params_error: "params_error",
+    sdk_uninit: "sdk_uninit",
+    not_started: "not_started",
+    exist_meeting: "exist_meeting",
+    user_not_exist: "user_not_exist",
+    not_implemented: "not_implemented",
+    joinroom_error: "joinroom_error",
+    publish_audiostream_error: "publish_audiostream_error",
+    publish_camerastream_error: "publish_camerastream_error",
+    publish_sharestream_error: "publish_sharestream_error",
+    unpublish_audiostream_error: "unpublish_audiostream_error",
+    unpublish_camerastream_error: "unpublish_camerastream_error",
+    unpublish_sharestream_error: "unpublish_sharestream_error",
+    subscriber_audiostream_error: "subscriber_audiostream_error",
+    subscriber_camerastream_error: "subscriber_camerastream_error",
+    subscriber_sharestream_error: "subscriber_sharestream_error",
+    unsubscriber_audiostream_error: "unsubscriber_audiostream_error",
+    unsubscriber_camerastream_error: "unsubscriber_camerastream_error",
+    unsubscriber_sharestream_error: "unsubscriber_sharestream_error",
+    meetint_not_exist: "meetint_not_exist",
+    enable_loopback_audio_error: "enable_loopback_audio_error",
+    disable_loopback_audio_error: "disable_loopback_audio_error",
+};
+module.exports = { ErrorCode: exports.ErrorCode };
+//# sourceMappingURL=RtcErrorCode.js.map

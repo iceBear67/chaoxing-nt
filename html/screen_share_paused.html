@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .shareScreen .pauseSharing {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #111A2B;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+
+        }
+
+        .shareScreen .pauseSharing i {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: url(@/icons/png/pauseSharing.png) center no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .shareScreen .pauseSharing p {
+            font-size: 14px;
+            color: #6E7480;
+            margin-top: 11px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="share_pause" style="position: relative;">
+        <div class="pauseSharing">
+            <i></i>
+            <p>对方已暂停共享</p>
+        </div>
+    </div>
+    <script>
+        // //@ts-ignore
+        // RendererHelper.on("screenSharePaused", (isPaused) => {
+        //     document.querySelector("#share_pause").style.display = isPaused ? "block" : "none";
+
+        // })
+    </script>
+    </script>
+</body>
+
+</html>

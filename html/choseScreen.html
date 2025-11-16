@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" href="./css/theme.css" />
+	<style>
+		/*选择共享屏幕*/
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-weight: normal;
+		}
+
+		ul,
+		menu,
+		dir,
+		li {
+			list-style: none;
+		}
+
+		b,
+		i,
+		strong,
+		em {
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		body {
+			font-size: 12px;
+			overflow: hidden;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a,
+		img,
+		div,
+		span,
+		nav,
+		li {
+			-webkit-tap-highlight-color: transparent;
+		}
+
+		.clearfix {
+			zoom: 1;
+		}
+
+		.clearfix:after {
+			content: "";
+			clear: both;
+			height: 0;
+			font-size: 0;
+			line-height: 0;
+			overflow: hidden;
+			display: block;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+
+		.choseShareScreen_box {
+			width: 100%;
+			height: 100%;
+			background: var(--cxkt-dark-color-global-bg-2);
+			box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2);
+			border-radius: 8px;
+		}
+
+		.choseShareScreen_tit {
+			height: 62px;
+			background: var(--cxkt-dark-color-global-bg-2);
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			font-size: 16px;
+			line-height: 22px;
+			color: #fff;
+			padding: 30px 30px 0;
+			box-sizing: border-box;
+		}
+
+		.choseShareScreen_bot {
+			position: absolute;
+			bottom: 0;
+			/* left: 0; */
+			right: 0;
+			height: 52px;
+			background: var(--cxkt-dark-color-global-bg-2);
+			padding: 10px 30px 0;
+			text-align: right;
+			box-sizing: border-box;
+		}
+
+		.choseShareScreen_bot .btn {
+			padding: 0 16px;
+			height: 32px;
+			line-height: 32px;
+			border-radius: 4px;
+			text-align: center;
+			color: #f8f9fa;
+			font-size: 12px;
+			display: inline-block;
+			vertical-align: top;
+			margin-left: 24px;
+			position: relative;
+			box-sizing: border-box;
+		}
+
+		.choseShareScreen_bot .btn:focus {
+			outline: none;
+		}
+
+		.choseShareScreen_bot .btn:before {
+			content: "";
+			width: 200%;
+			height: 200%;
+			border-radius: 8px;
+			border: 1px solid #595d68;
+			position: absolute;
+			top: 0;
+			left: 0;
+			-webkit-transform: scale(0.5, 0.5);
+			-moz-transform: scale(0.5, 0.5);
+			-ms-transform: scale(0.5, 0.5);
+			-o-transform: scale(0.5, 0.5);
+			transform: scale(0.5, 0.5);
+			-webkit-transform-origin: 0 0;
+			-moz-transform-origin: 0 0;
+			-o-transform-origin: 0 0;
+			-ms-transform-origin: 0 0;
+			transform-origin: 0 0;
+			box-sizing: border-box;
+		}
+
+		.choseShareScreen_bot .btn:hover {
+			background: #50545d;
+		}
+
+		.choseShareScreen_bot .btn:hover:before {
+			border-color: #858a98;
+		}
+
+		.choseShareScreen_bot .btn:active {
+			background: #484d57;
+			color: rgba(248, 249, 250, 0.6);
+		}
+
+		.choseShareScreen_bot .btn:active:before {
+			border-color: #858a98;
+		}
+
+		.choseShareScreen_bot .buttonChose_ok {
+			background: #0084ff;
+		}
+
+		.choseShareScreen_bot .buttonChose_ok:before {
+			border-color: transparent;
+		}
+
+		.choseShareScreen_bot .buttonChose_ok:hover {
+			background: #2e9aff;
+		}
+
+		.choseShareScreen_bot .buttonChose_ok:active {
+			background: #1077d7;
+			color: rgba(248, 249, 250, 0.6);
+		}
+
+		.choseShareScreen_con {
+			position: absolute;
+			top: 62px;
+			right: 0;
+			left: 0;
+			bottom: 52px;
+			overflow-y: auto;
+			padding: 10px 20px 0;
+			box-sizing: border-box;
+		}
+
+		.desk_con {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		.window_icon_con {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+			margin-bottom: 20px;
+			margin-left: 15px;
+		}
+
+		.window_con {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		.select_window_icon {
+			width: 38px;
+			height: 38px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-right: 12px;
+			background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)),
+				linear-gradient(0deg, #313E59, #313E59);
+			border-radius: 6px;
+			border: 1px solid #FFFFFF1A;
+			box-sizing: border-box;
+		}
+
+		.select_window_icon:hover {
+			border: 1px solid #0084ff;
+		}
+
+		.select_window_icon.cur {
+			border: 3px solid #0084ff;
+		}
+
+		.select_all {
+			width: 22px;
+			height: 22px;
+			background: linear-gradient(137.23deg, #3C8DFF 6.82%, #056DFF 94.45%);
+			border-radius: 4px;
+			color: #FFFFFF;
+			text-align: center;
+			line-height: 22px;
+			font-size: 9px;
+			user-select: none;
+		}
+
+		.select_window_icon img {
+			width: 22px;
+			height: 22px;
+		}
+
+		.choseShareScreen_item {
+			width: 180px;
+			height: 123px;
+			overflow: hidden;
+			margin: 0 10px 20px;
+			/* float: left; */
+			position: relative;
+		}
+
+		.choseShareScreen_item .icon {
+			display: block;
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			top: 1px;
+			left: 1px;
+			background-color: #fff;
+			background-repeat: no-repeat;
+			background-size: 22px auto;
+			background-position: center;
+			border-radius: 3px;
+		}
+
+		.choseShareScreen_item .icon {
+			display: block;
+			position: absolute;
+			width: 22px;
+			height: 22px;
+			top: -6px;
+			left: -6px;
+		}
+
+		.choseShareScreen_item p {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.choseShareScreen_img {
+			width: 100%;
+			height: 100px;
+			border-radius: 4px;
+			border: 1px solid #3f444e;
+			overflow: hidden;
+			box-sizing: border-box;
+			background-color: #000;
+		}
+
+		.choseShareScreen_img img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: contain;
+			object-position: center;
+		}
+
+		.window_icon {
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			top: 1px;
+			left: 1px;
+			background-color: #fff;
+			box-shadow: 0px 2px 4px 0px #0000001A;
+			border-radius: 4px 0px 3px 0px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.window_icon img {
+			width: 22px;
+			height: 22px;
+		}
+
+		.choseShareScreen_item p {
+			font-size: 12px;
+			line-height: 17px;
+			color: #fff;
+			margin-top: 6px;
+			text-align: center;
+		}
+
+		.choseShareScreen_item:hover .choseShareScreen_img {
+			border: 1px solid #0084ff;
+		}
+
+		.choseShareScreen_item.cur .choseShareScreen_img {
+			border: 3px solid #0084ff;
+		}
+
+		.choseShareScreen_item.cur p {
+			color: #0084ff;
+		}
+
+		.choseIsPip,
+		.checkbox-style {
+			height: 32px;
+			line-height: 32px;
+			float: left;
+			cursor: pointer;
+			color: #fff;
+			margin-right: 25px;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.choseIsPip i,
+		.checkbox-style i {
+			width: 13px;
+			height: 13px;
+			display: inline-block;
+			vertical-align: top;
+			margin: 9px 7px 0 0;
+			background: url(./images/icon_chose_check.png) no-repeat;
+			background-size: auto 13px;
+		}
+
+		.choseIsPip.active i,
+		.checkbox-style.active i {
+			background-position: -13px 0;
+		}
+
+		.choseIsPip.disabled i,
+		.checkbox-style.disabled i {
+			background-position: -26px 0;
+			opacity: 1;
+		}
+
+		.choseIsPip.disabled em,
+		.checkbox-style.disabled em {
+			opacity: 0.3;
+		}
+	</style>
+</head>
+
+<body class="cloudWrap">
+	<!--共享屏幕2021.03.02-->
+	<div class="choseShareScreen_box">
+		<div class="choseShareScreen_tit" style="-webkit-app-region: drag">
+			选择共享内容
+		</div>
+		<div class="choseShareScreen_con clearfix">
+			<div id="desk" class="desk_con"></div>
+			<div id="window_icon" class="window_icon_con"></div>
+			<div id="window" class="window_con"></div>
+		</div>
+		<div class="choseShareScreen_bot">
+			<!--画中画不可点击加disabled-->
+			<span class="choseIsPip disabled" style="display: none"><i class="icon"></i><em>画中画</em></span>
+			<span class="checkbox-style sharedVoice" style="display: none"><i class="icon"></i><em>同时共享电脑声音</em></span>
+			<a href="javascript:void(0);" class="btn buttonChose_cancal">取消</a>
+			<a href="javascript:void(0);" class="btn buttonChose_ok">开始共享</a>
+		</div>
+	</div>
+</body>
+<script>
+	if (typeof module === "object") {
+		window.module = module;
+		module = undefined;
+	}
+</script>
+<script src="./js/jquery-3.5.1.min.js"></script>
+<script>
+	if (window.module) module = window.module;
+</script>
+<script type="text/javascript" src="./js/jquery.nicescroll.min.js"></script>
+<script type="text/javascript" src="./js/template-web.js"></script>
+<!--国际化开始-->
+<script>
+	let isEnLanguage = false;
+	window.i18 = {
+		"桌面": "Desktop",
+		"取消": "Cancel",
+		"画中画": "Picture-in-Picture",
+		"开始共享": "Start sharing",
+		"选择共享内容": "Select sharing content",
+		"同时共享电脑声音": "Share computer audio",
+		"正在进入...": "Connecting...",
+	};
+
+	//国际化文本
+	const getI18Value = function (key) {
+		console.log("语言", isEnLanguage);
+		if (isEnLanguage && window.i18) {
+			let value = window.i18[key];
+			if (value) {
+				return value;
+			}
+			console.log("no value,key=" + key);
+		}
+		return key;
+	};
+</script>
+<!--国际化结束-->
+<script>
+	// 注册数组转图片
+	template.defaults.imports.Uint8ArrayToImage = function (uint8Array, base64Src) {
+		if (!uint8Array && !base64Src) {
+			return "";
+		}
+		if (base64Src) {
+			return base64Src
+		}
+		let blob = new Blob([uint8Array], { type: "png" });
+		return (window.URL || window.webkitURL).createObjectURL(blob);
+	}
+	// 注册国际化
+	template.defaults.imports.getI18Values = function (key) {
+		return getI18Value(key);
+	}
+	//注册字符编码转换
+	template.defaults.imports.getEncodeURI = function (obj) {
+		if (!obj) {
+			return "";
+		}
+		obj.image = "";
+		return encodeURIComponent(JSON.stringify(obj));
+	}
+</script>
+<script id="screenDisplaysData" type="text/html" remark="桌面">
+    {{each $data val}}
+    <div class="choseShareScreen_item" id="desk{{val.displayId}}">
+      <div class="choseShareScreen_img">
+        <img src="{{Uint8ArrayToImage(val.image,val.base64Src)}}" />
+      </div>
+      <p data-info="{{getEncodeURI(val)}}" data-type="1">
+        {{getI18Values("桌面")+($index+1)}}
+      </p>
+    </div>
+    {{/each}}
+  </script>
+<script id="screenWinplaysDataIcon" type="text/html" remark="窗口图标">
+	<div class="select_window_icon cur" data-icon="all">
+		<div class="select_all">全部</div>
+	</div>
+	{{each $data val}}
+	<div class="select_window_icon" data-icon="{{val.processPath}}">
+		<img src="{{Uint8ArrayToImage('',val.iconImgSrc)}}">
+	</div>
+	{{/each}}
+</script>
+<script id="screenWinplaysData" type="text/html" remark="窗口">
+    {{each $data val}}
+    <div class="choseShareScreen_item" id="window{{val.windowId}}" data-icon="{{val.processPath?.replace(/\\/g, '/')}}"> 
+      <div class="choseShareScreen_img">
+        <img src="{{Uint8ArrayToImage(val.image,val.base64Src)}}" />
+      </div>
+	  <div class="window_icon">
+		<img src="{{Uint8ArrayToImage('',val.iconImgSrc)}}">
+	  </div>
+      <p data-info="{{getEncodeURI(val)}}" data-type="2" title="{{val.name}}">
+        {{val.name}}
+      </p>
+    </div>
+    {{/each}}
+  </script>
+<script>
+	// url工具类
+	// const urlHelper = require("../common/UrlHelper");
+	// ipc通讯
+	// const RendererProcessHelper = require("../process/RendererProcessHelper");
+	// ipc通讯频道-主通讯
+	const meetChosesChannel = "meetChoses";
+	// ipc通讯频道-被通讯
+	const meetChosesMessageFormMainChannel = "meetChosesMessageFormMain";
+	const errorImg = "./images/choseScreenErrorImg.png";
+	let reChose = false;
+	let fromWinId;
+	let m_SdkType = 0; //声网
+	let m_InitSdkType = false
+	let m_OpenType = 0;
+	let m_ScreenWindowsArgs;
+
+	let m_HideBtns = {
+		sharePcAudioBtn: false,
+		pipBtn: false,
+		hiddenChaoxingWindowBtn: false
+	}
+
+	RendererProcessHelper.getStoreData("hideScreenShareBtns").then((hideScreenShareBtns) => {
+		if (hideScreenShareBtns && hideScreenShareBtns.length > 0) {
+			for (let hideScreenShareBtn of hideScreenShareBtns) {
+				m_HideBtns[hideScreenShareBtn] = true
+			}
+		}
+
+
+		// ipc回调事件
+		let ipcRendererCallback = function (args, sys) {
+			if (!args || !args.cmd) {
+				return;
+			}
+			if (args.debug) {
+				console.log(
+					"[choseScreen.html][_meetChosesMessageFormMain_]收到投屏指令信号 指令 " +
+					JSON.stringify(args)
+				);
+			}
+			if ("choseData" == args.cmd) {
+				// 有摄像头才显示
+				if (!m_HideBtns.pipBtn && args.hasVideoDev) {
+					$(".choseIsPip ").show();
+				}
+				reChose = args.reChose;
+				fromWinId = args.fromWinId;
+				m_OpenType = args.openType;
+				m_ScreenWindowsArgs = args
+				rendererScreenWindow()
+
+			} else if ("choseScreenData" == args.cmd) {
+				// 重新获取窗口数据
+				$("#desk").empty();
+				m_ScreenWindowsArgs = args
+				rendererScreenWindow()
+			}
+		};
+		// ipc通讯回调
+		RendererProcessHelper.registeCallback(
+			meetChosesMessageFormMainChannel,
+			ipcRendererCallback
+		);
+
+		//获取是否融科sdk（融科sdk隐藏部分按钮）
+		RendererProcessHelper.sendToOtherPage(
+			"getSdkType",
+			null,
+			"meetWindow",
+			(sdkType) => {
+				m_SdkType = sdkType;
+				if (m_HideBtns.hiddenChaoxingWindowBtn || (sdkType == 1 && RendererHelper.getPlatform() === "darwin")) {
+					// $(".choseIsPip").hide();
+					$(".shieldApp").hide();
+					// if (RendererHelper.getPlatform() === "darwin") {
+					// $(".sharedVoice").hide();
+					// }
+				} else {
+					if (!m_ScreenWindowsArgs?.reChose) {
+						$(".shieldApp").show();
+					}
+				}
+				m_InitSdkType = true;
+				rendererScreenWindow();
+
+				if (!m_HideBtns.sharePcAudioBtn) {
+					if (!m_ScreenWindowsArgs?.reChose) {
+						$(".sharedVoice").show();
+					}
+					RendererProcessHelper.getStoreData("sharePcAudio").then((value) => {
+						let checkSharePcAudio = false;
+						if (value === undefined) {
+							checkSharePcAudio = true;
+						} else {
+							checkSharePcAudio = value;
+						}
+						if (checkSharePcAudio) {
+							if (RendererHelper.getPlatform() === "darwin") {
+								MainWindowHelper.checkAldDriver(m_SdkType).then((state) => {
+									if (state === 1) {
+										$(".sharedVoice").addClass("active");
+									} else {
+									}
+								});
+							} else {
+								$(".sharedVoice").addClass("active");
+							}
+						}
+					});
+				}
+
+			}
+		);
+	})
+
+
+
+	function rendererScreenWindow() {
+		if (!m_InitSdkType || !m_ScreenWindowsArgs) {
+			return
+		}
+		// 首次打开窗口数据
+		let displaysTemp = m_ScreenWindowsArgs.displays;
+		if (displaysTemp && displaysTemp.length > 0) {
+			$("#desk").append(template("screenDisplaysData", displaysTemp));
+		}
+		let winplaysTemp = m_ScreenWindowsArgs.winplays;
+		let windowIdsTemp = m_ScreenWindowsArgs.windowIds;
+		if (winplaysTemp && winplaysTemp.length > 0) {
+			// 存在句柄判断
+			if (windowIdsTemp && windowIdsTemp.length > 0) {
+				let winplaysTempArray = new Array();
+				for (let i = 0; i < winplaysTemp.length; i++) {
+					if (windowIdsTemp.indexOf(winplaysTemp[i].windowId) == -1) {
+						winplaysTempArray.push(winplaysTemp[i]);
+					}
+				}
+				winplaysTemp = winplaysTempArray;
+			}
+			$("#window").append(template("screenWinplaysData", winplaysTemp));
+			// 声网课堂调整选择共享窗口布局
+			if (m_SdkType == 0) {
+				// 使用 reduce 进行去重
+				let newWinplaysTemp = winplaysTemp.reduce((acc, current) => {
+					// 查找是否已存在相同 processPath 的对象
+					let existingItem = acc.find(item => item.processPath === current.processPath);
+					if (!existingItem) {
+						// 如果不存在，添加到结果数组
+						acc.push(current);
+					}
+					return acc;
+				}, []);
+				$("#window_icon").append(template("screenWinplaysDataIcon", newWinplaysTemp));
+			} else {
+				$(".window_icon").hide();
+				$("#window_icon").hide();
+				$(".choseShareScreen_item").css('float', 'left');
+				$("#desk").removeClass('desk_con');
+				$("#window").removeClass('window_con');
+			}
+			// 共享屏幕获取窗口缩略图失败或缩略图加载失败后，加载默认缩略图
+			document.querySelectorAll('.choseShareScreen_img img').forEach(function (img) {
+				img.addEventListener('error', function (event) {
+					event.target.src = errorImg;
+				});
+			});
+		}
+		// 如果是重新共享屏幕， 就隐藏这三个选项
+		if (m_ScreenWindowsArgs?.reChose) {
+			setTimeout(() => {
+				$(".choseIsPip").hide();
+				$(".sharedVoice").hide();
+				$(".shieldApp").hide();
+			}, 50);
+
+		} else {
+		}
+		$("#desk .choseShareScreen_item")[0].click();
+	}
+	// 页面加载完事件,奇怪的是，偶尔会出现ready在ipc之后
+	$(document).ready(async function () {
+		// 滚动条
+		$(".choseShareScreen_con").niceScroll({
+			cursorborder: "",
+			cursorwidth: 6,
+			cursorcolor: "#909DB6",
+			boxzoom: false,
+			autohidemode: true,
+		});
+
+		function formatLanguage(lang) {
+			if (lang === "1") {
+				return "en_US"
+			}
+			return "zh_CN"
+		}
+
+		let language = RendererProcessHelper.getUrlQueryString(window.location.href, "language");
+		if (language !== null && language !== undefined) {
+			language = formatLanguage(language);
+		} else {
+			language = await MainWindowHelper.getLanguage()
+		}
+		console.log('language', language);
+		isEnLanguage = language === "en_US"
+
+		$(".choseShareScreen_tit").text(getI18Value("选择共享内容"));
+		$(".buttonChose_cancal").text(getI18Value("取消"));
+		$(".buttonChose_ok").text(getI18Value("开始共享"));
+		$(".choseIsPip em").text(getI18Value("画中画"));
+		$(".sharedVoice em").text(getI18Value("同时共享电脑声音"))
+
+		RendererProcessHelper.getStoreData("share_all_window_in_screen").then(
+			(value) => {
+				let checkShieldApp = false;
+				if (value === undefined) {
+					checkShieldApp = false;
+				} else {
+					checkShieldApp = !value;
+				}
+				if (checkShieldApp) {
+					$(".shieldApp").addClass("active");
+				}
+			}
+		);
+	});
+	// 选中icon
+	$(".choseShareScreen_con").on(
+		"click",
+		".select_window_icon",
+		function () {
+			$(".select_window_icon").removeClass("cur")
+			$(this).addClass("cur");
+
+			// 获取点击的图标对应的图标数据唯一标识
+			let processPath = $(this).data("icon");
+			processPath = processPath.replace(/\\/g, '/');
+
+			// 根据图标数据唯一标识筛选窗口元素
+			if (processPath === "all") {
+				// 展示所有窗口
+				$(".window_con .choseShareScreen_item").show();
+			} else {
+				// 隐藏所有窗口
+				$(".window_con .choseShareScreen_item").hide();
+				// 展示点击图标对应的窗口
+				$(".window_con .choseShareScreen_item[data-icon='" + processPath + "']").show();
+			}
+		}
+	);
+
+	// 选中
+	$(".choseShareScreen_con").on(
+		"click",
+		".choseShareScreen_item",
+		function () {
+			$(".choseShareScreen_con .choseShareScreen_item").removeClass("cur");
+			$(this).addClass("cur");
+			// 画中画选择逻辑
+			if ($(this).find("p").attr("data-type") == "1") {
+				// 桌面
+				$(".choseIsPip").removeClass("disabled");
+				$(".shieldApp").removeClass("disabled");
+
+			} else {
+				// 窗口
+				$(".choseIsPip").removeClass("active").addClass("disabled");
+				$(".shieldApp").removeClass("active").addClass("disabled");
+			}
+		}
+	);
+	// let m_ischoseOk = false;
+	let m_choseOkTime = 0;
+	// 确定
+	$(".buttonChose_ok").on("click", function () {
+		let curTime = new Date().getTime();
+		if (curTime - m_choseOkTime < 3000) {
+			return;
+		}
+		m_choseOkTime = curTime;
+		let dataInfo = $(
+			".choseShareScreen_con .choseShareScreen_item.cur p"
+		).attr("data-info");
+		let dataType = $(
+			".choseShareScreen_con .choseShareScreen_item.cur p"
+		).attr("data-type");
+		let pipStatus = false;
+		if (dataInfo) {
+			// $(".buttonChose_ok")[0].disabled = true;
+			dataInfo = decodeURIComponent(dataInfo);
+			dataInfo = JSON.parse(dataInfo);
+			if (!m_HideBtns.pipBtn && dataType == "1" && $(".choseIsPip").hasClass("active")) {
+				pipStatus = true;
+			}
+			let hiddenChaoxingWindow = false;
+			if (!m_HideBtns.hiddenChaoxingWindowBtn && $(".shieldApp").hasClass("active")) {
+				hiddenChaoxingWindow = true;
+			}
+			let sharePcAudio = false;
+			if (!m_HideBtns.sharePcAudioBtn && $(".sharedVoice").hasClass("active")) {
+				sharePcAudio = true;
+			}
+
+			let messageTemp = {
+				cmd: "startScreenByChose",
+				type: dataType,
+				info: dataInfo,
+				openPIP: pipStatus,
+				hiddenChaoxingWindow: hiddenChaoxingWindow,
+				sharePcAudio: sharePcAudio,
+				reChose: reChose,
+				openType: m_OpenType,
+			};
+
+			if (fromWinId) {
+				RendererProcessHelper.sendToOtherPage(
+					meetChosesChannel,
+					messageTemp,
+					fromWinId
+				);
+			} else {
+				RendererProcessHelper.sendToMainProcess(
+					meetChosesChannel,
+					messageTemp
+				);
+			}
+
+			// }
+			$(".buttonChose_ok").attr("disabled", "disabled");
+			$(".buttonChose_ok").text(getI18Value("正在进入..."));
+		} else {
+			m_choseOkTime = 0;
+		}
+	});
+
+	// 取消
+	$(".buttonChose_cancal").on("click", function () {
+		RendererProcessHelper.sendToOtherPage(
+			"choseScreenClose",
+			{},
+			"projectionScreen"
+		);
+		window.close();
+	});
+	// 画中画
+	$(".choseIsPip").on("click", function () {
+		if (!$(this).hasClass("disabled")) {
+			$(this).toggleClass("active");
+		}
+	});
+	// 同时共享电脑声音
+	$(".sharedVoice").on("click", function () {
+		if (!$(this).hasClass("disabled")) {
+			if (!$(this).hasClass("active")) {
+				if (RendererHelper.getPlatform() === "darwin") {
+					$(this).addClass("disabled");
+					MainWindowHelper.checkAldDriver(m_SdkType).then((state) => {
+						if (state === 1) {
+							$(".sharedVoice").addClass("active");
+						} else {
+							MainWindowHelper.installAldDriver(m_SdkType).then((ret) => {
+								if (ret === 0) {
+									$(this).addClass("active");
+								} else {
+								}
+							});
+						}
+						$(this).removeClass("disabled");
+					});
+				} else {
+					$(this).toggleClass("active");
+				}
+			} else {
+				$(this).toggleClass("active");
+			}
+		}
+	});
+
+
+</script>
+
+</html>

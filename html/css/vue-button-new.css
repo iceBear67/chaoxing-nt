@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/*.viewer-button { display: none; }*/
+.viewBtnWrap,.worksviewBtnWrap {position: fixed;z-index: 2020;height: 50px;left: 50%;bottom: 0;transform: translateX(-50%);background: #4D4F51;border-radius: 8px;padding: 5px 0 5px 30px;box-sizing: border-box;}
+.viewBtnWrap #viewPrev, .viewBtnWrap #viewNext,.worksviewBtnWrap #viewPrev,.worksviewBtnWrap #viewNext{ position: fixed; width: 52px; height: 52px; top: 50%; margin-top: -28px; }
+.viewBtnWrap #viewPrev,.worksviewBtnWrap #viewPrev { left: 30px; background: url(../img/viewPrev.png); }
+.viewBtnWrap #viewNext,.worksviewBtnWrap #viewNext{ right: 30px; background: url(../img/viewNext.png); }
+.viewBtnWrap #viewPrev.unactive,.worksviewBtnWrap #viewPrev.unactive { background: url(../img/viewPrevNone.png); }
+.viewBtnWrap #viewNext.unactive,.worksviewBtnWrap #viewNext.unactive { right: 30px; background: url(../img/viewNextNone.png); }
+.viewBtnWrap .viewBtn,.worksviewBtnWrap .viewBtn {position: relative; float: left;width: 28px;height: 40px;margin-right: 30px;cursor: pointer;}
+.viewBtnWrap .viewBtn i,.worksviewBtnWrap .viewBtn i{display: block; width: 28px; height: 100%;}
+.viewBtnWrap .viewBtn:hover i, .viewBtnWrap #viewNext:hover, .viewBtnWrap #viewPrev:hover,.worksviewBtnWrap .viewBtn:hover i, .worksviewBtnWrap #viewNext:hover, .worksviewBtnWrap #viewPrev:hover{ opacity: 0.7; }
+.viewBtnWrap #viewNext.unactive:hover, .viewBtnWrap #viewPrev.unactive:hover,.worksviewBtnWrap #viewNext.unactive:hover, .worksviewBtnWrap #viewPrev.unactive:hover { opacity: 1; }
+.viewBtnWrap .viewSplit,.worksviewBtnWrap .viewSplit { float: left; height: 28px; width: 1px; margin-top: 6px; opacity: 0.5; background: rgba(255, 255, 255, 0.34); }
+.viewBtnWrap #viewZoomIn i,.worksviewBtnWrap #viewZoomIn i{background: url(../images/view_zoomIn.png) center center / 28px auto no-repeat;}
+.viewBtnWrap #viewZoomOut i,.worksviewBtnWrap #viewZoomOut i{background: url(../images/view_zoomOut.png) center center / 28px auto no-repeat;}
+.viewBtnWrap #recover i,.worksviewBtnWrap #recover i{background: url(../images/recover.png) center center / 28px auto no-repeat;}
+.viewBtnWrap #viewFlip i,.worksviewBtnWrap #viewFlip i{background: url(../images/view_flip.png) center center / 28px auto no-repeat;}
+.viewBtnWrap #viewDownload i,.worksviewBtnWrap #viewDownload i{background: url(../images/view_download.png) center center / 28px auto no-repeat;}
+.viewBtnWrap #viewClose i,.worksviewBtnWrap #viewClose i{  background: url(https://noteyd.chaoxing.com/res/images/pc/note/view_close.png) center center / 28px auto no-repeat; }
+.viewBtnWrap #viewReport i,.worksviewBtnWrap #viewReport i{background: url(https://noteyd.chaoxing.com/res/images/pc/note/view_report.png) center center / 28px auto no-repeat;}
+.viewBtnWrap #viewClose,.worksviewBtnWrap #viewClose{margin-left: 20px;margin-right: 30px;}
+.viewBtnWrap .bubble,.worksviewBtnWrap .bubble { position: absolute; display: none; top: -50px; left: -14px; width: 56px; padding: 12px 0; text-align: center;  background: rgba(24, 30, 51, 0.8);  border-radius: 4px;  box-sizing: border-box;  font-size: 12px;  color: #FFF;  letter-spacing: 0;}
+.viewBtnWrap .bubble:after,.worksviewBtnWrap .bubble:after {  position: absolute;  content: "";  border-color: rgba(24, 30, 51, 0.8) transparent transparent transparent;  border-style: solid;  border-width: 5px 5px 0 5px;  height: 0;  left: 27px;  bottom: -5px;  margin-left: -4px;  margin-top: -2px;  width: 0;}
+.viewBtnWrap .viewBtn:hover .bubble,.worksviewBtnWrap .viewBtn:hover .bubble{display: block; opacity: 1;}
+.viewer-canvas{
+  pointer-events: none;
+}
+.viewer-canvas>img{
+  pointer-events: initial;
+}
+.viewer-backdrop{
+  background-color: transparent;
+}
+@media screen and (max-width: 639px){
+    .viewBtnWrap,.worksviewBtnWrap{height:40px;right: auto;padding-left: 15px;right: 10px;}
+    .viewBtnWrap .viewBtn,.worksviewBtnWrap .viewBtn{margin-right: 15px;height:30px;}
+    .viewBtnWrap .viewBtn i,.worksviewBtnWrap .viewBtn i{width:20px; background-size:20px auto!important;}
+    .viewBtnWrap .viewSplit,.worksviewBtnWrap .viewSplit{height: 20px;}
+    .viewBtnWrap #viewClose,.worksviewBtnWrap #viewClose{margin-right:15px}
+    .viewBtnWrap #viewPrev,.viewBtnWrap #viewNext,.worksviewBtnWrap #viewPrev,.worksviewBtnWrap #viewNext{width:30px;height:30px; background-size:30px auto!important;}
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/alert.css">
+</head>
+
+<body>
+  <div class="window-alert">
+    <header style="-webkit-app-region: drag;" class="window-alert__header">
+      <span id="alert_title" class="window-alert__title"></span>
+      <i style="-webkit-app-region: no-drag;" class="window-alert__close" onclick="window.close()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M17.0297 5.17785C17.6155 4.59206 17.6155 3.64231 17.0297 3.05653C16.4439 2.47074 15.4941 2.47074 14.9083 3.05653L9.95689 8.00798L5.22688 3.27797C4.64109 2.69218 3.69135 2.69218 3.10556 3.27797C2.51977 3.86376 2.51977 4.8135 3.10556 5.39929L7.83557 10.1293L3.05653 14.9083C2.47074 15.4941 2.47074 16.4439 3.05653 17.0297C3.64231 17.6155 4.59206 17.6155 5.17785 17.0297L9.95689 12.2506L14.9574 17.2511C15.5432 17.8369 16.4929 17.8369 17.0787 17.2511C17.6645 16.6653 17.6645 15.7156 17.0787 15.1298L12.0782 10.1293L17.0297 5.17785Z"
+            fill="#ACB4BF"></path>
+        </svg>
+      </i>
+    </header>
+    <main id="main_content" class="window-alert__main"></main>
+    <footer class="window-alert__footer">
+      <button id="alert_confirm" class="window-alert__confirm" onclick="window.close()">确定</button>
+    </footer>
+  </div>
+  <script src="./js/alert.js"></script>
+</body>
+
+</html>

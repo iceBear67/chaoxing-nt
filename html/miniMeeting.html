@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/baseWindow.css">
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .openRight {
+            width: 100%;
+            height: 100%;
+            background: #343B45;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .openRight .left {
+            display: block;
+            width: 12px;
+            height: 12px;
+            background: url(./images/icon_left.png) no-repeat;
+            background-size: 12px auto;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="openRight" id="openRight"><i class="left"></i></div>
+</body>
+<script src="./js/jquery-3.5.1.min.js"></script>
+<script>
+    $('#openRight').on('click', function () {
+        window.RendererProcessHelper.sendToMeetingPage("show-window-self", {}, (ret) => { })
+        window.close();
+    })
+</script>
+
+</html>

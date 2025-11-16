@@ -1,0 +1,405 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        video {
+            transform: rotateY(180deg);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .topHeader_login_name {
+            background: none;
+        }
+    </style>
+</head>
+
+<body class="rlsb_bodyColor">
+
+
+    <div class="rlsb_header">
+        <div class="rlsb_header_wrap">
+            <h2 class="rlsb_header_h2 fl">人脸检测</h2>
+
+            <div class="topHeader_login fr">
+                <div class="topHeader_login_name"><img id="user_pic" src="" style="display: none;" /><span
+                        id="user_name"></span>
+                </div>
+                <!-- <div class="topHeader_login_con">
+                    <a href="#">退出登录</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="rlsb_tips">人脸检测中,请耐心等候…</div>
+
+    <div class="rlsb_box">
+        <div class="rlsb_left fl">
+            <div class="rlsb_pic">
+                <video></video>
+            </div>
+            <div class="rlsb_mask"></div>
+            <div class="rlsb_midd">
+                <div class="rlsb_midd_quan"></div>
+            </div>
+            <div class="rlsb_wai">
+                <div class="rlsb_wai_quan"></div>
+            </div>
+            <div class="rlsb_svg" style="opacity: 0;">
+                <div class="outbox"></div>
+                <svg class="svg">
+                    <circle id="cls" class="cls run-anim" cx="151" cy="151" r="148"></circle>
+                </svg>
+            </div>
+            <div class="risb_tishikuang" id="oper_prompt">请将人脸放在正中间，并保持人脸不动</div>
+        </div>
+        <div class="rlsb_right fr">
+            <div class="rlsb_explain">
+                <h2 class="rlsb_explain_h2">检测说明</h2>
+                <ul class="rlsb_explain_ul">
+                    <li>请按照图示调整位置, 尽量让人脸处于圆圈之中</li>
+                    <li>调整好位置后，耐心等待数秒，等待检测结果</li>
+                    <li>尽量保持摄像头前方环境, 不可出现多张人脸</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="popRlsb_camera" style="display:none;">
+        <div class="popRlsb_camera_text">正在打开摄像头，请稍等...</div>
+    </div>
+
+    <div class="popNetwork" style="display:none;" id="camera_select_pop">
+        <a class="popNetwork_close" id="camera_select_close" href="#"></a>
+        <div class="popNetwork_tips">
+            <p>检测到你有多个摄像头， 请选择一个用于此次考试，<br />相片清晰度可能影响比对结果！</p>
+        </div>
+        <ul class="popNetwork_ul" id="camera_select">
+            <!-- <li><span class="selRadio"><input type="radio" name="radio" checked="" /><i></i></span>USB2.0 PC CAMERA</li>
+            <li><span class="selRadio"><input type="radio" name="radio" /><i></i></span>USB虚拟摄像头</li>
+            <li><span class="selRadio"><input type="radio" name="radio" /><i></i></span>USB2.0 PC CAMERA</li> -->
+        </ul>
+        <a class="popNetwork_bnt" id="camera_select_ok" href="#">选好了</a>
+    </div>
+
+    <div id="checkTimeout" class="popVersion popMove" style="display:none;">
+        <a class="popVersion_close" href="#"></a>
+        <div class="popVersion_main">
+            <p class="tip_text">采集超时，请重新采集</p>
+        </div>
+        <div class="popVersion_bottom">
+            <a class="popVersion_white" id="btn_cancel" href="javascript:">取消</a>
+            <a class="popVersion_blue popNetwork_chongshi" id="btn_retry" href="javascript:">重试</a>
+        </div>
+    </div>
+
+    <div id="notFoundCamera" class="popVersion popMove" style="display:none;">
+        <a class="popVersion_close" href="#"></a>
+        <div class="popVersion_main">
+            <div class="popVersion_tips">
+                <p class="tip_text">未检测到摄像头，请检测连接后重试，<br />若没有摄像头设备可点击跳过</p>
+            </div>
+            <div class="popVersion_zhuyi">注意: 跳过后此次考试无抓拍监考</div>
+        </div>
+        <div class="popVersion_bottom">
+            <a class="popVersion_white" href="javascript:">跳过</a>
+            <a class="popVersion_blue popNetwork_chongshi" href="javascript:">重试</a>
+        </div>
+    </div>
+
+    <div id="openCameraFail" class="popVersion popMove" style="display:none;">
+        <a class="popVersion_close" href="#"></a>
+        <div class="popVersion_main">
+            <div class="popVersion_tips">
+                <p class="tip_text">摄像头打开失败，请重试</p>
+            </div>
+            <div class="popVersion_zhuyi">注意: 跳过后此次考试无抓拍监考</div>
+        </div>
+
+        <div class="popVersion_bottom">
+            <a class="popVersion_white" href="javascript:">跳过</a>
+            <a class="popVersion_blue popNetwork_chongshi" href="javascript:">重试</a>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.9.0.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        //弹窗居中
+        function MoveFixed() {
+            $('.popMove').css({
+                top: function () {
+                    return ($(window).height() - $(this).height()) / 2;
+                }, left: function () {
+                    return ($(window).width() - $(this).width()) / 2;
+                }
+            });
+            $('.maskLayer').css('height', $(document).innerHeight())
+        }
+        window.onresize = function () {
+            MoveFixed()
+        }
+        MoveFixed()
+
+
+
+
+        let circle = document.getElementById('cls');
+        let total;
+        let retryTimes = 0;
+        let checkSuccess = false;
+        let m_devList;
+
+        circle.classList.remove("run-anim");
+
+        function quan(min) {
+            $('.rlsb_svg').css('opacity', '1')
+            total = (parseInt(min))
+            //  console.log("total:"+total);
+            circle.style.strokeDashoffset = "1000";
+            circle.style.strokeDasharray = "1000";
+            circle.style.animationDuration = total + "s";
+            circle.style.animationPlayState = "running";
+            // set(1000 * total);             
+            circle.classList.add("run-anim");
+            setTimeout(() => {
+                circle.classList.remove("run-anim");
+                void circle.offsetWidth;
+                circle.style.animationPlayState = "paused";
+                circle.style.strokeDasharray = "0";
+            }, total * 1000);
+        }
+
+
+        // quan(10)
+
+        // $('.popNetwork_chongshi').click(function () {
+        //     quan(10)
+        //     $(this).parent().parent().hide()
+        // })
+
+        function startCheck() {
+            quan(10)
+            FaceCheckHelper.changeDevFinished();
+            showPrompt("请将人脸放在正中间，并保持人脸不动")
+            setTimeout(() => {
+                if (checkSuccess == true) {
+                    return;
+                }
+
+                stopCheck()
+                if (retryTimes < 1) {
+                    if (m_devList && m_devList.length > 1) {
+                        $('#checkTimeout .popVersion_white').text("重新选择摄像头")
+                    } else {
+                        $('#checkTimeout .popVersion_white').text("取消")
+                    }
+                    $('#checkTimeout').show()
+                    retryTimes++;
+                } else {
+                    checkError();
+                }
+
+            }, 10000);
+
+        }
+
+        function stopCheck() {
+            FaceCheckHelper.stopCheck();
+        }
+
+        function checkError() {
+            FaceCheckHelper.faceCheckFinish()
+        }
+
+        // function set(total) {
+        //     let interval = setInterval(ret, total);
+        //     function ret() {
+        //         //      console.log('弹窗');
+        //         $('#checkTimeout').show()
+        //         circle.classList.remove("run-anim");
+        //         void circle.offsetWidth;
+        //         circle.style.animationPlayState = "paused";
+        //         circle.style.strokeDasharray = "0";
+        //         clearInterval(interval);
+        //     }
+        // }
+
+        let selDev;
+
+        $("#camera_select").on("click", "li", function (event) {
+
+            let inputEle = $(this).find("input")[0];
+            if (!inputEle.checked) {
+                inputEle.checked = true;
+            }
+            selDev = $(this).text();
+            let selDevId = $(this).find("input").attr("value");
+
+            FaceCheckHelper.changeDevSelected(selDevId);
+
+            RendererHelper.setDataCache("selectedCamera", { id: selDevId, name: selDev });
+
+        })
+
+        $("#camera_select_ok,#camera_select_close").click(function (event) {
+
+            startCheck();
+            $("#camera_select_pop").hide();
+        })
+
+        $("#btn_cancel").click(function (event) {
+            $('#checkTimeout').hide()
+            if (m_devList && m_devList.length > 1) {
+                document.getElementById("camera_select_pop").style.display = "block";
+            } else {
+                checkError();
+            }
+
+        })
+
+        $("#btn_retry").click(function (event) {
+            $('#checkTimeout').hide()
+            startCheck();
+        })
+
+        $("#checkTimeout .popVersion_close").click(function (event) {
+            $('#checkTimeout').hide()
+            checkError();
+        })
+
+        function showPrompt(text) {
+            $("#oper_prompt").text(text);
+        }
+
+
+        FaceCheckHelper.on("InitFinish", () => {
+            FaceCheckHelper.loadCamera()
+        })
+
+        FaceCheckHelper.on("checkResult", (result) => {
+            if (result == "passed") {
+                checkSuccess = true;
+                showPrompt("识别成功，进入考试中……")
+            } else {
+                // showPrompt("识别失败")
+            }
+        })
+
+        FaceCheckHelper.on("startMovement", (result) => {
+            if (result == "open_mouth") {
+                showPrompt("请张张嘴")
+            } else if (result == "blink") {
+                showPrompt("请眨眨眼")
+            } else if (result == "shake") {
+                showPrompt("请摇摇头")
+            } else if (result == "nod") {
+                showPrompt("请点点头")
+            }
+        })
+
+
+        RendererHelper.getUserInfo().then(userInfo => {
+            if (userInfo && userInfo.uid) {
+                $("#user_pic").attr("src", userInfo.pic)
+                $("#user_pic").show()
+                $("#user_name").text(userInfo.name)
+            }
+        })
+
+        FaceCheckHelper.on("faceCheckStart", () => {
+            startCheck();
+        })
+
+        FaceCheckHelper.on("onOpenCamera", () => {
+            showPrompt("正在打开摄像头")
+        })
+
+        $("#openCameraFail .popVersion_white").click(() => {
+            $("#openCameraFail").hide()
+            FaceCheckHelper.sendErrorData(-4)
+            setTimeout(() => {
+                window.close()
+            }, 800);
+        })
+
+        $("#openCameraFail .popVersion_blue").click(() => {
+            $("#openCameraFail").hide()
+            if (m_devList && m_devList.length > 1) {
+                document.getElementById("camera_select_pop").style.display = "block";
+            } else {
+                startCheck();
+            }
+        })
+
+        $("#openCameraFail .popVersion_close").click(function (event) {
+            $("#openCameraFail .popVersion_white").click()
+        })
+
+        FaceCheckHelper.on("OpenCameraFail", (cameraCount) => {
+            if (m_devList && m_devList.length > 1) {
+                $("#openCameraFail .tip_text").text("摄像头打开失败，请确认设备")
+                $("#openCameraFail .popVersion_blue").text("确定")
+            } else {
+                $("#openCameraFail .tip_text").text("摄像头打开失败，请重试")
+                $("#openCameraFail .popVersion_blue").text("重试")
+            }
+            $("#openCameraFail").show()
+        })
+
+        $("#notFoundCamera .popVersion_white").click(() => {
+            FaceCheckHelper.sendErrorData(-3)
+            $("#notFoundCamera").hide()
+            setTimeout(() => {
+                window.close()
+            }, 800);
+        })
+
+        $("#notFoundCamera .popVersion_blue").click(() => {
+            $("#notFoundCamera").hide()
+            FaceCheckHelper.loadCamera()
+        })
+
+        $("#notFoundCamera .popVersion_close").click(function (event) {
+            $("#notFoundCamera .popVersion_white").click()
+        })
+
+        FaceCheckHelper.on("NotFoundCamera", () => {
+            $("#notFoundCamera").show();
+        })
+        FaceCheckHelper.on("updateCameraList", (devList) => {
+            m_devList = devList;
+            let cameraSelectEle = document.getElementById("camera_select")
+            cameraSelectEle.innerText = ""
+            let eleText = ""
+            devList.forEach(dev => {
+                eleText += `<li><span class="selRadio"><input type="radio" name="radio"  value="${dev.deviceId}"/><i></i></span>${dev.label}</li>`
+            });
+            cameraSelectEle.innerHTML = eleText;
+            document.querySelector("#camera_select li").click();
+            document.getElementById("camera_select_pop").style.display = "block";
+
+        })
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

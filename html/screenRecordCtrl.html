@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/theme.css">
+    <link rel="stylesheet" href="./css/recoding2.css">
+    <style>
+        body {
+            margin: 0px;
+            -webkit-app-region: drag;
+        }
+
+        .operation {
+            -webkit-app-region: no-drag;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="recordingTip pause">
+        <!-- pause控制结束开始 -->
+        <div class="recordingTip_con">
+            <i></i>
+            <span class="recoding-text"></span>
+            <div class="operation">
+                <span id="pauseRecord" class="record-play"></span>
+                <span id="startRecord" class="record-pause"></span>
+                <span id="stopRecord" class="record-stop"></span>
+            </div>
+        </div>
+        <div class="recordingTip_hov">
+            <p>课堂录制中，录制文件将自动保存至教师云盘中</p>
+            <a class="btn_stopRecord" href="javascript:void(0);">停止录制</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+      *{box-sizing: border-box;}
+      #drawWrap {
+        height: 100vh;
+        box-sizing: border-box;
+        border-radius: 12px;
+        box-shadow: 0px 3px 10px 0px #20233C38;
+      }
+      .drawingBoard {
+        width: 100%!important;
+        height: 100%!important;
+      }
+      #draw {
+        width: 100%;
+        height: 100%;
+      }
+      #close {
+        position: fixed;
+        top: 33px;
+        right: 34px;
+        cursor: pointer;
+        z-index: 10;
+        display: none;
+      }
+    </style>
+    <script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<!-- 白板插件使用说明 https://sharewh2.xuexi365.com/share/afb6724e-1023-4c76-bc6d-8c55dd0ae3e3?t=3 -->
+<i id="close">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.0828 5.86035C20.5904 5.35267 20.5904 4.52955 20.0828 4.02187C19.5751 3.51419 18.752 3.51419 18.2443 4.02187L11.949 10.3172L5.91943 4.28762C5.41175 3.77994 4.58864 3.77994 4.08096 4.28762C3.57327 4.7953 3.57327 5.61841 4.08096 6.1261L10.1105 12.1556L4.02212 18.244C3.51444 18.7517 3.51444 19.5748 4.02212 20.0825C4.5298 20.5902 5.35291 20.5902 5.86059 20.0825L11.949 13.9941L18.3031 20.3483C18.8108 20.8559 19.6339 20.8559 20.1416 20.3483C20.6493 19.8406 20.6493 19.0175 20.1416 18.5098L13.7875 12.1556L20.0828 5.86035Z" fill="#8A8B99"/>
+  </svg>
+</i>
+<div id="drawWrap">
+  <div id="draw" toolBoxState="bottom" lazyDelay="true"></div>
+</div>
+<script>
+  // 获取当前页面的 URL
+  const urlString = window.location.search;
+  // 使用 URLSearchParams 解析 URL 参数
+  const urlParams = new URLSearchParams(urlString);
+  // 创建一个空的 Map
+  const paramMap = new Map();
+  // 遍历 URLSearchParams，将参数添加到 Map 中
+  for (const [key, value] of urlParams.entries()) {
+      paramMap.set(key, value);
+  }
+  paramMap.forEach((value,key) => {
+      $("#draw").attr(key, value);
+  })
+  function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+      if (r != null) return decodeURI(r[2]);
+      return '';
+  }
+
+  let type = getUrlParam("type")
+  //支持打开上次的
+  let continueLast = getUrlParam("continueLast") || 0;
+
+  if (type == "draw") {
+      //白板
+      $("#draw").attr("drawType", "draw");
+      $("#draw").attr("haveClose", "haveClose");
+      $("#draw").attr("multipleBoard", "true");
+      $("#draw").attr("saveType", "cloud");
+      $("#draw").attr("haveShare", "true");
+  } else if (type == "comment") {
+      //画笔
+      $("#draw").attr("drawType", "comment");
+  }
+  const hasBorder = getUrlParam("hasBorder")
+  if(hasBorder) {
+    $('#drawWrap').attr('style', 'background: linear-gradient(270deg, #936F79 -0.65%, #A27D7D 35.97%, #DFC8BA 99.99%); padding: 10px;')
+    $('#close').show();
+  }
+</script>
+<script type="text/javascript" src="./js/drawingboard.js"></script>
+<script>
+    window.addEventListener("message", function (event) {
+        if (event && event.data) {
+            let data = event.data;
+            if (data.msgType === "drawboard") {
+                if (data.type === "cancel" || data.type === "closeComment") {
+                  console.log('画板回调', event.data)
+                  $('#clear').click()
+                  RendererHelper.sendToOtherWindow("whiteBoardOp", "meetWindow", {type: "cancel"});
+                }
+            }
+        }
+    });
+    $('#close').on('click',function() {
+      Bridge.hideWindowSelf();
+      Bridge.sendToOtherPage("whiteBoardOp", {type: "cancel"}, "meetWindow");
+    })
+</script>
+</body>
+</html>

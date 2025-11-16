@@ -1,0 +1,26 @@
+:root{
+  --cxkt-dark-color-global-bg-1: #111A2B;
+  --cxkt-dark-color-global-bg-2: #1D2840;
+  --cxkt-dark-color-global-bg-3: #26334D;
+  --cxkt-dark-color-global-bg-4: #313E59;
+  --cxkt-dark-color-global-bg-5: #3D4B66;
+  --cxkt-dark-color-video-bg: #030C1F;
+  --cxkt-dark-color-page-header-bg: #162238;
+  --cxkt-dark-color-input-bg-default: #26334D;
+  --cxkt-dark-color-input-bg-hover: #364159;
+  --cxkt-dark-color-more-btn-bg: #29334780;
+  --cxkt-dark-color-checkbox-bg-disabled: rgba(255,255,255,0.05);
+  --cxkt-dark-color-mask-bg: #0e0f1066;
+  --cxkt-dark-color-scroll-bar-bg: #ffffff26;
+  --cxkt-dark-color-icon-primary: #CFD1D3;
+  --cxkt-dark-color-icon-secondary: #909BA5;
+  --cxkt-dark-color-icon-disabled: rgba(238,239,241,0.3);
+  --cxkt-dark-color-icon-bg-hover: #34425E;
+  --cxkt-dark-color-icon-bg-default: rgba(38,51,77,0.8);
+  --cxkt-dark-color-icon-border: rgba(255,255,255,0.05);
+  --cxkt-dark-color-divider: #26334D;
+  --cxkt-dark-color-border: rgba(255,255,255,0.1);
+  --cxkt-dark-color-message-bubble-bg-sent: #1A79FF;
+  --cxkt-dark-color-message-bubble-bg-received: #2D3952;
+  --cxkt-dark-color-user-bg: rgba(38,51,77,0.8);
+}

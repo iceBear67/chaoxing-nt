@@ -1,0 +1,171 @@
+body {
+  box-sizing: border-box;
+}
+
+.preview-video-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(51, 51, 51, 0.16);
+  z-index: 50;
+}
+
+.preview-video-box .videoCk {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  overflow: hidden;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#videoCk {
+  height: 100%;
+}
+
+#videoCk>video {
+  width: 100%;
+  height: calc(100% - 30px);
+}
+.videoCk>header {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -webkit-app-region: drag;
+}
+
+.videoCk>header>span {
+  font-size: 14px;
+  color: #131B26;
+  letter-spacing: 0.04em;
+}
+
+.videoCk>header .left {
+  height: 100%;
+  display: flex;
+  padding: 0 12px;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+.videoCk>header .left>i {
+  width: 12px;
+  height: 12px;
+  background: var(--bgColor);
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  margin-right: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.videoCk>header .left .red {
+  --bgColor: #FF5E57;
+}
+
+.videoCk>header .left .yellow {
+  --bgColor: #FFBB2E;
+}
+
+.videoCk>header .left .green {
+  --bgColor: #38C149;
+}
+
+.videoCk>header .left:hover>i::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background: var(--bgIcon) center no-repeat;
+  background-size: 100% 100%;
+}
+
+.videoCk>header .left>i.close::before {
+  --bgIcon: url(../images/tit-close-mac.png);
+}
+
+.videoCk>header .left>i.minimize::before {
+  --bgIcon: url(../images/tit-minimize-mac.png);
+}
+
+.videoCk>header .left>i.full-screen::before {
+  --bgIcon: url(../images/tit-full-screen-mac.png);
+}
+
+.videoCk>header .left>i.exit-full-screen::before {
+  --bgIcon: url(../images/tit-exit-full-screen-mac.png);
+}
+
+.videoCk>header .left>i:active {
+  filter: brightness(.6);
+}
+
+.videoCk>header .right {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 9999;
+}
+
+.videoCk>header .right>i {
+  width: 38px;
+  height: 30px;
+  display: inline-block;
+  background: var(--bgIcon) center no-repeat;
+  background-size: 12px 12px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+.videoCk>header .right>i:hover {
+  background-color: #F2F4F7;
+}
+
+.videoCk>header .right>i:active {
+  background-color: #F2F4F7;
+}
+
+.videoCk>header .right .minimize {
+  --bgIcon: url(../images/tit-minimize.png);
+}
+
+.videoCk>header .right .full-screen {
+  --bgIcon: url(../images/tit-full-screen.png);
+}
+
+.videoCk>header .right .exit-full-screen {
+  --bgIcon: url(../images/tit-exit-full-screen.png);
+}
+
+.videoCk>header .right .close {
+  --bgIcon: url(../images/tit-close.png);
+}
+
+.videoCk>header .right>i.redAct:hover {
+  background-color: #FF4D4D;
+  --bgIcon: url(../images/tit-close-white.png);
+}
+
+.videoCk>header .right>i.redAct:active {
+  background-color: #FF4D4D;
+  --bgIcon: url(../images/tit-close-white.png);
+}

@@ -1,0 +1,2323 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            -webkit-user-select: none;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="./css/indexGroupDis.css"><!-- 2021.12.29 -->
+    <link rel="stylesheet" href="./css/styleV2.css"><!-- 2021.12.29 -->
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/commentList.css">
+    <link rel="stylesheet" href="./css/box.css">
+    <link rel="stylesheet" href="./css/theme.css">
+    <style>
+        /* .mactop {
+            top: var(--macTop);
+        } */
+    </style>
+</head>
+
+<body>
+    <!-- <div class="popBox" style="display: none;"></div> -->
+    <div class="answer-list" id="answerList"></div>
+    <div class="topMenu topMenu_win7  topMenu-update" id="topMenuTools" style="display: none;">
+        <!-- 2021.12.29 分成了上下两个部分 -->
+        <div class="topBox">
+            <!--邀请码2021.02.26-->
+            <div class="topNaver_direction topNaver_direction_handle" style="width: 20px;">
+                <i class="icon"></i>
+                <div class="topNaver_direction_con">
+                    <h2>在线课堂</h2>
+                    <div class="topNaver_invitCodeBox">
+                        <span class="qrcodeName">邀请码:</span>
+                        <div class="topNaver_invitCode"><i></i><span class="invitCode_con"></span></div>
+                        <div class="topNaver_invitCode_copy invitCodeCopyClass" data-clipboard-text=""></div>
+                    </div>
+                </div>
+            </div>
+            <!--网络情况2021.02.26-->
+            <div class="topNaver_net topNaver_stu topNaver_net_handle">
+                <!--2021.02.26,1格信号icon_net_red,2格信号icon_net_yellow，信号中断icon_net_false-->
+                <i class="icon"><img src="./images/icon_net_false.png" class="img netImg"></i>
+                <div class="topNaver_net_con">
+                    <h2>网络连接正常</h2>
+                    <div class="topNaver_netBox">
+                        <p class="clearfix">
+                            <span class="td lastmileDelayName">延迟:</span>
+                            <span class="th lastmileDelay">未知</span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="td gatewayRttName">路由器延迟:</span>
+                            <span class="th gatewayRtt">未知</span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="td packetLossRateName">丢包率:</span>
+                            <span class="th"><img src="./images/net_arrowTop.png" class="net_arrowTop"><span
+                                    class="txPacketLossRate">未知</span></span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="th"><img src="./images/net_arrowBot.png" class="net_arrowBot"><span
+                                    class="rxPacketLossRate">未知</span></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--2021.02.26-->
+            <div class="menuItem signal">
+                <span id="meetTime"></span>
+            </div>
+            <!-- 2021.12.29直播中 -->
+            <div class="liveBtn live_start">
+                <i></i><span>直播中</span>
+                <!-- <p class="toast">查看直播详情</p> -->
+            </div>
+            <!-- 2022-2-24 -->
+            <div class="liveBtn  red recording_start">
+                <i></i><span>录制中</span>
+            </div>
+            <!-- //2022-2-24 -->
+            <!-- <div class="recording_start hide">
+              <div class="recording_start_state">
+              </div>
+          </div> -->
+            <!--2021.12.29-->
+            <!-- <div class="endBtn">
+              <span>结束共享</span>
+          </div> -->
+        </div>
+
+        <div class="bottomBox">
+            <div class="menuItem function raise_hand" style="display: none" data-status="0">
+                <img class="raise-hand" src="./images/raise-hand.png">
+                <img class="raise-hand-act hide" src="./images/raise-hand-act.png">
+                <span class="function_text">举手</span>
+            </div>
+            <div class="menuItem function voice_btn" data-status="0">
+                <span class="voice_stop"><img src="./images/share_screen_voice_stop.png"></span>
+                <span class="audioicon animate hide"></span>
+                <span class="function_text">解除静音</span>
+            </div>
+            <div class="menuItem function video_btn" data-status="0">
+                <img src="./images/share_screen_video_stop.png">
+                <span class="function_text">开启视频</span>
+            </div>
+            <!--			2021.10.12 begin-->
+            <div class="menuItem function share_btn">
+                <img src="./images/share.png">
+                <span class="function_text">重新共享</span>
+            </div>
+
+            <div class="menuItem function class_manager" style="display: none;">
+                <img src="./images/control_auth.png">
+                <span class="function_text">课堂管理</span>
+            </div>
+
+            <div class="menuItem function recording_btn" data-status="0" style="display: none;">
+                <img src="./images/share_screen_recording_stop.png">
+                <span class="function_text">录制</span>
+            </div>
+
+            <div class="menuItem function white_board_btn" data-status="0">
+                <img src="./images/white_board.png">
+                <span class="function_text">白板</span>
+            </div>
+
+            <div class="menuItem function activities_btn" data-status="0">
+                <img src="./images/activities.png">
+                <span class="function_text">活动</span>
+            </div>
+
+            <div class="menuItem function live_btn" data-status="0" style="display: none;">
+                <img src="./images/control_living.png">
+                <span class="function_text">直播</span>
+            </div>
+
+            <!--			2021.10.12 end-->
+            <!-- 2021.12.29 begin-->
+
+            <!-- <div class="menuItem addBtn">
+                <div class="blue_circle">
+                    <i class="add_circle"></i>
+                </div>
+            </div> -->
+            <!-- 2021.12.29 end-->
+            <div class="menuItem function member_btn">
+                <img src="./images/share_screen_member.png">
+                <span class="function_text" id="memberNumber">在线成员</span>
+            </div>
+            <div class="menuItem function information chat_btn">
+                <img src="./images/share_screen_chat.png">
+                <div class="information_number" id="chatNumberDiv" style="display: none;">
+                    <span id="chatNumber"></span>
+                </div>
+                <span class="function_text">聊天</span>
+            </div>
+            <div class="menuItem function group_discuss" style="display: none;">
+                <img src="./images/chat.png">
+                <span class="function_text">分组讨论</span>
+            </div>
+
+            <div class="menuItem function setting_btn" style="display: none;">
+                <img class="setting_btn_click" src="./images/share_screen_setting.png">
+                <span class="function_text setting_btn_click">设置</span>
+            </div>
+            <div class="menuItem function more_btn">
+                <img class="more_btn_click" src="./images/application.png">
+                <span class="function_text more_btn_click">更多</span>
+            </div>
+            <button class="end-share endBtn">结束共享</button>
+            <!-- <div class="menuItem interval">
+        </div>
+        <div class="menuItem">
+            <div class="endBtn">
+                <span>结束共享</span>
+            </div>
+        </div>-->
+        </div>
+        <div class="packUp">
+            <i></i>
+            <div class="tips">收起控制栏</div>
+        </div>
+    </div>
+    <div class="trigger-wrap trigger-wrap_win7 hide" id="topMiniTools">
+        <div class="trigger trigger_win7">
+            <div class="icon-wrap topNaver_direction_handle" id="topNaver_direction" style="display: none;">
+                <img src="./images/icon_direction.svg" alt="">
+                <div class="topNaver_direction_con menu">
+                    <h2>在线课堂</h2>
+                    <div class="topNaver_invitCodeBox">
+                        <span class="qrcodeName">邀请码:</span>
+                        <div class="topNaver_invitCode"><i></i><span class="invitCode_con"></span></div>
+                        <div class="topNaver_invitCode_copy invitCodeCopyClass" data-clipboard-text=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon-wrap topNaver_net_handle" id="topNaver_net">
+                <img src="./images/icon_net_false.png" class="netImg">
+                <div class="topNaver_net_con menu">
+                    <h2>网络连接正常</h2>
+                    <div class="topNaver_netBox">
+                        <p class="clearfix">
+                            <span class="td lastmileDelayName">延迟:</span>
+                            <span class="th lastmileDelay">未知</span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="td gatewayRttName">路由器延迟:</span>
+                            <span class="th gatewayRtt">未知</span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="td packetLossRateName">丢包率:</span>
+                            <span class="th"><img src="./images/net_arrowTop.png" class="net_arrowTop"><span
+                                    class="txPacketLossRate">未知</span></span>
+                        </p>
+                        <p class="clearfix">
+                            <span class="th"><img src="./images/net_arrowBot.png" class="net_arrowBot"><span
+                                    class="rxPacketLossRate">未知</span></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <span id="topMiniTitle" style="-webkit-app-region: no-drag;">在线课堂</span>
+            <button class="share-end" style="display:none;">结束共享</button>
+        </div>
+    </div>
+
+    <!--弹窗-->
+    <div id="confirmMsgDiv" class="pop_overs" style="display: none;">
+        <div class="textwaring">
+            <p class="msgTitle"></p>
+            <div class="textwaring_lib msgContext"></div>
+        </div>
+        <div class="buttonsArr">
+            <a href="javascript:void(0);" class="cancleBtn"></a>
+            <a href="javascript:void(0);" style="display: none;" class="ok confirmBtn"></a>
+            <a href="javascript:void(0);" style="display: none;" class="leave endBtn"></a>
+            <a href="javascript:void(0);" style="display: none;" class="leave leaveBtn"></a>
+        </div>
+    </div>
+
+    <!--二维码弹层2021.02.26-->
+    <div id="qrcodeDiv" class="code-content show-qr-code" data-status="0">
+        <div class="qrcode-close-icon"></div>
+        <div class="code-title">
+            <div class="invite-code">
+                <span class="invent">邀请码:</span>
+                <span class="code"></span>
+            </div>
+            <div class="code-input">学习通首页右上角输入</div>
+        </div>
+        <div class="qrcode-content">
+            <div class="code-wrapper">
+            </div>
+            <a class="code-link invitCodeCopyClass" data-clipboard-text="">复制邀请码</a>
+        </div>
+    </div>
+    <!--连接不佳2021.03.04show显示-->
+    <div class="connectNotShare netWorklowTips">
+        <div class="connectNotBox"><span class="icon"></span>当前你的网络状态不佳</div>
+    </div>
+    <!--正在连接2021.03.04show显示-->
+    <div class="connectBox noNetWorkTips"><span class="icon"></span>网络不稳定，正在连接...</div>
+    <!--2021.03.04show显示-->
+    <div class="connectBox lodingTips"><span class="icon"></span>加载中...</div>
+    <div class="connectBox toastTool"></div>
+    <!-- 2022-1-20 -->
+    <div id="comment-list-box">
+
+    </div>
+    <div class="openRight" id="openRight"><i class="left"></i></div>
+</body>
+<script>
+    if (typeof module === "object") {
+        window.module = module;
+        module = undefined;
+    }
+</script>
+<script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script>
+<script>
+    if (window.module) module = window.module;
+</script>
+<script type="text/javascript" src="./js/clipboard.min.js"></script>
+<link rel="stylesheet" href="./css/answerList.css">
+<script src="./js/commentBox.js"></script>
+<script type="text/javascript" src="./js/answerList.js"></script>
+<!--国际化开始-->
+<script>
+    let isEnLanguage = false;
+    window.i18 = {
+        "静音": "Mute",
+        "解除静音": "Unmute",
+        "解除静音": "Unmute",
+        "关闭视频": "Close Video",
+        "开启视频": "Open Video",
+        "在线成员": "Members",
+        "聊天": "Chat",
+        "录制": "Start Recording",
+        "结束录制": "Stop Recording",
+        "正在录制…": "Recording...",
+        "课堂管理": "Class Setting",
+        "直播": "live",
+        "设置": "Settings",
+        "结束共享": "End Sharing",
+        "加课权限": "Permission",
+        "允许任何人加入": "Allow anyone to join",
+        "允许加入的人员": "Allowing list",
+        "确认开启视频？": "Be sure to open video?",
+        "当前设备不支持": "The current device is not supported",
+        "请开启设备权限": "Please enable device permissions",
+        "设置成功": "Set successfully",
+        "录制已停止": "Recording stopped",
+        "确认结束录制？": "Confirm to stop recording",
+        "录制视频生成需要一些时间，完成后将以通知形式发送结果": "It will take some time for the recorded video to be generated, and the result will be sent in the form of notice after completion",
+        "停止": "Stop",
+        "开启视频": "Open Video",
+        "确认开启视频？": "Be sure to open video?",
+        "开启": "Open",
+        "取消": "Cancel",
+        "确认": "Done",
+        "开启录制失败": "Failed to start recording",
+        "结束录制失败": "Failed to stop recording",
+        "结束": "End",
+        "离开": "Leave",
+        "请选择仅自己离开或结束此课堂？": "Please selesct to just leave the class or end the class?",
+        "确认离开？": "Be sure to leave?",
+        "在线课堂": "Online Class",
+        "课堂设置": "Class Settings",
+        "允许主动退出课堂": "Dropping the class is allowed",
+        "全体静音后，允许自我解除静音": "After muting, self-unmute is allowed",
+        "锁定课堂": "Lock class",
+        "开启后，所有人不能再加入课堂": "Once turned on, no one can join the class",
+        "加入课堂权限": "Permission",
+        "管理": "Management",
+        "拍摄视频画质": "Video quality",
+        "共享屏幕画质": "Share screen quality",
+        "标清": "SD",
+        "高清": "HD",
+        "超高清": "FHD",
+        "网络连接正常": "Network connection is normal",
+        "网络状况不佳": "Weak network connection",
+        "网络已断开，正在重连": "Unstable network，connecting...",
+        "延迟:": "Latency:",
+        "路由器延迟:": "Router latency:",
+        "丢包率:": "Packet loss rate:",
+        "未知": "Unknown",
+        "当前你的网络状态不佳": "Weak network connection",
+        "网络不稳定，正在连接...": "Unstable network，connecting...",
+        "邀请码:": "Invitation Code:",
+        "复制邀请码": "Copy Invitation code",
+        "学习通首页右上角输入": "Enter Invitation code in the upper right corner of the homepage.",
+        "复制成功": "Copy Successfully",
+        "已开启画中画，不支持同时开启视频": "Picture-in-picture is enabled, and video cannot be turned on at the same time",
+        "直播中": "Live Now",
+        "直播": "Live",
+        "录制中": "Recording",
+        "重新共享": "Reshare",
+        "分组讨论": "Group discussion",
+        "画中画": "Picture in Picture",
+        "对观看端屏蔽泛雅课堂应用": "All Chaoxing windows are invisible to audience",
+        "对观看端屏蔽{appName}应用": "All {appName} windows are invisible to audience",
+        "同时共享电脑声音": "share PC audio",
+        "白板": "Whiteboard",
+        "活动": "activity",
+        "更多": "more",
+        "收起控制栏": "Collapse Control Bar",
+        "选择扬声器": "Select Speaker",
+        "选择麦克风": "Select Microphone",
+        "选择摄像头": "Select Camera",
+        "无设备": "No Device"
+    }
+    //国际化文本
+    const getI18Value = function (key) {
+        if (isEnLanguage && window.i18) {
+            let value = window.i18[key];
+            if (value) {
+                return value;
+            }
+            console.log("no value,key=" + key)
+        }
+        return key;
+    }
+</script>
+<!--国际化结束-->
+<script>
+    let leader = "0";
+    let windowCloseFlag = '1';
+    let hasAudioDev = false;
+    let hasVideoDev = false;
+    // 投屏相关参数
+    let screenTypeTemp = "";
+    let screenInfoTemp = "";
+    let screenWindowPidTemp = "";
+    // 画中画
+    let openPIP = false;
+    // 工具栏坐标
+    let screenToolsX = 0;
+    let screenToolsY = 0;
+    let m_MouseOnToolsBar = false;
+    let m_lastCheckMouseTime = 0;
+    let isAlpha = false;
+    let m_handUpStatus = -1; //举手状态  0：不需要举手（如取消全员静音）  1：初始状态（显示举手图标）  2：举手中   3：老师已同意举手  4：正在发言（显示退出发言按钮）
+    let m_videoMuteStatus = 0;  //视频禁用状态   0：正常状态，可开启视频  1：教师禁止开启视频
+    let m_activitiesWinId;
+    let m_moreWinId;
+    let windowTop = 0;
+    // 3 秒后隐藏弹幕输入框，如果用户有操作则取消本次任务的执行
+    let hideSendCommentInputTaskTimer = null;
+
+    // url工具类
+    // const urlHelper = require("../common/UrlHelper");
+    // 进程是否存活
+    // const isRunningHelper = require("is-running");
+    // ipc通讯
+    // const RendererProcessHelper = require("../process/RendererProcessHelper");
+    // ipc通讯频道-主通讯
+    const meetToolsChannel = "meetTools";
+    // ipc通讯频道-被通讯
+    const meetToolsMessageFormMainChannel = "meetToolsMessageFormMain";
+    // 视频和录制图标
+    const videoBtnStartImg = "./images/share_screen_video_start.png";
+    const videoBtnStopImg = "./images/share_screen_video_stop.png";
+    const recordingBtnStartImg = "./images/share_screen_recording_start.png";
+    const recordingBtnStopImg = "./images/share_screen_recording_stop.png";
+    const livingBtnStartImg = "./images/control_living.png";
+    const livingBtnOnImg = "./images/control_living_act.png";
+
+
+    // 客户端x掉窗口调用事件
+    function beforeWindowClose() {
+        if (windowCloseFlag == '1') {
+            //解绑事件
+            $(".pop_overs").unbind("click");
+            $('.pop_overs .confirmBtn').hide();
+            $('.pop_overs .endBtn').hide();
+            $('.pop_overs .leaveBtn').hide();
+            if (leader == "1") {
+                $('.pop_overs .msgTitle').text(getI18Value("请选择仅自己离开或结束此课堂？"));
+                $('.pop_overs .endBtn').show();
+                $('.pop_overs .leaveBtn').show();
+            } else {
+                $('.pop_overs .msgTitle').text(getI18Value("确认离开？"));
+                $('.pop_overs .leaveBtn').show();
+            }
+            $('.pop_overs .msgContext').text("");
+            $('.pop_overs .cancleBtn').text(getI18Value("取消"));
+
+            $('.pop_overs .endBtn').text(getI18Value("结束"));
+            $('.pop_overs .leaveBtn').text(getI18Value("离开"));
+
+            $('.pop_overs').show();
+            //绑定事件
+            $('.pop_overs').on('click', '.cancleBtn', function () {
+                $('.pop_overs').hide();
+            });
+            $('.pop_overs').on('click', '.endBtn', function () {
+                if (RendererProcessHelper) {
+                    let messageTemp = {
+                        "cmd": "endOrleaveMeet",
+                        "status": -1
+                    };
+                    RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+                }
+                windowCloseFlag = '0';
+                $('.pop_overs').hide();
+            });
+            $('.pop_overs').on('click', '.leaveBtn', function () {
+                if (RendererProcessHelper) {
+                    let messageTemp = {
+                        "cmd": "endOrleaveMeet",
+                        "status": 0
+                    };
+                    RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+                }
+                windowCloseFlag = '0';
+                $('.pop_overs').hide();
+            });
+        }
+        return windowCloseFlag;
+    }
+    // 消息弹框
+    function errorTipsBox(mes) {
+        $(".popError").remove();
+        $("body").append('<div class="popError">' + (mes || "") + '</div>');
+        $(".popError").fadeIn().delay(2000).fadeOut();
+    }
+    // 对话框
+    // function cmdConfirm(title, text, confirmBtn, callback, cancleBtn, cancle_callback) {
+    //     //解绑事件
+    //     $(".pop_overs").unbind("click");
+    //     $('.pop_overs .msgTitle').text('');
+    //     $('.pop_overs .msgContext').text('');
+    //     $('.pop_overs .confirmBtn').hide();
+    //     $('.pop_overs .endBtn').hide();
+    //     $('.pop_overs .leaveBtn').hide();
+    //     if (title) {
+    //         $('.pop_overs .msgTitle').text(title);
+    //     }
+    //     if (text) {
+    //         $('.pop_overs .msgContext').text(text);
+    //     }
+    //     if (confirmBtn) {
+    //         $('.pop_overs .confirmBtn').text(confirmBtn);
+    //     } else {
+    //         $('.pop_overs .confirmBtn').text(getI18Value("确认"));
+    //     }
+    //     if (cancleBtn) {
+    //         $('.pop_overs .cancleBtn').text(cancleBtn);
+    //     } else {
+    //         $('.pop_overs .cancleBtn').text(getI18Value("取消"));
+    //     }
+    //     $('.pop_overs .confirmBtn').show();
+    //     $('.pop_overs').show();
+    //     //绑定事件
+    //     $('.pop_overs').on('click', '.cancleBtn', function () {
+    //         if (cancle_callback) {
+    //             cancle_callback();
+    //         }
+    //         $('.pop_overs').hide();
+    //     });
+    //     $('.pop_overs').on('click', '.confirmBtn', function () {
+    //         if (callback) {
+    //             callback();
+    //         }
+    //         $('.pop_overs').hide();
+    //     });
+    // }
+    let minMenuTimeOutHandle = -1;
+    // 最小化工具栏
+    function minMenuTools(delayTime) {
+        delayTime = delayTime || 2000;
+        if (minMenuTimeOutHandle >= 0) {
+            // clearTimeout(minMenuTimeOutHandle);
+            // minMenuTimeOutHandle = -1;
+            return;
+        }
+        minMenuTimeOutHandle = setTimeout(function () {
+            minMenuToolsBar();
+        }, delayTime);
+    }
+
+    function minMenuToolsBar() {
+        if (minMenuTimeOutHandle >= 0) {
+            clearTimeout(minMenuTimeOutHandle);
+            minMenuTimeOutHandle = -1;
+        }
+        RendererProcessHelper.getScreenWorkArea().then(rect => {
+            $('.control_setting_box').addClass('hide');
+            // $('#topMenuTools').addClass('hide_animation');
+
+            $('#topMenuTools').addClass('hide');
+            $('#topMiniTools').removeClass('hide');
+            $(".control_setting_chose").hide();
+            $(".control_naver_more").removeClass("cur");
+            let w = 116;
+            let h = 22;
+            let x = rect.x + (rect.width - w) / 2;
+            let y = rect.y;
+            RendererProcessHelper.setWindowBounds(x, y, w, h);
+        })
+
+    }
+
+    // 最大化工具栏
+    function maxMenuTools() {
+        RendererProcessHelper.getScreenWorkArea().then(rect => {
+            if (minMenuTimeOutHandle >= 0) {
+                clearTimeout(minMenuTimeOutHandle);
+                minMenuTimeOutHandle = -1;
+            }
+            $('#topMenuTools').removeClass('hide');
+            $('#topMiniTools').addClass('hide');
+            let w = 932;
+            let h = 88;
+            let x = rect.x + (rect.width - w) / 2;
+            let y = rect.y;
+            RendererProcessHelper.setWindowBounds(x, y, w, h);
+        })
+
+    }
+
+    let lastShowNetBadTime = 0;
+    // 网络监测提示
+    function netWorkTips(netStatus) {
+        // 网络监测提示 netStatus(0 正常	1不佳   2基本断线)
+        if (netStatus == 0) {
+            return;
+        }
+        if (netStatus == 1) {
+            // 网络不佳的提示增加限制，20秒内最多提示一次
+            $(".noNetWorkTips").hide();
+            var curTime = new Date().getTime();
+            if (!lastShowNetBadTime || (curTime - lastShowNetBadTime > 20 * 1000)) {
+                var display = $(".netWorklowTips").css('display');
+                if (display != 'block') {
+                    $(".netWorklowTips").show();
+                }
+                lastShowNetBadTime = curTime;
+            } else {
+                var display = $(".netWorklowTips").css('display');
+                if (display == 'block') {
+                    $(".netWorklowTips").hide();
+                }
+            }
+        } else if (netStatus == 2) {
+            $(".netWorklowTips").hide();
+            // 网络断线连接
+            var curTime = new Date().getTime();
+            if (!lastShowNetBadTime || (curTime - lastShowNetBadTime > 10 * 1000)) {
+                var display = $(".noNetWorkTips").css('display');
+                if (display != 'block') {
+                    $(".noNetWorkTips").show();
+                }
+                lastShowNetBadTime = curTime;
+            } else {
+                // var display = $(".noNetWorkTips").css('display');
+                // if (display == 'block') {
+                //     $(".noNetWorkTips").hide();
+                // }
+            }
+        } else if (netStatus == 3) {
+            // 网络断线连接
+            // var display = $(".noNetWorkTips").css('display');
+            // if (display != 'block') {
+            //     $(".noNetWorkTips").show();
+            // }
+            RendererProcessHelper.DialogHelper.alert("网络连接已断开，请确认网络连接正常后，重新发起屏幕共享", {
+                okBtn: "知道了", okClick: () => {
+                    $('.endBtn').click()
+                }
+            })
+        }
+        // if (window.netTimer) {
+        //     clearInterval(window.netTimer);
+        // }
+        // window.netTimer = setInterval(function () {
+        //     if ($(".noNetWorkTips").css('display') == 'block' || $(".netWorklowTips").css('display') == 'block') {
+        //         $(".noNetWorkTips").hide();
+        //         $(".netWorklowTips").hide();
+        //     } else {
+        //         clearInterval(window.netTimer);
+        //     }
+        // }, 4000)
+    }
+
+    // 会议计时
+    function meetTiming(meetTime) {
+        setInterval(function () {
+            let date = new Date().getTime();
+            let count = date - meetTime;
+            let h = parseInt(count / 1000 / 60 / 60);
+            let m = parseInt(count / 1000 / 60) % 60;
+            let s = parseInt(count / 1000) % 60;
+            h = h < 10 ? '0' + h : h;
+            m = m < 10 ? '0' + m : m;
+            s = s < 10 ? '0' + s : s;
+            if (h > 0) {
+                $('#meetTime').html(h + ':' + m + ':' + s);
+            } else {
+                $('#meetTime').html(m + ':' + s);
+            }
+            // 失去焦点时默认穿透-针对mac
+            // if (process.platform == "darwin" && (!m_MouseOnToolsBar && !currentWindow.isFocused())) {
+            //     setIgnoreMouseEvents(true);
+            // }
+            // if (process.platform != "darwin") {
+            let curTime = new Date().getTime();
+            if (curTime - m_lastCheckMouseTime > 800) {
+                RendererHelper.isMouseInWindow().then(ret => {
+                    checkMouseInWindow(ret);
+                    m_lastCheckMouseTime = curTime;
+                })
+
+            }
+            // }
+
+        }, 1000);
+    }
+
+    // 发送函数到会议页面
+    function sendFunToMeetWindow(fun) {
+        if (typeof fun !== "function") {
+            return;
+        }
+        // 方法回调
+        if (RendererProcessHelper) {
+            let messageTemp = {
+                "cmd": "execfunction",
+                "fun": fun
+            };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+        }
+    }
+
+    // 更新举手状态
+    function changeRaiseHandleStatus(status) {
+        if (!status) {
+            return;
+        }
+        if (status == "1") {
+            $(".raise_hand").attr("data-status", "1");
+            $(".raise_hand .raise-hand").addClass('hide');
+            $(".raise_hand .raise-hand-act").removeClass('hide');
+            $('.raise_hand .function_text').text(getI18Value('手放下'));
+        } else if (status == "0") {
+            $(".raise_hand").attr("data-status", "0");
+            $(".raise_hand .raise-hand").removeClass('hide');
+            $(".raise_hand .raise-hand-act").addClass('hide');
+            $('.raise_hand .function_text').text(getI18Value('举手'));
+        }
+    }
+
+    // 更新麦克风状态
+    function changeAudioStatus(status) {
+        if (!status) {
+            return;
+        }
+        if (status == "1") {
+            $(".voice_btn").attr("data-status", "1");
+            $('.voice_btn .function_text').text(getI18Value('静音'));
+            $('.voice_stop').addClass('hide');
+            $('.voice_btn .audioicon').removeClass('hide animate');
+        } else if (status == "0") {
+            $(".voice_btn").attr("data-status", "0");
+            $('.voice_btn .function_text').text(getI18Value('解除静音'));
+            $('.voice_stop').removeClass('hide');
+            $('.voice_btn .audioicon').addClass('hide');
+        }
+    }
+
+    // 更新麦克风说话状态
+    function changeAudioVolumeStatus(status) {
+        let currentStatus = $(".voice_btn").attr("data-status");
+        if (currentStatus == '1') {
+            $('.voice_stop').addClass('hide');
+            $('.voice_btn .audioicon').removeClass('hide');
+            if (status == 1) {
+                // 正在说话
+                $('.voice_btn .audioicon').addClass('animate');
+            } else {
+                // 未说话
+                $('.voice_btn .audioicon').removeClass('animate');
+            }
+        }
+    }
+
+    // 更新视频状态
+    function changeVideoStatus(status) {
+        if (!status) {
+            return;
+        }
+        if (status == "1") {
+            $(".video_btn").attr("data-status", "1");
+            $('.video_btn .function_text').text(getI18Value('关闭视频'));
+            $('.video_btn img').attr('src', videoBtnStartImg);
+        } else if (status == "0") {
+            $(".video_btn").attr("data-status", "0");
+            $('.video_btn .function_text').text(getI18Value('开启视频'));
+            $('.video_btn img').attr('src', videoBtnStopImg);
+        }
+    }
+
+    // 更新课堂设置选中状态
+    function changeMeetSetStatus(type, status) {
+        if (typeof status == 'undefined') {
+            return;
+        }
+        if (type == 'isPublic') {
+            $('.add_setting_ul li[isPublic="' + status + '"]').addClass('cur').siblings().removeClass("cur");
+        } else {
+            if (status == '1') {
+                $('.meeting_setting_ul input[name="' + type + '"]').prop('checked', true);
+            } else {
+                $('.meeting_setting_ul input[name="' + type + '"]').prop('checked', false);
+            }
+            $('.meeting_setting_ul input[name="' + type + '"]').attr("value", status);
+        }
+    }
+
+    // 更新录制状态
+    function changeRecordStatus(status) {
+        if (!status) {
+            return;
+        }
+        if (status == "1") {
+            $(".recording_btn").attr("data-status", "1");
+            $('.recording_btn span').text(getI18Value('结束录制'));
+            $('.recording_btn img').attr('src', recordingBtnStartImg);
+            $('.recording_start').removeClass('hide');
+        } else if (status == "0") {
+            $(".recording_btn").attr("data-status", "0");
+            $('.recording_btn span').text(getI18Value('录制'));
+            $('.recording_btn img').attr('src', recordingBtnStopImg);
+            $('.recording_start').addClass('hide');
+        }
+    }
+
+    // 更新直播状态
+    function changeLiveStatus(status) {
+        if (!status) {
+            return;
+        }
+        if (status == "1") {
+            $(".live_btn").attr("data-status", "1");
+            $('.live_btn img').attr('src', livingBtnOnImg);
+            $('.live_start').removeClass('hide');
+        } else if (status == "0") {
+            $(".live_btn").attr("data-status", "0");
+            $('.live_btn img').attr('src', livingBtnStartImg);
+            $('.live_start').addClass('hide');
+        }
+    }
+
+    // 更新成员数量
+    function changeMembersNumber(num) {
+        if (num) {
+            if (num === "99+") {
+                $("#chatNumber").text(num);
+                $("#chatNumberDiv").show();
+                return;
+            }
+            num = parseInt(num);
+            if (num > 0) {
+                if (num > 99) {
+                    num = "99+";
+                }
+                $("#memberNumber").text(getI18Value("在线成员") + "(" + num + ")");
+            } else {
+                $("#memberNumber").text(getI18Value("在线成员"));
+            }
+        } else {
+            $("#memberNumber").text(getI18Value("在线成员"));
+        }
+    }
+
+    // 更新消息数量
+    function changeChatNumber(num) {
+        if (num) {
+            num = parseInt(num);
+            if (num > 0) {
+                if (num > 99) {
+                    num = "99+";
+                }
+                $("#chatNumber").text(num);
+                $("#chatNumberDiv").show();
+            } else {
+                $("#chatNumber").text("");
+                $("#chatNumberDiv").hide();
+            }
+        } else {
+            $("#chatNumber").text("");
+            $("#chatNumberDiv").hide();
+        }
+    }
+    let checkWindowExistInterval;
+    function createWindowExistInterval(windowPid) {
+        // 定时获取窗口是否还存在
+        checkWindowExistInterval = setInterval(function () {
+            try {
+                if (windowPid) {
+                    let isRunning = RendererProcessHelper.isRunningWindow(windowPid);
+                    if (!isRunning) {
+                        // 发送中断提醒
+                        let messageTemp = { "cmd": "screenBreakoff" };
+                        RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+                        // 关闭了停止共享
+                        windowCloseFlag = '0';
+                        $('.endBtn').click();
+                    }
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }, 1000);
+    }
+    // ipc回调事件
+    let ipcRendererCallback = function (args, sys) {
+        if (!args || !args.cmd) {
+            return;
+        }
+        if (args.debug) {
+            console.log("[box.html][_meetToolsMessageFormMain_]收到投屏指令信号 指令 " + JSON.stringify(args));
+        }
+
+        if ("dataInfo" == args.cmd) {
+            // 工具栏坐标
+            screenToolsX = args.screenToolsX || 0;
+            screenToolsY = args.screenToolsY || 0;
+            // 邀请码信息
+            let qrcodeTemp = args.qrcode || "";
+            let qrcodeUrlTemp = args.qrcodeUrl || "";
+            let qrcodeTipsTemp = args.qrcodeTips || "";
+            if (qrcodeTemp) {
+                // 创建者和助教显示
+                // if (leader == "1" || leader == "2") {
+                //     $(".topNaver_direction_handle").show();
+                // }
+                $(".topNaver_direction_handle .topNaver_invitCodeBox .invitCode_con").text(qrcodeTemp);
+                $(".show-qr-code .code-title .invite-code .code").text(qrcodeTemp);
+                $(".topNaver_direction_handle .topNaver_invitCodeBox .topNaver_invitCode_copy").attr("data-clipboard-text", qrcodeTemp);
+                $(".show-qr-code .qrcode-content .code-link").attr("data-clipboard-text", qrcodeTemp);
+            }
+            if (qrcodeUrlTemp) {
+                $(".show-qr-code").attr("data-status", "1");
+                let htmlTemp = "<img src=\"" + qrcodeUrlTemp + "\">";
+                $(".show-qr-code .qrcode-content .code-wrapper").html(htmlTemp);
+            }
+            if (qrcodeTipsTemp) {
+                $(".show-qr-code .code-title .code-input").text(qrcodeTipsTemp);
+            }
+            // 投屏相关参数
+            screenTypeTemp = args.screenType || "";
+            screenInfoTemp = args.screenInfo || "";
+            if (screenTypeTemp == "1") {
+
+            } else if (screenTypeTemp == "2" && screenInfoTemp && screenInfoTemp.windowId) {
+                // 赋值窗口进程id
+                screenWindowPidTemp = screenInfoTemp.processId;
+                // 直接隐藏
+
+                createWindowExistInterval(screenWindowPidTemp);
+            }
+            if (args.meetTitle) {
+                $('.topNaver_direction_con h2').text(args.meetTitle);
+            }
+        } else if ("audioVolume" == args.cmd) {
+            if (!hasAudioDev) {
+                return;
+            }
+            // 说话回调
+            let statusTemp = args.status || 0;
+            changeAudioVolumeStatus(statusTemp);
+        } else if ("netWork" == args.cmd) {
+            // 网络状态
+            let data = args.data;
+            if (data) {
+                let type = data.type || "0";
+                if (type == "1") {
+                    $(".topNaver_net_handle .topNaver_net_con h2").text(getI18Value("网络连接正常"));
+                    $("#topMiniTools .netImg").attr("src", "./images/icon_net.png");
+                    $(".topNaver_net_handle .netImg").attr("src", "./images/icon_net.png");
+                    let status = data.status || 0;
+                    console.log("netWork status", status);
+                    if (status == 1) {
+                        netWorkTips(1);
+                        $(".topNaver_net_handle .topNaver_net_con h2").text(getI18Value("网络状况不佳"));
+                        $(".connectNotBox").text(getI18Value("当前你的网络状态不佳"));
+                        $("#topMiniTools .netImg").attr("src", "./images/icon_net_yellow.png");
+                        $(".topNaver_net_handle .netImg").attr("src", "./images/icon_net_yellow.png");
+                    } else if (status == 2) {
+                        netWorkTips(2);
+                        $(".topNaver_net_handle .topNaver_net_con h2").text(getI18Value("网络已断开，正在重连"));
+                        $(".connectNotBox").text(getI18Value("当前你的网络状态不佳"));
+                        $("#topMiniTools .netImg").attr("src", "./images/icon_net_false.png");
+                        $(".topNaver_net_handle .netImg").attr("src", "./images/icon_net_false.png");
+                    } else if (status == 3) {
+                        netWorkTips(3);
+                    }
+                } else if (type == "2") {
+                    let lastmileDelay = data.lastmileDelay;
+                    if (typeof (lastmileDelay) != "undefined" && lastmileDelay != "") {
+                        // 最后延迟
+                        $(".topNaver_net_handle .lastmileDelay").text(lastmileDelay + "ms");
+                    } else {
+                        $(".topNaver_net_handle .lastmileDelay").text(getI18Value("未知"));
+                    }
+                    let gatewayRtt = data.gatewayRtt;
+                    if (typeof (gatewayRtt) != "undefined" && gatewayRtt != "") {
+                        // 路由器延迟
+                        $(".topNaver_net_handle .gatewayRtt").text(gatewayRtt + "ms");
+                    } else {
+                        $(".topNaver_net_handle .gatewayRtt").text(getI18Value("未知"));
+                    }
+                    let txPacketLossRate = data.txPacketLossRate;
+                    if (typeof (txPacketLossRate) != "undefined" && txPacketLossRate !== "") {
+                        // 上行丢包率
+                        $(".topNaver_net_handle .txPacketLossRate").text(txPacketLossRate + "%");
+                    } else {
+                        $(".topNaver_net_handle .txPacketLossRate").text(getI18Value("未知"));
+                    }
+                    let rxPacketLossRate = data.rxPacketLossRate;
+                    if (typeof (rxPacketLossRate) != "undefined" && rxPacketLossRate !== "") {
+                        // 下行丢包率
+                        $(".topNaver_net_handle .rxPacketLossRate").text(rxPacketLossRate + "%");
+                    } else {
+                        $(".topNaver_net_handle .rxPacketLossRate").text(getI18Value("未知"));
+                    }
+                }
+            }
+        } else if ("openAudio" == args.cmd) {
+            if (!hasAudioDev) {
+                return;
+            }
+            // 打开麦克风
+            changeAudioStatus("1");
+        } else if ("closeAudio" == args.cmd) {
+            if (!hasAudioDev) {
+                return;
+            }
+            // 关闭麦克风
+            changeAudioStatus("0");
+        } else if ("openVideo" == args.cmd) {
+            if (!hasVideoDev) {
+                return;
+            }
+            // 打开视频
+            changeVideoStatus("1");
+        } else if ("closeVideo" == args.cmd) {
+            if (!hasVideoDev) {
+                return;
+            }
+            // 关闭视频
+            changeVideoStatus("0");
+        } else if ("membersNumber" == args.cmd) {
+            // 成员数量
+            let numTemp = args.num || 0;
+            changeMembersNumber(numTemp);
+        } else if ("chatNumber" == args.cmd) {
+            // 互动消息数量
+            let numTemp = args.num || 0;
+            changeChatNumber(numTemp);
+        } else if ("recordingStatus" == args.cmd) {
+            // 录制状态
+            let statusTemp = args.status + "";
+            let msgTemp = args.msg || "";
+            if (statusTemp == "1") {
+                changeRecordStatus("1");
+            } else if (statusTemp == "0") {
+                changeRecordStatus("0");
+            }
+            if (msgTemp) {
+                errorTipsBox(getI18Value(msgTemp));
+            }
+        } else if ("liveStatus" == args.cmd) {
+            // 录制状态
+            let statusTemp = args.status + "";
+            let msgTemp = args.msg || "";
+            if (statusTemp == "1") {
+                changeLiveStatus("1");
+            } else if (statusTemp == "0") {
+                changeLiveStatus("0");
+            }
+            if (msgTemp) {
+                errorTipsBox(getI18Value(msgTemp));
+            }
+        } else if ("endOrleaveMeet" == args.cmd) {
+            // 当窗口关闭前触发
+            window.close();
+        } else if ("closePIPVideoBox" == args.cmd) {
+            // openPIP = false;
+            // $('#open_PIP').removeClass("cur");
+            switchPipChecked(false);
+        } else if ("openPIPVideoBox" == args.cmd) {
+            // openPIP = false;
+            // $('#open_PIP').removeClass("cur");
+            switchPipChecked(true);
+        } else if ("execfunction" == args.cmd) {
+            // 执行函数
+            let funTemp = args.fun || "";
+            if (typeof funTemp === "function") {
+                funTemp();
+            }
+        } else if ("reChooseShare" == args.cmd) {
+            //2021.12.30 重新选择屏幕共享后执行
+            console.log("窗口重新选择了")
+            console.log("共享类型:" + args.screenType)
+            // 投屏相关参数
+            screenTypeTemp = args.screenType + "";
+            screenInfoTemp = args.screenInfo || "";
+            if (screenTypeTemp == "1") {
+
+            } else if (screenTypeTemp == "2" && screenInfoTemp && screenInfoTemp.windowId) {
+                // 赋值窗口进程id
+                screenWindowPidTemp = screenInfoTemp.processId;
+                // 直接隐藏
+
+                if (checkWindowExistInterval) {
+                    window.clearInterval(checkWindowExistInterval);
+                    checkWindowExistInterval = undefined;
+                }
+                createWindowExistInterval(screenWindowPidTemp)
+            }
+        }
+    }
+
+    $(document).ready(async function () {
+        // ipc通讯回调
+        RendererProcessHelper.registeCallback(meetToolsMessageFormMainChannel, ipcRendererCallback);
+        // 窗口透明鼠标穿透事件
+        $("#topMenuTools,#topMiniTitle,#confirmMsgDiv,#settingModal,#control_microphone_box,#control_camera_box").mousemove(function () {
+            m_MouseOnToolsBar = true;
+            setIgnoreMouseEvents(false);
+            maxMenuTools();
+            // console.log("mousemove", $(this));
+        });
+        $("#topMenuTools,#topMiniTitle,#confirmMsgDiv,#settingModal,#control_microphone_box,#control_camera_box").mouseenter(function () {
+            m_MouseOnToolsBar = true;
+            setIgnoreMouseEvents(false);
+            maxMenuTools();
+            // console.log("mouseenter", $(this));
+        });
+        $("#topMenuTools,#confirmMsgDiv,#settingModal,#control_microphone_box,#control_camera_box").mouseleave(function () {
+            // if ($(".control_setting_chose:visible").length == 0) {
+            m_MouseOnToolsBar = false;
+            setIgnoreMouseEvents(true);
+            minMenuTools();
+            // console.log("mouseleave", $(this));
+            // }
+
+        });
+
+        $(".comment-input,.list-box-hide,#openRight,#answerList,#topMiniTools,#qrcodeDiv").mouseenter(function () {
+            m_MouseOnToolsBar = true;
+            setIgnoreMouseEvents(false);
+            // console.log("mouseenter2", $(this));
+        });
+        $(".comment-input,.list-box-hide,#openRight,#answerList,#topMiniTools,#qrcodeDiv").mouseleave(function () {
+            m_MouseOnToolsBar = false;
+            setIgnoreMouseEvents(true);
+            // console.log("mouseleave2", $(this));
+        });
+        $(".comment-input,.list-box-hide,#openRight,#answerList,#topMiniTools,#qrcodeDiv").mousemove(function () {
+            m_MouseOnToolsBar = true;
+            setIgnoreMouseEvents(false);
+            // console.log("mouseenter2", $(this));
+            // console.log("mouseleave2", $(this));
+        });
+        function formatLanguage(lang) {
+            if (lang === "1") {
+                return "en_US"
+            }
+            return "zh_CN"
+        }
+        //语言
+        let language = RendererProcessHelper.getUrlQueryString(window.location.href, "language") || "language";
+        if (language !== null && language !== undefined) {
+            language = formatLanguage(language);
+        } else {
+            language = await MainWindowHelper.getLanguage()
+        }
+        console.log('language', language);
+        if (language == "en_US") {
+            isEnLanguage = true
+            $(".packUp .tips").css("width", "135px")
+        } else {
+            isEnLanguage = false
+        }
+        //身份1-创建者,0-观众（学生）,2-助教
+        leader = RendererProcessHelper.getUrlQueryString(window.location.href, "leader") || "0";
+        isAlpha = RendererProcessHelper.getUrlQueryString(window.location.href, "alpha") === "true";
+        if (leader == "1") {
+            $(".recording_btn").show();
+            // if (isAlpha) {
+            //     $(".live_btn").show();
+            // }
+
+            // $(".setting_btn").show();
+            $(".settingPop .courseSetting .meeting_setting_ul li,.settingPop .courseSetting .meeting_setting_ul .setting_switch_tip").show();
+            $(".settingPop .courseRole").show();
+            $(".white_board_btn").show();
+            $(".class_manager").show();
+        } else if (leader == "2") {
+            $(".recording_btn").show();
+            // $(".setting_btn").show();
+            $(".settingPop .courseSetting .meeting_setting_ul li,.settingPop .courseSetting .meeting_setting_ul .setting_switch_tip").show();
+            $(".settingPop .courseRole").show();
+            $(".white_board_btn").show();
+            $(".class_manager").show();
+        } else {
+            $(".more_btn").hide();
+            $(".setting_btn").show();
+            $('.group_discuss').hide();
+            $(".white_board_btn").hide();
+            $('.activities_btn').hide();
+        }
+        $(".topNaver_direction_handle").hide();
+        let showActivitiesState = RendererProcessHelper.getUrlQueryString(window.location.href, "showActivitiesState") || "0";
+        if (showActivitiesState == "1") {
+            $(".activities_btn").show();
+        } else if (showActivitiesState == "2") {
+            $('.activities_btn').hide();
+        }
+        //当前视屏分辨率是否可切换
+        let videoValueChange = RendererProcessHelper.getUrlQueryString(window.location.href, "videoValueChange") + "";
+        if (videoValueChange == "1") {
+            //当前视屏共享分辨率180p_1,720p_1
+            let curVideoValue = RendererProcessHelper.getUrlQueryString(window.location.href, "curVideoValue") || "180p_1";
+            if (curVideoValue == "180p_1") {
+                $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option').removeClass("cur");
+                $('.settingPop .courseSetting .screen_setting_con.video').attr("data-resolution", "180p_1");
+                $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option.p180').addClass("cur");
+            } else {
+                $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option').removeClass("cur");
+                $('.settingPop .courseSetting .screen_setting_con.video').attr("data-resolution", "720p_1");
+                $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option.p720').addClass("cur");
+            }
+            $(".screen_setting_con.video").show();
+        } else {
+            $(".screen_setting_con.video").hide();
+        }
+        //当前屏幕分辨率是否可切换
+        let screenValueChange = RendererProcessHelper.getUrlQueryString(window.location.href, "screenValueChange") || "";
+        if (screenValueChange == "1") {
+            //当前屏幕共享分辨率720p_1,1080p_1
+            let curScreenValue = RendererProcessHelper.getUrlQueryString(window.location.href, "curScreenValue") || "720p_1";
+            if (curScreenValue == "1080p_1") {
+                $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option').removeClass("cur");
+                $('.settingPop .courseSetting .screen_setting_con.screen').attr("data-resolution", "1080p_1");
+                $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option.p1080').addClass("cur");
+            } else {
+                $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option').removeClass("cur");
+                $('.settingPop .courseSetting .screen_setting_con.screen').attr("data-resolution", "720p_1");
+                $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option.p720').addClass("cur");
+            }
+            $(".screen_setting_con.screen").show();
+        } else {
+            $(".screen_setting_con.screen").hide();
+        }
+        //语音设备true或false
+        let hasAudioDevTemp = RendererProcessHelper.getUrlQueryString(window.location.href, "hasAudioDev") || "false";
+        if (hasAudioDevTemp == "true") {
+            hasAudioDev = true;
+        } else {
+            hasAudioDev = false;
+        }
+        //视频设备true或false
+        let hasVideoDevTemp = RendererProcessHelper.getUrlQueryString(window.location.href, "hasVideoDev") || "false"
+        if (hasVideoDevTemp == "true") {
+            hasVideoDev = true;
+        } else {
+            hasVideoDev = false;
+        }
+        //语音状态1或0
+        let audioSetStatus = RendererProcessHelper.getUrlQueryString(window.location.href, "audioSetStatus") || "0";
+        if (audioSetStatus == "1") {
+            if (hasAudioDev) {
+                changeAudioStatus("1");
+            }
+        } else {
+            changeAudioStatus("0");
+        }
+        //视频状态1或0
+        let videoSetStatus = RendererProcessHelper.getUrlQueryString(window.location.href, "videoSetStatus") || "0";
+        if (videoSetStatus == "1") {
+            if (hasVideoDev) {
+                changeVideoStatus("1");
+            }
+        } else {
+            changeVideoStatus("0");
+        }
+        //课堂是否开放1或0
+        let isPublic = RendererProcessHelper.getUrlQueryString(window.location.href, "isPublic") || "1";
+        if (isPublic == "1") {
+            changeMeetSetStatus('isPublic', "1");
+        } else {
+            changeMeetSetStatus('isPublic', "0");
+        }
+        // 画中画
+        let openPIPTemp = RendererProcessHelper.getUrlQueryString(window.location.href, "openPIP") || "false";
+        if (openPIPTemp == "true") {
+            // openPIP = true;
+            // $('#open_PIP').addClass("cur");
+            switchPipChecked(true);
+        } else {
+            // openPIP = false;
+            // $('#open_PIP').removeClass("cur");
+            switchPipChecked(false);
+        }
+        //设置- 允许主动退出课堂
+        let isAllowToLeave = RendererProcessHelper.getUrlQueryString(window.location.href, "isAllowToLeave") || "1";
+        changeMeetSetStatus('setAllowToLeave', isAllowToLeave);
+        //设置-全体静音后，允许自我解除静音
+        let isAllowUnmuteSelf = RendererProcessHelper.getUrlQueryString(window.location.href, "isAllowUnmuteSelf") || "1";
+        changeMeetSetStatus('setAllowUnmuteSelf', isAllowUnmuteSelf);
+        //设置-锁定课堂
+        let isLockMeet = RendererProcessHelper.getUrlQueryString(window.location.href, "isLockMeet") || "0";
+        changeMeetSetStatus('setLockMeet', isLockMeet);
+
+        //录制状态1或0
+        let recordSetStatus = RendererProcessHelper.getUrlQueryString(window.location.href, "recordSetStatus") || "0";
+        if (recordSetStatus == "1") {
+            changeRecordStatus("1");
+        } else {
+            changeRecordStatus("0");
+        }
+
+        //直播状态1或0
+        let liveSetStatus = RendererProcessHelper.getUrlQueryString(window.location.href, "liveSetStatus") || "0";
+        if (liveSetStatus == "1") {
+            changeLiveStatus("1");
+        } else {
+            changeLiveStatus("0");
+        }
+        // $('.recording_start .recording_start_text').text(getI18Value("正在录制…"));
+        //成员数量
+        let membersNumber = RendererProcessHelper.getUrlQueryString(window.location.href, "membersNumber") || "0";
+        changeMembersNumber(membersNumber);
+        //未读消息数
+        let chatNumber = RendererProcessHelper.getUrlQueryString(window.location.href, "chatNumber") || "0";
+        changeChatNumber(chatNumber);
+        $('.chat_btn .function_text').text(getI18Value("聊天"));
+        $('.setting_btn .setting_btn_click').text(getI18Value("设置"));
+        $('.settingPop .popHead_h').text(getI18Value("设置"));
+        $('.activities_btn .function_text').text(getI18Value("活动"));
+        $('.more_btn .function_text').text(getI18Value("更多"));
+
+        $('.recording_start').text(getI18Value("录制中"));
+        $('.live_start').text(getI18Value("直播中"));
+        $('.group_discuss .function_text').text(getI18Value("分组讨论"));
+        $('.share_btn .function_text').text(getI18Value("重新共享"));
+        $('.live_btn .function_text').text(getI18Value("直播"));
+        $('.white_board_btn .function_text').text(getI18Value("白板"));
+        $('.class_manager .function_text').text(getI18Value("课堂管理"));
+
+        $('.settingPop .courseSetting h2').text(getI18Value("课堂设置"));
+        $('.settingPop .courseSetting .setAllowToLeave').text(getI18Value("允许主动退出课堂"));
+        $('.settingPop .courseSetting .setAllowUnmuteSelf').text(getI18Value("全体静音后，允许自我解除静音"));
+        $('.settingPop .courseSetting .setLockMeet').text(getI18Value("锁定课堂"));
+        $('.settingPop .courseSetting .setting_switch_tip').text(getI18Value("开启后，所有人不能再加入课堂"));
+        $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_name').text(getI18Value("拍摄视频画质"));
+        $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option.p180 .txt').text(getI18Value("标清"));
+        $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option.p720 .txt').text(getI18Value("高清"));
+        $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_name').text(getI18Value("共享屏幕画质"));
+        $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option.p720 .txt').text(getI18Value("高清"));
+        $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option.p1080 .txt').text(getI18Value("超高清"));
+        $('.settingPop .courseRole h2').text(getI18Value("加入课堂权限"));
+        $('.settingPop .courseRole .add_setting_all p').text(getI18Value("允许任何人加入"));
+        $('.settingPop .courseRole .add_setting_some p').text(getI18Value("允许加入的人员"));
+        $('.settingPop .courseRole .add_setting_some .add_setting_update').text(getI18Value("管理"));
+
+        $('.topNaver_direction_con h2').text(getI18Value("在线课堂"));
+        $('.topNaver_direction_con .qrcodeName').text(getI18Value("邀请码:"));
+
+        $(".topNaver_net_con h2").text(getI18Value("网络连接正常"));
+        $("#topMiniTools .netImg").attr("src", "./images/icon_net.png");
+        $(".topNaver_net_handle .netImg").attr("src", "./images/icon_net.png");
+
+        $('.topNaver_net_handle .lastmileDelayName').text(getI18Value("延迟:"));
+        $('.topNaver_net_handle .lastmileDelay').text(getI18Value("未知"));
+        $('.topNaver_net_handle .gatewayRttName').text(getI18Value("路由器延迟:"));
+        $('.topNaver_net_handle .gatewayRtt').text(getI18Value("未知"));
+        $('.topNaver_net_handle .packetLossRateName').text(getI18Value("丢包率:"));
+        $('.topNaver_net_handle .txPacketLossRate').text(getI18Value("未知"));
+        $('.topNaver_net_handle .rxPacketLossRate').text(getI18Value("未知"));
+
+        $(".show-qr-code .code-title .invite-code .invent").text(getI18Value("邀请码:"));
+        $(".show-qr-code .code-title .code-input").text(getI18Value("学习通首页右上角输入"));
+        $(".show-qr-code .qrcode-content .code-link").text(getI18Value("复制邀请码"));
+        /*$('.setting_btn .setting_box_header').text(getI18Value("加课权限"));
+        $('.setting_btn .choose_authority_one').text(getI18Value("允许任何人加入"));
+        $('.setting_btn .choose_authority_two').text(getI18Value("允许加入的人员"));*/
+        $('.endBtn').text(getI18Value("结束共享"));
+        $('.share-end').text(getI18Value("结束共享"));
+        $('#topMiniTitle').text(getI18Value("在线课堂"));
+        $('#sharedVoice p').text(getI18Value("同时共享电脑声音"));
+        $('#open_PIP p').text(getI18Value("画中画"));
+        $(".packUp .tips").text(getI18Value("收起控制栏"))
+        // let appName = RendererProcessHelper.getAppName(false);
+        // if (appName.includes("泛雅课堂")) {
+        //     $("#shieldApp p").text(getI18Value("对观看端屏蔽泛雅课堂应用"));
+        // } else {
+        //     if (isEnLanguage) {
+        //         appName = RendererProcessHelper.getAppName(true);
+        //     }
+        //     $("#shieldApp p").text(getI18Value("对观看端屏蔽{appName}应用").replace("{appName}", appName));
+        // }
+
+        let appName = "学习通"
+        $("#shieldApp p").text(getI18Value("对观看端屏蔽{appName}应用").replace("{appName}", appName));
+
+        //会议开始时间
+        let meetTime = RendererProcessHelper.getUrlQueryString(window.location.href, "meetTime") || new Date().getTime();
+        if (meetTime) {
+            meetTime = parseInt(meetTime);
+        }
+        // 麦克风
+        $('.voice_btn').on('click', () => {
+            const currentStatus = $(".voice_btn").attr("data-status");
+            RendererProcessHelper.sendToMeetingPage("changeMicState", { open: currentStatus != '1' })
+            // if (!hasAudioDev) {
+            //     errorTipsBox(getI18Value("当前设备不支持"));
+            //     return;
+            // }
+            // const currentStatus = $(".voice_btn").attr("data-status");
+            // if (m_handUpStatus == 3) {
+            //     handUp(2);
+            // } else if (m_handUpStatus == 4) {
+            //     handUp(3);
+            // } else {
+            //     if (currentStatus == '1') {
+            //         // changeAudioStatus("0");
+            //         // 关闭麦克风
+            //         let messageTemp = { "cmd": "closeAudio" };
+            //         RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            //     } else {
+            //         // changeAudioStatus("1");
+            //         // 打开麦克风
+            //         let messageTemp = { "cmd": "openAudio" };
+            //         RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            //     }
+            // }
+        });
+        // 视频
+        $('.video_btn').on('click', () => {
+            // if (!hasVideoDev) {
+            //     errorTipsBox(getI18Value("当前设备不支持"));
+            //     return;
+            // }
+            // if (openPIP) {
+            //     errorTipsBox(getI18Value("已开启画中画，不支持同时开启视频"));
+            //     return;
+            // }
+            const currentStatus = $(".video_btn").attr("data-status");
+            if (m_videoMuteStatus) {
+                //教师禁止开视频情况下的操作 oper：1 点击开启视频
+                RendererProcessHelper.sendToMeetingPage("video_mute_oper", { oper: 1 })
+                return;
+            }
+            if (currentStatus == '1') {
+                // changeVideoStatus("0");
+                // 关闭视频
+                let messageTemp = { "cmd": "closeCamera" };
+                RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            } else {
+                RendererProcessHelper.sendToMeetingPage("changeCameraState", { open: true })
+                // let titleTemp = getI18Value("开启视频");
+                // let textTemp = getI18Value("确认开启视频？");
+                // let confirmBtnTemp = getI18Value("开启");
+                // let callbackTemp = function () {
+                //     // changeVideoStatus("1");
+                //     // 打开视频
+                //     let messageTemp = { "cmd": "openCamera" };
+                //     RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+                // }
+                // let cancleBtnTemp = getI18Value("取消");
+                // let cancle_callbackTemp = function () {
+                // }
+                // cmdConfirm(titleTemp, textTemp, confirmBtnTemp, callbackTemp, cancleBtnTemp, cancle_callbackTemp);
+            }
+        });
+        // 录制
+        $('.recording_btn').on('click', () => {
+            const currentStatus = $(".recording_btn").attr("data-status");
+            if (currentStatus == '1') {
+                RendererProcessHelper.sendToMeetingPage("changeRecordState", { open: false })
+                // let titleTemp = getI18Value("确认结束录制？");
+                // let textTemp = getI18Value("录制视频生成需要一些时间，完成后将以通知形式发送结果");
+                // let confirmBtnTemp = getI18Value("停止");
+                // let callbackTemp = function () {
+                //     // changeRecordStatus("0");
+                //     // 关闭录制
+                //     let messageTemp = { "cmd": "closeRecord" };
+                //     RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+                //     // errorTipsBox(getI18Value("录制已停止"));
+                // }
+                // let cancleBtnTemp = getI18Value("取消");
+                // let cancle_callbackTemp = function () {
+                // }
+                // cmdConfirm(titleTemp, textTemp, confirmBtnTemp, callbackTemp, cancleBtnTemp, cancle_callbackTemp);
+            } else {
+                RendererProcessHelper.sendToMeetingPage("changeRecordState", { open: true })
+                // changeRecordStatus("1");
+                // 打开录制
+                // let messageTemp = { "cmd": "openRecord" };
+                // RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            }
+        });
+
+        // 直播按钮点击事件
+        $('.live_btn').on('click', () => {
+            const currentStatus = $(".live_btn").attr("data-status");
+            RendererProcessHelper.sendToMeetingPage("live_info_oper", { operType: currentStatus === 1 ? 2 : 1 });
+        });
+
+        // // 直播
+        // $('.live_start').on('click', () => {
+        //     RendererProcessHelper.sendToMeetingPage("show_live_info");
+        // });
+
+        // 成员
+        $('.member_btn').on('click', () => {
+            // 打开成员
+            let messageTemp = { "cmd": "openMember" };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            $('#openRight').hide();
+        });
+        // 互动
+        $('.chat_btn').on('click', () => {
+            // 打开互动
+            let messageTemp = { "cmd": "openChar" };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            if (cBox) {
+                cBox.hide();
+            }
+            $('#openRight').hide();
+        });
+        // 设置
+        $('.setting_btn_click').on('click', () => {
+            // $(".settingPop").show();
+            RendererProcessHelper.sendToMeetingPage("open_meet_seting", null)
+
+        });
+
+        //设置关闭2021.01.06
+        $('.settingDele').on('click', function () {
+            $(".settingPop").hide();
+        });
+        //加入课堂权限选择2021.01.06
+        $(".add_setting_ul li").click(function () {
+            $(this).addClass("cur").siblings().removeClass("cur");
+            var clickValue = $(this).attr('isPublic');
+            // 发送设置公开
+            let messageTemp = { "cmd": "toggleAllowSet", "status": clickValue };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            if (clickValue == '1') {
+                errorTipsBox(getI18Value("设置成功"));
+            }
+        })
+        // 点击checkbox 设置
+        $('.meeting_setting_ul').on('click', '.mui-switch', function () {
+            var value = $(this).attr("value");
+            var type = $(this).attr('name');
+            if (value == 1) {
+                value = 0;
+            } else if (value == 0) {
+                value = 1;
+            }
+            // 发送课堂checkBox设置
+            let messageTemp = { "cmd": "meetSet", "status": value, "setType": type };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            // 改变按钮值（暂时未管成功与否）
+            changeMeetSetStatus(type, value);
+        });
+        //视屏画质
+        $(".screen_setting_con.video .screen_setting_option").click(function (e) {
+            $('.settingPop .courseSetting .screen_setting_con.video .screen_setting_option').removeClass("cur");
+            if ($(this).hasClass("p180")) {
+                $('.settingPop .courseSetting .screen_setting_con.video').attr("data-resolution", "180p_1");
+            } else {
+                $('.settingPop .courseSetting .screen_setting_con.video').attr("data-resolution", "720p_1");
+            }
+            let dataResolution = $('.settingPop .courseSetting .screen_setting_con.video').attr("data-resolution");
+            // 发送课堂视频分辨率设置
+            let messageTemp = { "cmd": "videoResolutionSet", "value": dataResolution };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            $(this).addClass("cur");
+            errorTipsBox(getI18Value("设置成功"));
+        });
+        //共享屏幕画质
+        $(".screen_setting_con.screen .screen_setting_option").click(function (e) {
+            $('.settingPop .courseSetting .screen_setting_con.screen .screen_setting_option').removeClass("cur");
+            if ($(this).hasClass("p1080")) {
+                $('.settingPop .courseSetting .screen_setting_con.screen').attr("data-resolution", "1080p_1");
+            } else {
+                $('.settingPop .courseSetting .screen_setting_con.screen').attr("data-resolution", "720p_1");
+            }
+            let dataResolution = $('.settingPop .courseSetting .screen_setting_con.screen').attr("data-resolution");
+            // 发送课堂屏幕分辨率设置
+            let messageTemp = { "cmd": "screenResolutionSet", "value": dataResolution };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+            $(this).addClass("cur");
+            errorTipsBox(getI18Value("设置成功"));
+        });
+        // 结束
+        $('.endBtn,.share-end').on('click', () => {
+            // 更新结束标记
+            windowCloseFlag = '0';
+            // 结束投屏
+            let messageTemp = { "cmd": "stopScreen" };
+            RendererProcessHelper.sendToMainProcess(meetToolsChannel, messageTemp);
+        });
+
+        //打开二维码弹窗
+        $(".topNaver_direction_handle").on('click', '.topNaver_invitCode', function () {
+            if ($(".show-qr-code").attr("data-status") == "1") {
+                $(".show-qr-code").show();
+            }
+        })
+        //关闭二维码弹窗
+        $(".show-qr-code").on('click', '.qrcode-close-icon', function () {
+            $(".show-qr-code").hide();
+        })
+        //复制邀请码2020.08.07
+        $(".show-qr-code").on('click', '.code-link', function () {
+            $(".show-qr-code").hide();
+        })
+        $('.activities_btn').on('click', () => {
+            if (m_moreWinId) {
+                RendererProcessHelper.closeWindow(m_moreWinId);
+                m_moreWinId = undefined;
+            }
+            if (m_activitiesWinId) {
+                RendererProcessHelper.isWindowOpened(m_activitiesWinId).then(result => {
+                    if (result) {
+                        openOrHideOrShowActWin();
+                    } else {
+                        openActivitiesWindow();
+                    }
+                })
+            } else {
+                openActivitiesWindow();
+            }
+        })
+        function openActivitiesWindow() {
+            RendererProcessHelper.isWindowOpened("activityFileUpload").then(result => {
+                if (result) {
+                    //showWindow
+                    RendererProcessHelper.showWindow(m_activitiesWinId);
+                } else {
+                    RendererProcessHelper.sendToMeetingPage("getOpenMenusParams", { type: "activity" }, (result) => {
+                        m_activitiesWinId = result.option.id;
+                        let rect = $('.activities_btn')[0].getBoundingClientRect();
+                        result.option.marginLeft = (rect.left + rect.right) / 2 - 148;
+                        result.option.marginTop = 114;
+                        RendererProcessHelper.openWindow(result.url, result.option, result.params)
+                    })
+                }
+            })
+        }
+
+        function openOrHideOrShowActWin() {
+            RendererProcessHelper.isWindowOpened("activityFileUpload").then(value => {
+                if (value) {
+                    RendererProcessHelper.isWindowVisible(m_activitiesWinId).then(show => {
+                        if (show) {
+                            //hideWindow
+                            RendererProcessHelper.hideWindow(m_activitiesWinId);
+                        } else {
+                            //showWindow
+                            RendererProcessHelper.showWindow(m_activitiesWinId);
+                        }
+                    })
+                } else {
+                    RendererProcessHelper.closeWindow(m_activitiesWinId);
+                    m_activitiesWinId = undefined;
+                }
+            })
+        }
+
+        $('.more_btn').on('click', () => {
+            if (m_moreWinId) {
+                RendererProcessHelper.isWindowOpened(m_moreWinId).then(result => {
+                    if (result) {
+                        RendererProcessHelper.closeWindow(m_moreWinId);
+                        m_moreWinId = undefined;
+                    } else {
+                        openMoreWindow();
+                    }
+                })
+            } else {
+                openMoreWindow();
+            }
+
+        })
+
+        function openMoreWindow() {
+            if (m_activitiesWinId) {
+                RendererProcessHelper.isWindowOpened("activityFileUpload").then(value => {
+                    if (!value) {
+                        RendererProcessHelper.closeWindow(m_activitiesWinId);
+                        m_activitiesWinId = undefined;
+                    } else {
+                        RendererProcessHelper.hideWindow(m_activitiesWinId);
+                    }
+                })
+            }
+            RendererProcessHelper.sendToMeetingPage("getOpenMenusParams", { type: "more" }, (result) => {
+                m_moreWinId = result.option.id;
+                let rect = $('.more_btn')[0].getBoundingClientRect();
+                result.option.marginLeft = (rect.left + rect.right) / 2 - 187;
+                result.option.marginTop = windowTop + 98;
+                RendererProcessHelper.openWindow(result.url, result.option, result.params)
+            })
+        }
+
+        // 复制模块
+        let clipboardTemp = new ClipboardJS('.invitCodeCopyClass');
+        clipboardTemp.on('success', function (e) {
+            console.info('Action:', e.action);
+            console.info('Text:', e.text);
+            console.info('Trigger:', e.trigger);
+            errorTipsBox(getI18Value("复制成功"));
+            e.clearSelection();
+        });
+        clipboardTemp.on('error', function (e) {
+            console.error('Action:', e.action);
+            console.error('Trigger:', e.trigger);
+        });
+        // 会议开始计时
+        meetTiming(meetTime);
+        // 显示
+        $("#topMenuTools").show();
+        // 最小化
+        minMenuTools();
+
+        //获取是否融科sdk（融科sdk隐藏部分按钮）
+        RendererProcessHelper.sendToOtherPage("getSdkType", null, "meetWindow", (sdkType) => {
+            if (sdkType == 1) {
+                $('.group_discuss').hide();
+                // $('.recording_btn').hide();
+                $(".live_btn").hide();
+                $('.topNaver_net_handle').hide();
+                hidePip();
+                $("#shieldApp").hide();
+                $("#sharedVoice").hide();
+                $(".share_btn .control_naver_more").hide();
+            }
+        });
+        if (!hasVideoDev) {
+            // $('#open_PIP').hide();
+            hidePip();
+        } else {
+            showPip();
+        }
+        $('.topNaver_net_handle').hide();
+        RendererHelper.getScreenWorkAreaInDesktop().then(rect => {
+            windowTop = rect.y;
+        })
+
+        RendererProcessHelper.sendToMainProcess("getStateForScreenShare");
+    });
+
+    // 设备列表 2021.08.27
+    $(".control_naver_more").click(function (e) {
+        e.stopPropagation();
+        $(".control_setting_chose").hide();
+        $(".control_naver_more").addClass('arrow_down_reverse');
+        var left = $(this).offset().left - 25;
+        var bottom = 71;
+        var name = $(this).attr("data-id");
+        if ($(this).hasClass("cur")) {
+            $(this).removeClass("cur");
+            $("." + name).hide();
+        } else {
+            $(".control_naver_more").removeClass("cur");
+            $(this).addClass("cur");
+            // 从sdk获取设备列表
+            if (name == 'control_microphone_box') {
+                RendererProcessHelper.sendToOtherPage("getRtcAudioDevices", null, "meetWindow", (devicesList) => {
+                    initAudioDevices(devicesList)
+                })
+                RendererProcessHelper.sendToOtherPage("getRtcPlayDevices", null, "meetWindow", (devicesList) => {
+                    initPlayDevices(devicesList)
+                })
+                // // 麦克风
+                // Meeting.initAudioDevices();
+                // // 扬声器
+                // Meeting.initPlayDevices();
+            } else if (name == 'control_camera_box') {
+                // Meeting.initVideoDevices();
+                RendererProcessHelper.sendToOtherPage("getRtcVideoDevices", null, "meetWindow", (devicesList) => {
+                    initVideoDevices(devicesList)
+                })
+            } else {
+            }
+            $(this).removeClass('arrow_down_reverse')
+            $("." + name).show();
+            // $("." + name).css("bottom", bottom);
+            // $("." + name).css("left", left);
+        }
+    })
+
+    // 切换设备
+    $(".control_setting_ul").on('click', 'li', function (e) {
+        e.stopPropagation();
+        if ($(this).hasClass('cur')) {
+            return;
+        }
+        let deviceId = $(this).attr('device-id');
+        if (!deviceId) {
+            return;
+        }
+
+        let device_type = $(this).parent().attr('device-type');
+        let thisLi = $(this)
+        if (device_type == 1) {
+            // 音频切换
+            RendererProcessHelper.sendToOtherPage("setRtcAudioDevices", decodeURIComponent(deviceId), "meetWindow", (status) => {
+                switchStatus(status)
+            })
+            // status = MeetingBridge.setAudioDevices(decodeURIComponent(deviceId));
+        } else if (device_type == 2) {
+            // 视频频切换
+            RendererProcessHelper.sendToOtherPage("setRtcVideoDevices", decodeURIComponent(deviceId), "meetWindow", (status) => {
+                switchStatus(status)
+            })
+            // status = MeetingBridge.setVideoDevices(decodeURIComponent(deviceId));
+        } else if (device_type == 3) {
+            // 扬声器切换
+            RendererProcessHelper.sendToOtherPage("setRtcPlayDevices", decodeURIComponent(deviceId), "meetWindow", (status) => {
+                switchStatus(status)
+            })
+            // status = MeetingBridge.setPlayDevices(decodeURIComponent(deviceId));
+        }
+
+        function switchStatus(status) {
+            console.info("切换设备状态码：" + status);
+            if (!status) {
+                errorTipsBox("切换失败");
+            } else {
+                errorTipsBox("切换成功");
+                thisLi.addClass('cur').siblings().removeClass('cur');
+            }
+            $(".control_setting_chose").hide();
+            $(".control_naver_more").removeClass("cur");
+
+        }
+    });
+
+    $(".packUp").click(function (e) {
+        setIgnoreMouseEvents(true);
+        minMenuToolsBar();
+    })
+
+    const DevInfos = {
+        curVideoDeviceId: -1,
+        curAudioDeviceId: -1,
+        curPlayDeviceId: -1
+    }
+    // 加载音频设备列表
+    const initAudioDevices = function (audioDevicesList) {
+        if (!audioDevicesList) {
+            return
+        }
+        // let devicesList = MeetingBridge.getAudioDevices();
+        let devicesList = audioDevicesList.audioDevices
+        if (audioDevicesList.currentAudioDevice) {
+            DevInfos.curAudioDeviceId = audioDevicesList.currentAudioDevice
+        }
+        $('.audio_device_li').empty();
+        if (devicesList && devicesList.length > 0) {
+            for (let i = 0; i < devicesList.length; i++) {
+                let item = devicesList[i];
+                if (item) {
+                    let deviceid = item.deviceid;
+                    let devicename = item.devicename;
+                    if (!deviceid || !devicename) {
+                        continue;
+                    }
+                    let curName = '';
+                    if (DevInfos.curAudioDeviceId == deviceid) {
+                        curName = ' class="cur"';
+                    }
+
+                    let html = '<li device-id=' + encodeURIComponent(deviceid) + ' ' + curName + '>'
+                        + '<p>' + devicename + '</p>'
+                        + '</li>';
+                    $('.audio_device_li').append(html);
+                }
+            }
+        } else {
+            let html = '<li><p>无设备</p></li>';
+            $('.audio_device_li').append(html);
+        }
+    }
+
+    // 加载视频设备列表
+    const initVideoDevices = function (videoDevicesList) {
+        // let devicesList = MeetingBridge.getVideoDevices();
+        if (!videoDevicesList) {
+            return
+        }
+        // let devicesList = MeetingBridge.getAudioDevices();
+        let devicesList = videoDevicesList.videoDevices
+        if (videoDevicesList.currentVideoDevice) {
+            DevInfos.curVideoDeviceId = videoDevicesList.currentVideoDevice
+        }
+        $('.video_device_li').empty();
+        if (devicesList && devicesList.length > 0) {
+            for (let i = 0; i < devicesList.length; i++) {
+                let item = devicesList[i];
+                if (item) {
+                    let deviceid = item.deviceid;
+                    let devicename = item.devicename;
+                    if (!deviceid || !devicename) {
+                        continue;
+                    }
+                    let curName = '';
+                    if (DevInfos.curVideoDeviceId == deviceid) {
+                        curName = ' class="cur"';
+                    }
+                    let html = '<li device-id="' + encodeURIComponent(deviceid) + '" ' + curName + '>'
+                        + '<p>' + devicename + '</p>'
+                        + '</li>';
+                    $('.video_device_li').append(html);
+                }
+            }
+        } else {
+            let html = '<li><p>无设备</p></li>';
+            $('.video_device_li').append(html);
+        }
+    }
+
+    // 加载扬声器设备列表
+    const initPlayDevices = function (playDevicesList) {
+        // let devicesList = MeetingBridge.getPlayDevices();
+        if (!playDevicesList) {
+            return
+        }
+        let devicesList = playDevicesList.playDevices
+        if (playDevicesList.currentPlayDevice) {
+            DevInfos.curPlayDeviceId = playDevicesList.currentPlayDevice
+        }
+        $('.play_device_li').empty();
+        if (devicesList && devicesList.length > 0) {
+            for (let i = 0; i < devicesList.length; i++) {
+                let item = devicesList[i];
+                if (item) {
+                    let deviceid = item.deviceid;
+                    let devicename = item.devicename;
+                    if (!deviceid || !devicename) {
+                        continue;
+                    }
+                    let curName = '';
+                    if (DevInfos.curPlayDeviceId == deviceid) {
+                        curName = ' class="cur"';
+                    }
+                    let html = '<li device-id="' + encodeURIComponent(deviceid) + '" ' + curName + '>'
+                        + '<p>' + devicename + '</p>'
+                        + '</li>';
+                    $('.play_device_li').append(html);
+                }
+            }
+        } else {
+            let html = '<li><p>无设备</p></li>';
+            $('.play_device_li').append(html);
+        }
+    }
+
+    //重新共享
+    $('.share_btn').on('click', () => {
+        RendererProcessHelper.sendToOtherPage("re_share_screen", null, "meetWindow");
+    });
+    //重新共享
+    $('.white_board_btn').on('click', () => {
+        if (screenTypeTemp == "2") {
+            RendererProcessHelper.DialogHelper.confirm("共享桌面时才能将白板共享给学生",
+                {
+                    okBtn: "继续",
+                    okClick: openWhiteBoardWindow
+                })
+
+        } else {
+            openWhiteBoardWindow();
+        }
+    });
+
+    //课堂管理
+    $('.class_manager').on('click', () => {
+        RendererProcessHelper.sendToMeetingPage("openKetangManager", { open: true });
+    });
+
+
+    function openWhiteBoardWindow() {
+        //RendererProcessHelper.openWindow("https://mobilelearn.chaoxing.com/page/whiteboard/teaWhiteBoard4CXKT?DB_STRATEGY=DEFAULT", { id: "white_board", subWindow: true })
+        RendererProcessHelper.openWindow("https://noteyd.chaoxing.com/comp/draw/html/index.html?multipleBoard=true&saveType=cloud&haveClose=false&haveShare=true&toolBoxState=bottom&lazyDelay=true", { id: "white_board", subWindow: true })
+        setTimeout(() => {
+            RendererProcessHelper.setParentWindow("white_board", null);
+        }, 500);
+    }
+
+    //分组讨论
+    $('.group_discuss').on('click', () => {
+        RendererProcessHelper.sendToOtherPage("open_group_discuss", null, "meetWindow");
+    });
+
+
+
+    let userName = RendererProcessHelper.getUrlQueryString(window.location.href, "userName");
+    userName = decodeURIComponent(userName) || "我"
+    var cBox = new commentBox({
+        container: 'comment-list-box',
+        name: userName,
+        drag: true,
+        isShowPip: true,
+        pipChecked: true,
+        getValue: function (value, render) {
+            console.log(value);// 获取要发送的内容
+            render(); //不调用render就不会把发送的消息渲染到页面上
+        },
+        getChecked: function (type) {
+            //   console.log(type);
+            cBox.switchChecked(!type);
+            RendererProcessHelper.sendToMeetingPage("share_set_changed", { oper: "openPIP", enable: type }, (ret) => {
+                if (ret === 0) {
+
+                }
+            })
+        }
+    });
+    hideSendCommentInputTask();
+    function hideSendCommentInputTask() {
+        clearSendCommentInputTask();
+        hideSendCommentInputTaskTimer = setTimeout(function () {
+            const isClicked = cBox.getIsClicked();
+            console.log("isClicked", isClicked);
+            hideSendCommentInputTaskTimer = null;
+            if (!isClicked) {
+                cBox.hide();
+            }
+        }, 3000);
+    }
+
+    function clearSendCommentInputTask() {
+        if (hideSendCommentInputTaskTimer) {
+            clearTimeout(hideSendCommentInputTaskTimer);
+            hideSendCommentInputTaskTimer = null;
+        }
+    }
+
+    RendererProcessHelper.registeCallback("show_meeting_chat_message", (data) => {
+        cBox.render(data.username, data.msg);
+    })
+
+    function showPip() {
+        $('#open_PIP').show();
+        cBox.switchPip(true);
+    }
+
+    function hidePip() {
+        $('#open_PIP').hide();
+        cBox.switchPip(false);
+    }
+
+    function switchPipChecked(checked) {
+        openPIP = checked;
+        if (checked) {
+            $('#open_PIP').addClass("cur");
+        } else {
+            $('#open_PIP').removeClass("cur");
+        }
+        cBox.switchChecked(checked);
+
+    }
+
+    const aLItem = new ProxyCreateALObj({
+        max: 100,  // 最大渲染数
+        id: 'answerList',
+        checkAllHandle: function () {
+            console.log('查看全部');
+            RendererProcessHelper.sendToMeetingPage("hand_up_oper", { oper: 3 })
+            m_MouseOnToolsBar = false;
+            setIgnoreMouseEvents(true);
+        },
+        refuseAllHandle: function () {
+            console.log('全部拒绝');
+            RendererProcessHelper.sendToMeetingPage("hand_up_oper", { oper: 4 })
+            m_MouseOnToolsBar = false;
+            setIgnoreMouseEvents(true);
+        }
+    });
+
+    // aLItem.render({
+    //     pname: "ta",
+    //     puid: "58180726",
+    //     imgUrl: 'https://photo.chaoxing.com/p/58180726_80?flag=1&psize=100_100c&ext=jpg',
+    //     //拒绝
+    //     fn1: function (puid) {
+
+    //     },
+    //     //同意
+    //     fn2: function (puid) {
+
+    //     }
+    // }, false);
+
+    function addAlItem(itemData) {
+        //拒绝
+        itemData.fn1 = (puid) => {
+            RendererProcessHelper.sendToMeetingPage("hand_up_oper", { oper: 2, puid: itemData.puid, pname: itemData.pname });
+            m_MouseOnToolsBar = false;
+            setIgnoreMouseEvents(true);
+        }
+        //同意
+        itemData.fn2 = (puid) => {
+            RendererProcessHelper.sendToMeetingPage("hand_up_oper", { oper: 1, puid: itemData.puid, pname: itemData.pname });
+            m_MouseOnToolsBar = false;
+            setIgnoreMouseEvents(true);
+        }
+        aLItem.render(itemData, false);
+    }
+
+
+    RendererProcessHelper.registeCallback("hand_up_data", (data) => {
+        /**
+         * data:{
+                users: [{
+                    pname: handName,
+                    puid: handPuid,
+                    imgUrl: 'https://photo.chaoxing.com/p/' + handPuid + '_80?flag=1&psize=100_100c&ext=jpg'
+                }， {
+                    pname: handName2,
+                    puid: handPuid2,
+                    imgUrl: 'https://photo.chaoxing.com/p/' + handPuid2 + '_80?flag=1&psize=100_100c&ext=jpg'
+                }]，
+                userCount: 3,
+                maxShowUserCount:3
+            }         
+         */
+        aLItem.clear();
+        if (data.users && data.users.length > 0) {
+            data.users.forEach(itemData => {
+                addAlItem(itemData);
+            });
+
+        }
+        if (data.userCount > data.maxShowUserCount) {
+            //显示查看全部，并更新数量
+            aLItem.showCheckAll(data.userCount);
+        }
+
+        /**
+         * userOper:{
+         *  oper:1,   1:接受  2、拒绝  3、查看全部  4、全部拒绝
+         *  puid:xxxx,
+         *  pname:xxx
+         * }
+         */
+        // RendererProcessHelper.sendToMeetingPage("hand_up_oper", { oper: 1, puid: "" })
+    })
+
+    RendererProcessHelper.getStoreData("share_all_window_in_screen").then((value) => {
+        let checkShieldApp = false;
+        if (value === undefined) {
+            checkShieldApp = false;
+        } else {
+            checkShieldApp = !value;
+        }
+        if (checkShieldApp) {
+            $("#shieldApp").addClass("cur");
+        }
+    })
+
+    if (RendererProcessHelper.getPlatform() === 'darwin') {
+        $("#sharedVoice").hide();
+    }
+
+    RendererProcessHelper.getStoreData("sharePcAudio").then((value) => {
+        let checkSharePcAudio = false;
+        if (value === undefined) {
+            checkSharePcAudio = false;
+        } else {
+            checkSharePcAudio = value;
+        }
+        if (checkSharePcAudio) {
+            $("#sharedVoice").addClass("cur");
+        }
+    })
+
+    $("#share_set li").click(function () {
+        let isSel = false;
+        if ($(this).hasClass("cur")) {
+            isSel = true;
+        }
+        let oper;
+        let _self = this;
+        if (this.id == "sharedVoice") {
+            oper = "sharedPcVoice";
+        } else if (this.id == "shieldApp") {
+            oper = "shieldApp";
+        } else if (this.id == "open_PIP") {
+            oper = "openPIP";
+        }
+        if (oper) {
+            RendererProcessHelper.sendToMeetingPage("share_set_changed", { oper, enable: !isSel }, (ret) => {
+                if (ret === 0) {
+                    if (_self.id !== "open_PIP") {
+                        $(this).toggleClass("cur");
+                    }
+
+                    // if (_self.id == "open_PIP") {
+                    //     openPIP = !isSel;
+                    // }
+                }
+            })
+        }
+
+    })
+    RendererProcessHelper.registeCallback("show_expandBtn", (data) => {
+        if (data) {
+            if (data.type == 1) {
+                $('#openRight').show();
+            }
+        }
+    });
+    RendererProcessHelper.registeCallback("network_tip_show", (isShow) => {
+        $(".netWorklowTips").hide();
+        if (isShow) {
+            var display = $(".noNetWorkTips").css('display');
+            if (display != 'block') {
+                $(".noNetWorkTips").show();
+            }
+        } else {
+            $(".noNetWorkTips").hide();
+        }
+    });
+    $('#openRight').on('click', function () {
+        $(this).hide();
+        RendererProcessHelper.sendToMeetingPage("show-window-self", {}, (ret) => { })
+        // $('.member_btn').click();
+    })
+
+    function checkMouseInWindow(isInWindow) {
+        if (isInWindow) {
+            m_MouseOnToolsBar = true;
+            if ($('#topMenuTools').hasClass('hide')) {
+                maxMenuTools();
+            }
+        } else {
+            m_MouseOnToolsBar = false;
+            if (!$('#topMenuTools').hasClass('hide')) {
+                minMenuTools();
+            }
+        }
+
+
+    }
+
+    let m_IgnoreMouseEvents = undefined;
+
+    function setIgnoreMouseEvents(isIgnore) {
+
+
+    }
+
+
+    let toastTimer;
+
+    function showToast(msg) {
+        hideToast();
+        $(".toastTool").text(msg);
+        $(".toastTool").css("margin-left", -$(".toastTool").width() / 2)
+        $(".toastTool").show();
+        toastTimer = setTimeout(function () {
+            hideToast()
+        }, 2000)
+    }
+
+    function hideToast() {
+        $(".toastTool").hide();
+        if (toastTimer) {
+            clearTimeout(toastTimer);
+            toastTimer = undefined;
+        }
+    }
+
+    RendererProcessHelper.registeCallback("show_toast", (data) => {
+        if (data && data.msg) {
+            showToast(data.msg);
+        }
+    });
+
+
+
+    function changeHandUpStatus(status) {
+        if (m_handUpStatus === status) {
+            return;
+        }
+
+        if (status === 0) {
+            $(".raise_hand").hide();
+            $(".voice_btn").show();
+            if (m_handUpStatus === 3) {
+                changeAudioStatus("0");
+            } else if (m_handUpStatus === 4) {
+                changeAudioStatus("1");
+            }
+        } else if (status === 1) {
+            $(".voice_btn").hide();
+            $(".raise_hand").css('display', 'grid');
+            changeRaiseHandleStatus("0")
+            changeAudioStatus("0");
+        } else if (status === 2) {
+            $(".voice_btn").hide();
+            $(".raise_hand").css('display', 'grid');
+            changeRaiseHandleStatus("1")
+        } else if (status === 3) {
+            $(".raise_hand").hide();
+            $(".voice_btn").show();
+        } else if (status === 4) {
+            $(".raise_hand").hide();
+            $(".voice_btn").show();
+            $('.voice_btn .function_text').text(getI18Value('退出发言'));
+        }
+        m_handUpStatus = status;
+    }
+
+    RendererProcessHelper.registeCallback("hand_up_status", (data) => {
+        //举手状态： status : 0：不需要举手（如取消全员静音）  1：初始状态（显示举手图标）  2：举手中   3：老师已同意举手  4：正在发言（显示退出发言按钮）
+        if (data && data.status != undefined) {
+            changeHandUpStatus(data.status);
+        }
+    });
+
+    RendererProcessHelper.registeCallback("video_mute_status", (data) => {
+        //视频禁用状态   0：正常状态，可开启视频  1：教师禁止开启视频
+        if (data && data.status != undefined) {
+            m_videoMuteStatus = data.status;
+        }
+    });
+
+    function handUp(oper) {
+        //my_hand_up_oper 我的举手操作 oper： 1:开始举手  0:手放下  2：开始发言  3：退出发言
+        RendererProcessHelper.sendToMeetingPage("my_hand_up_oper", { oper: oper })
+    }
+
+    $(".raise_hand").click(function (e) {
+        if (m_handUpStatus === 1) {
+            handUp(1);
+        } else {
+            handUp(0);
+        }
+    })
+
+    //my_hand_up_oper 我的举手操作 oper：  1:开始举手  0:手放下
+
+</script>
+
+</html>

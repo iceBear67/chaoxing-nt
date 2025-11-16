@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body style="background: #F5F6F8;">
+    <div
+        style="display:none;position: absolute;top: 40%;left: 0;-webkit-transform: translateY(-50%);width: 100%;text-align: center;">
+        <div><span
+                style="display: inline-block;background:url(../static/images/icon_connect_fail.png) left center no-repeat;background-size: 18px auto;padding-left:24px;font-size:14px;color:#8A8B99;line-height: 20px;">连接失败<span>
+        </div>
+        <input value="请重试" onclick="javascript:location.reload();"
+            style="width: 92px;height:36px;line-height:36px;margin-top:14px;background:#1677FF;border-radius: 4px;text-align: center;font-size:14px;color:#FFF;border:0;">
+    </div>
+    <div
+        style="position: absolute;top: 40%;left: 0;-webkit-transform: translateY(-50%);width: 100%;text-align: center;">
+        <img src="./images/icon_connecting.gif" style="width:72px;">
+        <p style="font-size:14px;color:#8A8B99;margin-top:7px;">连接中…</p>
+    </div>
+</body>
+
+<!-- <script src="../static/js/axios.min.js">
+</script>
+<script>
+	axios.get("https://sso.chaoxing.com/apis/login/userLogin4Uname.do").then(response => {
+		let data = response.data;
+		console.log("userLogin4Uname.do:return:", data)
+		if (data.result == 1) {
+
+		}
+	})
+	axios.get("http://sso.chaoxing.com/apis/login/userLogin.do").then(response => {
+		let data = response.data;
+		console.log("userLogin.do:return:", data)
+		if (data.result == 1) {
+
+		}
+	})
+</script> -->
+
+</html>

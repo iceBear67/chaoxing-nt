@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>正在加载</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			font-family: PingFang SC;
+		}
+
+		body {
+			width: 100vw;
+			height: 100vh;
+		}
+
+		@-webkit-keyframes loading {
+			form {
+				transform: rotate(0deg)
+			}
+
+			to {
+				transform: rotate(360deg)
+			}
+		}
+
+		@keyframes loading {
+			form {
+				transform: rotate(0deg)
+			}
+
+			to {
+				transform: rotate(360deg)
+			}
+		}
+
+		.connectBox {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			font-size: 14px;
+			color: #8A8B99;
+		}
+
+		.connectBox .icon {
+			vertical-align: middle;
+			width: 18px;
+			height: 18px;
+			margin-right: 8px;
+			background: url(images/login_load.png) no-repeat;
+			-webkit-animation: loading 1s infinite linear;
+			animation: loading 1s infinite linear;
+			background-size: contain;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body style="background: #ffffff">
+	<div class="connectBox">
+		<span class="icon"></span>
+		<span id="content_tip">正在加载，请稍候…</span>
+	</div>
+
+</body>
+<script>
+	console.log('打印页面')
+</script>
+
+</html>

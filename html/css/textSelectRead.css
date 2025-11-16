@@ -1,0 +1,218 @@
+.ktboard_mark {
+  background-color: rgba(0, 106, 255, 0.25);
+}
+
+::selection {
+  background: rgba(0, 106, 255, 0.25);
+}
+
+body {
+  position: relative;
+}
+
+#ktboard_control_btn {
+  display: none;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  padding: 7.5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7.5px;
+  flex-shrink: 0;
+  border-radius: 300px;
+  background: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(2px);
+  box-sizing: border-box;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#ktboard_control_btn .playing {
+  display: none;
+  width: 16px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+#ktboard_control_btn .pause {
+  display: none;
+  flex-shrink: 0;
+}
+
+#ktboard_control_btn .kt_show {
+  display: block !important;
+}
+
+#ktboard_partCommentBtn {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #F2F2F2;
+  background: #FFF;
+  height: 42px;
+  padding: 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  box-shadow: 0px 2px 12px 0px rgba(175, 187, 204, 0.75);
+  cursor: pointer;
+  z-index: 9999;
+}.ktboard_mark {
+  background-color: rgba(0, 106, 255, 0.25);
+}
+
+::selection {
+  background: rgba(0, 106, 255, 0.25);
+}
+
+body {
+  position: relative;
+}
+
+#ktboard_control_btn {
+  display: none;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  padding: 7.5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7.5px;
+  flex-shrink: 0;
+  border-radius: 300px;
+  background: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(2px);
+  box-sizing: border-box;
+  cursor: pointer;
+  z-index: 9999;
+}
+#ktboard_partCommentBtn_close{
+  display: none;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  z-index: 99999;
+  cursor: pointer;
+}
+#ktboard_control_btn_close{
+  display: none;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  z-index: 99999;
+  cursor: pointer;
+}
+#ktboard_control_btn .playing {
+  display: none;
+  width: 16px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+#ktboard_control_btn .pause {
+  display: none;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+#ktboard_control_btn .kt_show {
+  display: flex !important;
+}
+
+#ktboard_partCommentBtn {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #F2F2F2;
+  background: #FFF;
+  height: 42px;
+  padding: 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  box-shadow: 0px 2px 12px 0px rgba(175, 187, 204, 0.75);
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#ktboard_partCommentBtn .ktboard_play_hover {
+  display: none;
+}
+
+#ktboard_partCommentBtn:hover .ktboard_play_hover {
+  display: block;
+}
+
+#ktboard_partCommentBtn:hover .ktboard_play {
+  display: none;
+}
+
+#ktboard_partCommentBtn::after {
+  content: "朗读";
+  font-size: 12px;
+  min-width: 56px;
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: rgba(24, 30, 51, 0.80);
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 16px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+}
+
+#ktboard_partCommentBtn:hover::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+#ktboard_partCommentBtn .ktboard_play_hover {
+  display: none;
+}
+
+#ktboard_partCommentBtn:hover .ktboard_play_hover {
+  display: block;
+}
+
+#ktboard_partCommentBtn:hover .ktboard_play {
+  display: none;
+}
+
+#ktboard_partCommentBtn::after {
+  content: "朗读";
+  font-size: 12px;
+  min-width: 56px;
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: rgba(24, 30, 51, 0.80);
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 16px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+}
+
+#ktboard_partCommentBtn:hover::after {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正在更新</title>
+    <link rel="stylesheet" href="./css/progressBar.css">
+</head>
+
+<body>
+    <div class="p-wrap">
+        <i id="btn_close" class="p-close"></i>
+        <div class="logo">
+            <img src="../icons/logo.ico" alt="">
+        </div>
+        <div class="progress-box">
+            <div class="bar">
+                <div class="duration"></div>
+                <div class="current" style="width: 0%;"></div>
+            </div>
+            <p id="on_downloading">正在更新，已完成 <span id="download_progress">0%</span></p>
+            <p id="download_failed" style="display: none;">下载失败，<span id="try_again" class="blue">请重试</span></p>
+        </div>
+    </div>
+    <script>
+        window.RendererProcessHelper.registeCallback("ready", (data) => {
+            if (data && data.flag == "fudan") {
+                document.getElementById("btn_close").style.display = "none"
+            }
+        })
+
+        window.onload = function () {
+            window.RendererProcessHelper.registeCallback("downloadSetupFileState", (data) => {
+                if (data.state == "completed") {
+                    window.close();
+                } else if (data.state == "failed") {
+                    // alert("下载失败！");
+                    // window.close();
+                    document.getElementById("on_downloading").style.display = "none";
+                    document.getElementById("download_failed").style.display = "block";
+                    document.getElementById("try_again").onclick = function () {
+                        document.getElementById("on_downloading").style.display = "block";
+                        document.getElementById("download_failed").style.display = "none";
+                        window.RendererProcessHelper.downloadSetupFile(data.url, true)
+                    }
+                } else {
+                    let d_progress = 0;
+                    if (data.totalBytes > 0) {
+                        d_progress = Math.floor(data.receivedBytes * 100 / data.totalBytes)
+                    }
+
+                    document.getElementById("download_progress").innerText = d_progress + "%";
+                    document.querySelector(".progress-box .current").style.width = d_progress + "%";
+                    // console.log(`Received bytes: ${data.receivedBytes}/${data.totalBytes}`)
+                }
+            });
+            document.querySelector(".p-close").addEventListener('click', function () {
+                // console.log("sssss");
+                window.RendererProcessHelper.sendToMainProcess("downloadSetupFileCancel");
+                window.close();
+            });
+        }
+
+    </script>
+</body>
+
+</html>

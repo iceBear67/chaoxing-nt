@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 12px;
+            overflow: hidden;
+        }
+
+        html,
+        body {
+            height: 100%;
+            box-shadow: 0px 1px 3px 0px #00000067;
+        }
+
+        .languageSet_box {
+            width: 100%;
+            height: 100%;
+            /* background: #25282E; */
+
+        }
+
+        .clearfix {
+            zoom: 1;
+        }
+
+        .clearfix:after {
+            content: "";
+            clear: both;
+            height: 0;
+            font-size: 0;
+            line-height: 0;
+            overflow: hidden;
+            display: block;
+        }
+
+        .languageSet_box_header {
+            height: 30px;
+            background: #15191D;
+            border-radius: 15px 15px 0px 0px;
+            padding-right: 12px;
+            /* -webkit-app-region: drag; */
+        }
+
+        .languageSet_title {
+            float: left;
+            font-size: 13px;
+            color: #eaeaec;
+            line-height: 30px;
+            margin-left: 20px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .header_tools_windows {
+            background: #15191D;
+            text-align: right;
+            height: 29px;
+            float: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .languageSet {
+            margin-right: 24px;
+            height: 100%;
+            position: relative;
+            -webkit-app-region: no-drag;
+        }
+
+        .languageSet_tit {
+            font-size: 13px;
+            line-height: 30px;
+            color: #108cff;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .languageSet_con {
+            border-radius: 8px;
+            background: #282F38;
+            height: 120px;
+            overflow-y: auto;
+            /* min-width: 86px; */
+            padding: 6px 4px 6px 10px;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            z-index: 99;
+            transform: translateX(-50%);
+            display: none;
+            white-space: nowrap;
+        }
+
+        /* .languageSet:hover .languageSet_con {
+            display: block;
+        } */
+
+        .languageSet_con .setting_toEn {
+            height: 40px;
+            line-height: 40px;
+            padding-left: 28px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: #EAEAEC;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .languageSet_con .setting_toEn .language {
+            display: inline-block;
+        }
+
+        .languageSet_con .setting_toEn .icon {
+            width: 20px;
+            height: 20px;
+            background: url(./images/icon_translate_arrow.png) no-repeat;
+            background-size: 20px auto;
+            margin: 0 4px;
+        }
+
+        .languageSet_con .cur {
+            background: url(./images/icon_translate_cur.png) left center no-repeat;
+            background-size: 20px auto;
+        }
+
+        .translate_setting {
+            width: 38px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            -webkit-app-region: no-drag;
+        }
+
+        .translate_setting i {
+            width: 18px;
+            height: 18px;
+            background: url(./images/translate_setting.png);
+            background-size: cover;
+
+        }
+
+        .window_tools {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            -webkit-app-region: no-drag;
+        }
+
+        .header_tool_windows_item {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .header_tool_windows_item {
+            width: 20px;
+            height: 20px;
+            padding: 5px 9px;
+        }
+
+        .minimize_windows_btn {
+            background: url(./images/icon_minimize_windows_default.png) center center/20px auto no-repeat;
+        }
+
+        .minimize_windows_btn:hover {
+            background: url(./images/icon_minimize_windows_hover.png) center center/20px auto no-repeat;
+        }
+
+        .minimize_windows_btn:active {
+            background: url(./images/icon_minimize_windows_down.png) center center/20px auto no-repeat;
+        }
+
+        .maximize_windows_btn {
+            background: url(./images/icon_maximize_1_windows_default.png) center center/20px auto no-repeat;
+        }
+
+        .maximize_windows_btn:hover {
+            background: url(./images/icon_maximize_1_windows_hover.png) center center/20px auto no-repeat;
+        }
+
+        .maximize_windows_btn:active {
+            background: url(./images/icon_maximize_1_windows_down.png) center center/20px auto no-repeat;
+        }
+
+        .maximize_recover {
+            display: none;
+        }
+
+        .maximize_recover {
+            background: url(./images/maximize-recover.png) center center/20px auto no-repeat;
+        }
+
+        .close_windows_btn div {
+            width: 20px;
+            height: 20px;
+            background: url(./images/icon_close_windows_default.png) center center/20px auto no-repeat;
+        }
+
+        .close_windows_btn:hover {
+            background: #FF3131;
+        }
+
+        .close_windows_btn:hover div {
+            width: 20px;
+            height: 20px;
+            background: url(./images/icon_close_windows_hover.png) center center/20px auto no-repeat;
+        }
+
+        .languageSet_center {
+            padding: 6px 20px;
+            padding-right: 0px;
+            width: 100%;
+            height: calc(100% - 30px);
+            color: #eaeaec;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+            border-radius: 0px 0px 15px 15px;
+
+        }
+
+        .text {
+            height: 100%;
+            overflow-y: auto;
+            font-size: 28px;
+            color: #ffffff;
+        }
+
+        .text_one {
+            /* color: #fff; */
+            /* line-height: 26px; */
+            margin-bottom: 16px;
+        }
+
+        .text_tip {
+            /* font-size: 18px; */
+            font-weight: 400;
+            /* line-height: 18px; */
+            text-align: left;
+            /* color: #666A73; */
+        }
+
+        .clean_translate {
+            width: 30px;
+            height: 30px;
+            background: url(./images/clean_translate.png);
+            background-size: cover;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+
+        }
+
+        /* 更改滚动条的样式 */
+        ::-webkit-scrollbar {
+            width: 10px;
+            /* 宽度 */
+            background-color: transparent;
+            /* 背景颜色 */
+        }
+
+        /* 更改滚动条滑块的样式 */
+        ::-webkit-scrollbar-thumb {
+            background-color: #56595E;
+            /* 滑块颜色 */
+            border-radius: 5px;
+            /* 滑块圆角 */
+        }
+
+        /* 鼠标悬停在滚动条上时的样式 */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #56595E;
+            /* 悬停时的滑块颜色 */
+        }
+
+        /* 滚动条轨道的样式 */
+        ::-webkit-scrollbar-track {
+            /* background-color: #F5F5F5; */
+            /* 轨道背景颜色 */
+            border-radius: 5px;
+            /* 轨道圆角 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="languageSet_box">
+        <div class="languageSet_box_header clearfix">
+            <div class="languageSet_title">同声翻译</div>
+            <div class="header_tools_windows">
+                <div class="languageSet">
+                    <span class="languageSet_tit">语言设置</span>
+                    <div class="languageSet_con">
+                    </div>
+                </div>
+                <div class="translate_setting">
+                    <i></i>
+                </div>
+                <div class="window_tools">
+                    <!-- <div class="header_tool_windows_item minimize_windows_btn">
+                    </div> -->
+                    <div class="header_tool_windows_item maximize_windows_btn">
+                    </div>
+                    <div class="header_tool_windows_item maximize_recover">
+                    </div>
+                    <div class="header_tool_windows_item close_windows_btn">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="languageSet_center">
+            <div class="text">
+                <div class="text_start_tip">
+                    <p>欢迎使用同声翻译</p>
+                    <p>Welcome to simultaneous translation</p>
+                </div>
+                <div class="text_one"></div>
+            </div>
+            <div class="clean_translate"></div>
+        </div>
+    </div>
+    <script>
+        if (typeof module === "object") {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <!--国际化开始-->
+    <script>
+        let isEnLanguage = false;
+        window.i18 = {
+            "同声翻译": "Simultaneous translation",
+            "翻译显示": "Translation Display",
+            "字幕": "Subtitles",
+            "不翻译": "untranslate",
+            "语言设置": "Language setting",
+            "您已开启字幕，识别结果仅供参考~": "You have turned on subtitles, the recognition results are for reference only",
+            '中': 'Chinese',
+            '英': 'English',
+            '德': 'German',
+            '法': 'French',
+            '西班牙': 'Spain',
+            '日': 'Japanese',
+            '俄': 'Russian',
+            '韩': 'Korean',
+            '阿拉伯': 'Arabic',
+            '葡萄牙': 'Portugal',
+            '印地': 'Hindi'
+        }
+        //国际化文本
+        const getI18Value = function (key) {
+            if (isEnLanguage && window.i18) {
+                let value = window.i18[key];
+                if (value) {
+                    return value;
+                }
+                console.log("no value,key=" + key)
+            }
+            return key;
+        }
+    </script>
+    <!--国际化结束-->
+    <script>
+        $(document).ready(async function () {
+            let appMode = await RendererProcessHelper.getAppMode()
+            console.log('appMode', appMode);
+            let appSystemConfig = await RendererProcessHelper.getSysStoreData('appSystemConfig')
+            console.log('appSystemConfig', appSystemConfig);
+            if (appSystemConfig.language == "en_US") {
+                isEnLanguage = true
+            } else {
+                isEnLanguage = false
+            }
+
+            let languages = [
+                { from: getI18Value('中'), to: getI18Value('英') },
+                { from: getI18Value('英'), to: getI18Value('中') },
+                { from: getI18Value('中'), to: getI18Value('德') },
+                { from: getI18Value('中'), to: getI18Value('法') },
+                { from: getI18Value('中'), to: getI18Value('西班牙') },
+                { from: getI18Value('中'), to: getI18Value('日') },
+                { from: getI18Value('中'), to: getI18Value('俄') },
+                { from: getI18Value('中'), to: getI18Value('韩') },
+                { from: getI18Value('中'), to: getI18Value('阿拉伯') },
+                { from: getI18Value('中'), to: getI18Value('葡萄牙') },
+                { from: getI18Value('中'), to: getI18Value('印地') },
+            ];
+            let languageMap = {
+                'zh': getI18Value('中'),
+                'en': getI18Value('英'),
+                'de': getI18Value('德'),
+                'fra': getI18Value('法'),
+                'spa': getI18Value('西班牙'),
+                'jp': getI18Value('日'),
+                'ru': getI18Value('俄'),
+                'kor': getI18Value('韩'),
+                'ara': getI18Value('阿拉伯'),
+                'pt': getI18Value('葡萄牙'),
+                'hi': getI18Value('印地')
+            };
+            // 反转languageMap，创建一个以国际化文本为键的映射
+            let reversedLanguageMap = {};
+            for (let code in languageMap) {
+                reversedLanguageMap[languageMap[code]] = code;
+            }
+
+
+            let fromLanguage = 'zh';
+            let toLanguage = 'en';
+            let useDevName = ''
+            let currentDeviceId = ''
+            // 控制 header 的显示与隐藏 (初始化时，如果是万能黑板则不隐藏)
+            $('.languageSet_box_header').css({
+                'visibility': appMode == "fanya" ? 'visible' : 'hidden', // 隐藏 .header 的内容，但是保留其在布局中的位置
+                'opacity': appMode == "fanya" ? '1' : '0', // 设置 .header 的透明度为 0
+            });
+            let isVisibleBackground = true; // 默认隐藏背景
+            let fontColor = '#ffffff'; // 默认字体颜色 白色
+            let fontColorRes = await RendererProcessHelper.getSysStoreData('SpeechFontColor')
+            if (fontColorRes !== undefined) {
+                fontColor = fontColorRes
+            }
+            $('.text').css({ 'color': fontColor })
+            let fontSize = 28; // 默认字体大小 白色
+            let fontSizeRes = await RendererProcessHelper.getSysStoreData('SpeechFontSize')
+            if (fontSizeRes !== undefined) {
+                fontSize = fontSizeRes
+            }
+            $('.text').css({ 'font-size': fontSize + 'px' })
+
+            let opacity = 0.7;
+            let opacityRes = await RendererProcessHelper.getSysStoreData('backgroundOpacity');
+            if (opacityRes !== undefined) {
+                opacity = opacityRes
+            }
+            // $('.languageSet_center').css({ 'opacity': opacity })
+            let isVisibleBgRes = await RendererProcessHelper.getSysStoreData('isVisibleBackground')
+            if (isVisibleBgRes !== undefined) {
+                isVisibleBackground = isVisibleBgRes
+            }
+            if (appMode == "fanya") {
+                isVisibleBackground = false
+            }
+            console.log('isVisibleBackground', isVisibleBackground);
+            if (isVisibleBackground) {
+                $('.clean_translate').hide()
+                $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, 0)` });
+                $('.text_start_tip').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                $('.text_one').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+            } else {
+                $('.clean_translate').show()
+                $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, ${opacity})` });
+                $('.text_start_tip').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                $('.text_one').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+            }
+
+            let useDevNameRes = await RendererProcessHelper.getSysStoreData('useDevMikeName')
+            if (useDevNameRes !== undefined) {
+                useDevName = useDevNameRes
+            }
+            let container = $('.languageSet_con');
+            let info = await RendererProcessHelper.getInitDataAsync()
+            console.log('getInitDataAsync', info);
+            let translateType = info?.type || 1
+            let sdkType = info?.sdkType
+            // let sdkType = 1
+            console.log('translateType', translateType);
+            if (translateType == 1) { // 实时字幕
+                $('.languageSet_title').text(getI18Value("字幕"));
+                $('.languageSet_tit').hide()
+                $('.text_start_tip').text(getI18Value("您已开启字幕，识别结果仅供参考~"));
+                $('.text_start_tip').css({
+                    'height': '86%',
+                    'display': 'flex',
+                    'justify-content': 'center',
+                    'align-items': 'center',
+                })
+                fromLanguage = null
+                toLanguage = null
+
+            } else { // 同声翻译+实时字幕
+                $('.languageSet_title').text(getI18Value("同声翻译"));
+                $('.languageSet_tit').show()
+                $('.languageSet_tit').text(getI18Value("翻译显示"));
+
+                // 将容器的第一项显示为“不翻译”
+                let settingItem = $('<div class="setting_toEn"></div>');
+                let noTranslationDiv = $('<div class="language">' + getI18Value('不翻译') + '</div>');
+                settingItem.append(noTranslationDiv);
+                container.append(settingItem);
+                // 添加点击事件
+                settingItem.on('click', async function () {
+                    handleTranslationItemClick(null, null, this); // 调用统一的处理函数，传入参数为 null
+                });
+                fromLanguage = 'zh'
+                toLanguage = 'en'
+            }
+
+            RendererProcessHelper.setSysStoreData('speechFromLanguage', fromLanguage);
+            RendererProcessHelper.setSysStoreData('speechToLanguage', toLanguage);
+            let isVIsibleLanguageSet = false
+            $('.languageSet_tit').on('click', () => {
+                if (!isVIsibleLanguageSet) {
+                    $('.languageSet_con').show()
+                } else {
+                    $('.languageSet_con').hide()
+                }
+                isVIsibleLanguageSet = !isVIsibleLanguageSet
+            })
+            $(document).on('click', function (event) {
+                const target = $(event.target);
+                if (!target.closest('.languageSet').length) {
+                    $('.languageSet_con').hide();
+                    isVIsibleLanguageSet = false;
+                }
+            });
+
+            // 批量渲染设置项
+            $.each(languages, function (index, language) {
+                let settingItem = $('<div class="setting_toEn"></div>');
+                let fromLanguageDiv = $('<div class="language">' + language.from + '</div>');
+                let icon = $('<i class="icon"></i>');
+                let toLanguageDiv = $('<div class="language">' + language.to + '</div>');
+
+                settingItem.append(fromLanguageDiv, icon, toLanguageDiv);
+                container.append(settingItem);
+
+                if (index === 0) {
+                    settingItem.addClass('cur');
+                }
+                // let selectedSettingItem = container.find('.setting_toEn.cur');
+                // // 将滚动条滚动到选中项的位置
+                // container.scrollTop(selectedSettingItem.offset().top - container.offset().top + container.scrollTop());
+
+                settingItem.on('click', async function () {
+                    let currentFrom = reversedLanguageMap[language.from];
+                    let currentTo = reversedLanguageMap[language.to];
+                    handleTranslationItemClick(currentFrom, currentTo, this); // 调用统一的处理函数，传入当前语言参数
+                });
+
+            });
+            function handleTranslationItemClick(fromLanguage, toLanguage, element) {
+                $('.setting_toEn').removeClass('cur');
+                $(element).addClass('cur');
+                console.log('From:', fromLanguage);
+                console.log('To:', toLanguage);
+                RendererProcessHelper.setSysStoreData('speechFromLanguage', fromLanguage);
+                RendererProcessHelper.setSysStoreData('speechToLanguage', toLanguage);
+                // 同声翻译
+                const changeLanguageParams = {
+                    fromLanguage: fromLanguage,
+                    toLanguage: toLanguage
+                };
+                SpeechTranslate.changeTranslationLanguage(changeLanguageParams);
+            }
+
+            if (sdkType == 0) {
+                SpeechTranslate.startRecognition(currentDeviceId, sdkType)
+            }
+            // 获取麦克风设备列表
+            RendererProcessHelper.getAudioDevList().then((res) => {
+                if (res && res.length > 0) {
+                    let AudioDevList = res
+                    console.log('麦克风设备列表', AudioDevList);
+                    const microphonesLabel = AudioDevList.map(item => item.label)
+                    if (!microphonesLabel.includes(useDevName)) {
+                        useDevName = microphonesLabel[0]
+                        RendererProcessHelper.setSysStoreData('useDevMikeName', microphonesLabel[0])
+                    }
+                    let selectMike = AudioDevList.filter(info => info.label == useDevName)
+                    console.log('selectMike', useDevName, selectMike, selectMike[0].deviceId);
+
+                    let startLanguageParams = {
+                        fromLanguage: fromLanguage,
+                        toLanguage: toLanguage
+                    }
+                    // console.log('startParams', startLanguageParams);
+                    // 设置初始翻译语言
+                    SpeechTranslate.changeTranslationLanguage(startLanguageParams)
+                    // 设置初始麦克风
+                    SpeechTranslate.startRecognition(selectMike[0].deviceId, sdkType)
+                    currentDeviceId = selectMike[0].deviceId
+                    // let = startParams = {
+                    //     fromLanguage: fromLanguage,
+                    //     toLanguage: toLanguage,
+                    //     useDevName: useDevName
+                    // }
+                    // console.log('startParams', startParams);
+                    // SpeechRecognitionHelper.startRecognition(startParams)
+                }
+            })
+            let isMouseInTranslate = false
+            // 获取翻译数据
+            SpeechTranslate.onUpdateRecognitionText((data) => {
+                // console.log('获取翻译数据', data);
+                renderData(data);
+                if (isVisibleBackground && !isMouseInTranslate) {
+                    $('.text_start_tip').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                    $('.text_one').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                } else {
+                    $('.text_start_tip').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                    $('.text_one').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                }
+            })
+
+            // 移动窗口
+            let headerX = 0;
+            let headerY = 0;
+            let mainWidth = 0;
+            let mainHeight = 0;
+            let headerDownX = 0;
+            let headerDownY = 0;
+            let headerMoveX = 0;
+            let headerMoveY = 0;
+            let mouseX = 0;
+            let mouseY = 0;
+            let isDragging = false;
+            let isResizable = false; // 窗口是否可拉伸
+            $('.languageSet_box_header').on('mousedown touchstart', async function (e) {
+                if ($(e.target).hasClass('languageSet_box_header') && !isResizable) {
+
+                    headerDownX = e.type === 'touchstart' && e.touches.length > 0 ? e.touches[0].screenX : e.screenX;
+                    headerDownY = e.type === 'touchstart' && e.touches.length > 0 ? e.touches[0].screenY : e.screenY;
+                    // console.log('鼠标按下1', headerDownX, headerDownY, e.type)
+                    headerMoveX = headerDownX
+                    headerMoveY = headerDownY
+                    let res = await RendererProcessHelper.getWindowBounds()
+                    // console.log('res', res);
+                    if (res && Object.keys(res).length > 0) {
+                        headerX = res.x
+                        headerY = res.y
+                        mainWidth = res.width
+                        mainHeight = res.height
+                    }
+                    isDragging = true;
+                }
+
+            })
+            // 拉伸窗口
+            let windowDownX = 0;
+            let windowDownY = 0;
+            let isWindowDown = false
+            let isResizablePosition = null
+            let windowBounds = await RendererProcessHelper.getWindowBounds()  // 初始获取窗口的位置信息
+
+            $(document).on('mousedown', function (e) {
+                if (isResizable) {
+                    // console.log('鼠标按下2', e.type);
+                    windowDownX = e.type === 'touchmove' && e.touches.length > 0 ? e.touches[0].screenX : e.screenX;
+                    windowDownY = e.type === 'touchmove' && e.touches.length > 0 ? e.touches[0].screenY : e.screenY;
+                    isWindowDown = true
+                }
+            })
+            // 辅助函数，计算平滑值
+            function calculateSmoothValue(currentValue, newValue) {
+                // 调整平滑系数，根据需要调整这个值
+                const smoothingFactor = 0.2;
+                return currentValue + smoothingFactor * (newValue - currentValue);
+            }
+            $(document).on('mousemove touchmove', async function (e) {
+                // 头部按下后移动的逻辑
+                if (isDragging && !isWindowDown) {
+                    // 计算平滑后的值
+                    headerMoveX = calculateSmoothValue(headerMoveX, e.type === 'touchmove' && e.touches.length > 0 ? e.touches[0].screenX : e.screenX);
+                    headerMoveY = calculateSmoothValue(headerMoveY, e.type === 'touchmove' && e.touches.length > 0 ? e.touches[0].screenY : e.screenY);
+
+                    let offsetX = headerMoveX - headerDownX;
+                    let offsetY = headerMoveY - headerDownY;
+                    // console.log('鼠标移动', e.type, headerMoveX, headerMoveY);
+
+                    if (offsetX === 0 && offsetY === 0) return;
+                    let newX = headerX + offsetX;
+                    let newY = headerY + offsetY;
+                    // console.log('newX', newX, newY);
+                    RendererProcessHelper.setWindowBounds(newX, newY, mainWidth, mainHeight);
+                }
+                mouseX = e.type === 'touchmove' && e.touches.length > 0 ? e.touches[0].screenX : e.screenX;
+                mouseY = e.type === 'touchmove' && e.touches.length > 0 ? e.touches[0].screenY : e.screenY;
+                // let windowBounds = await RendererProcessHelper.getWindowBounds()
+                // console.log('windowBounds',mouseX,mouseY, windowBounds);
+                // 窗口按下后拉伸的逻辑
+                if (isWindowDown) {
+                    let x = mouseX - (windowDownX - windowBounds.x)
+                    let y = mouseY - (windowDownY - windowBounds.y)
+                    x = x < 0 ? 0 : x
+                    y = y < 0 ? 0 : y
+                    let windowOffsetX = windowBounds.x - x
+                    let windowOffsetY = windowBounds.y - y
+                    if (windowOffsetX == 0 && windowOffsetY == 0) return
+                    // console.log('screen.width', screen.width, screen.height);
+                    if (isResizablePosition == 'left') {
+                        let windowWidthLeft = windowBounds.width + windowOffsetX
+                        if (windowWidthLeft < 800) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(x, windowBounds.y, windowWidthLeft, windowBounds.height)
+                    } else if (isResizablePosition == 'right') {
+                        let windowWidthRight = windowBounds.width - windowOffsetX
+                        if (windowWidthRight > screen.width - windowBounds.x || windowWidthRight < 800) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(windowBounds.x, windowBounds.y, windowWidthRight, windowBounds.height)
+                    }
+                    else if (isResizablePosition == 'top') {
+                        let windowHeightTop = windowBounds.height + windowOffsetY
+                        if (windowHeightTop < 165) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(windowBounds.x, y, windowBounds.width, windowHeightTop)
+                    } else if (isResizablePosition == 'bottom') {
+                        let windowHeightBottom = windowBounds.height - windowOffsetY
+                        if (windowHeightBottom > screen.height - windowBounds.y - 44 || windowHeightBottom < 165) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(windowBounds.x, windowBounds.y, windowBounds.width, windowHeightBottom)
+                    } else if (isResizablePosition == 'right-top') {
+                        let windowWidthRight = windowBounds.width - windowOffsetX
+                        if (windowWidthRight > screen.width - windowBounds.x || windowWidthRight < 800) {
+                            return
+                        }
+                        let windowHeightTop = windowBounds.height + windowOffsetY
+                        if (windowHeightTop < 165) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(windowBounds.x, y, windowWidthRight, windowHeightTop)
+                    } else if (isResizablePosition == 'right-bottom') {
+                        let windowWidthRight = windowBounds.width - windowOffsetX
+                        if (windowWidthRight > screen.width - windowBounds.x || windowWidthRight < 800) {
+                            return
+                        }
+                        let windowHeightBottom = windowBounds.height - windowOffsetY
+                        if (windowHeightBottom > screen.height - windowBounds.y - 44 || windowHeightBottom < 165) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(windowBounds.x, windowBounds.y, windowWidthRight, windowHeightBottom)
+                    } else if (isResizablePosition == 'left-bottom') {
+                        let windowWidthLeft = windowBounds.width + windowOffsetX
+                        if (windowWidthLeft < 800) {
+                            return
+                        }
+                        let windowHeightBottom = windowBounds.height - windowOffsetY
+                        if (windowHeightBottom > screen.height - windowBounds.y - 44 || windowHeightBottom < 165) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(x, windowBounds.y, windowWidthLeft, windowHeightBottom)
+                    } else {
+                        let windowWidthLeft = windowBounds.width + windowOffsetX
+                        let windowHeightTop = windowBounds.height + windowOffsetY
+
+                        if (windowWidthLeft < 800 || windowHeightTop < 165) {
+                            return
+                        }
+                        RendererProcessHelper.setWindowBounds(x, y, windowWidthLeft, windowHeightTop)
+                    }
+                    return
+                }
+                // windowBounds = await RendererProcessHelper.getWindowBounds()
+                // 判断鼠标在窗口的位置， 改变鼠标样式
+                // 如果此时正在移动窗口，则不改变鼠标样式
+                if (!isDragging) {
+                    if (mouseX <= windowBounds.x + 10 && mouseY > windowBounds.y + 10 && mouseY < windowBounds.y + windowBounds.height - 10) {
+                        // console.log('// 鼠标在窗口的左侧部分');
+                        document.documentElement.style.cursor = 'ew-resize';
+                        isResizable = true;
+                        isResizablePosition = 'left'
+
+                    } else if (mouseX > windowBounds.x + windowBounds.width - 5 && mouseY > windowBounds.y + 10 && mouseY < windowBounds.y + windowBounds.height - 10) {
+                        // console.log('// 鼠标在窗口的右侧部分');
+                        document.documentElement.style.cursor = 'ew-resize';
+                        isResizable = true;
+                        isResizablePosition = 'right'
+
+                    } else if (mouseY < windowBounds.y + 6 && mouseX > windowBounds.x + 10 && mouseX < windowBounds.x + windowBounds.width - 10) {
+                        // console.log('// 鼠标在窗口的上方部分');
+                        document.documentElement.style.cursor = 'ns-resize';
+                        isResizable = true;
+                        isResizablePosition = 'top'
+
+                    } else if (mouseY > windowBounds.y + windowBounds.height - 10 && mouseX > windowBounds.x + 10 && mouseX < windowBounds.x + windowBounds.width - 10) {
+                        // console.log('// 鼠标在窗口的下方部分');
+                        document.documentElement.style.cursor = 'ns-resize';
+                        isResizable = true;
+                        isResizablePosition = 'bottom'
+
+                    } else if (mouseX <= windowBounds.x + 10 && mouseY <= windowBounds.y + 10 && mouseY < windowBounds.y + windowBounds.height - 10) {
+                        // console.log('// 鼠标在窗口的左上部分');
+                        document.documentElement.style.cursor = 'nwse-resize';
+                        isResizable = true;
+                        isResizablePosition = 'left-top'
+
+                    } else if (mouseX <= windowBounds.x + 10 && mouseY >= windowBounds.y + windowBounds.height - 10) {
+                        // console.log('// 鼠标在窗口的左下部分');
+                        document.documentElement.style.cursor = 'nesw-resize';
+                        isResizable = true;
+                        isResizablePosition = 'left-bottom'
+
+                    } else if (mouseX >= windowBounds.x + windowBounds.width - 10 && mouseY <= windowBounds.y + 10) {
+                        // console.log('// 鼠标在窗口的右上部分');
+                        document.documentElement.style.cursor = 'nesw-resize';
+                        isResizable = true;
+                        isResizablePosition = 'right-top'
+
+                    } else if (mouseX >= windowBounds.x + windowBounds.width - 10 && mouseY >= windowBounds.y + windowBounds.height - 10) {
+                        // console.log('// 鼠标在窗口的右下部分');
+                        document.documentElement.style.cursor = 'nwse-resize';
+                        isResizable = true;
+                        isResizablePosition = 'right-bottom'
+
+                    }
+                    else {
+                        // console.log('// 鼠标在窗口的中间部分');
+                        document.documentElement.style.cursor = 'default';
+                        isResizable = false;
+
+                    }
+                }
+            })
+
+            $(document).on('mouseup touchend', async function () {
+                isDragging = false;
+                isWindowDown = false;
+                // 鼠标抬起后重新获取窗口的位置信息
+                windowBounds = await RendererProcessHelper.getWindowBounds()
+            });
+            let timer = null;
+            $(document).on('mouseenter', function () {
+                isMouseInTranslate = true
+                if (!isDragging) {
+                    clearTimeout(timer); // 鼠标重新进入页面时，清除计时器
+                    $('.languageSet_box_header').css({
+                        'visibility': 'visible',
+                        'opacity': '1'
+                    });
+                    $('.languageSet_center').css({ 'border-radius': '0px 0px 15px 15px' })
+                    if (isVisibleBackground) {
+                        $('.clean_translate').show()
+                        $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, ${opacity})` });
+                        $('.text_start_tip').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                        $('.text_one').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                    }
+                }
+
+            })
+            $(document).on('mouseleave', function () {
+                isMouseInTranslate = false
+                if (!isDragging) {
+                    timer = setTimeout(() => {
+                        $('.languageSet_box_header').css({
+                            'visibility': 'hidden',
+                            'opacity': '0'
+                        });
+                        $('.languageSet_center').css({ 'border-radius': '15px' })
+                        if (isVisibleBackground) {
+                            $('.clean_translate').hide()
+                            $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, 0)` });
+                            $('.text_start_tip').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                            $('.text_one').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                        }
+                    }, 300)
+                }
+            });
+            // 监听背景颜色透明度
+            RendererProcessHelper.registeCallback('changeBackgroundOpacity', (data) => {
+                opacity = data.backgroundOpacity;
+                if (!isVisibleBackground) {
+                    console.log(opacity);
+                    // $('.languageSet_center').css({ 'opacity': opacity })
+                    $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, ${opacity})` });
+                }
+
+            })
+            // 监听是否隐藏背景
+            RendererProcessHelper.registeCallback('changeTranslateBg', (data) => {
+                isVisibleBackground = data.isVisibleBackground;
+                if (data.isVisibleBackground) {
+                    $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, 0)` });
+                    $('.clean_translate').hide()
+                    $('.text_start_tip').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                    $('.text_one').css({ '-webkit-text-stroke': `1px #494949` }, { 'text-shadow': `2px 2px 4px #0000006F` });
+                } else {
+                    $('.languageSet_center').css({ 'background-color': `rgba(37, 40, 46, ${opacity})` });
+                    $('.clean_translate').show()
+                    $('.text_start_tip').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                    $('.text_one').css({ '-webkit-text-stroke': `0px #494949` }, { 'text-shadow': `none` });
+                }
+            })
+            // 监听字体颜色变化
+            RendererProcessHelper.registeCallback('changeSpeechFontClolor', (data) => {
+                $('.text').css({ 'color': data.fontColor })
+            })
+            // 监听字体大小变化
+            RendererProcessHelper.registeCallback('changeSpeechFontSize', (data) => {
+                $('.text').css({ 'font-size': data.fontSize + 'px' })
+            })
+            RendererProcessHelper.registeCallback('changeTranslateMike', (data) => {
+                console.log('changeTranslateMike', data);
+                SpeechTranslate.stopRecognition()
+                SpeechTranslate.startRecognition(data.deviceId, sdkType)
+                currentDeviceId = data.deviceId
+            })
+            // 监听
+            RendererProcessHelper.registeCallback('stopRecognition', () => {
+                console.log('监听主界面是否关闭麦克风');
+                SpeechTranslate.stopRecognition()
+            })
+            RendererProcessHelper.registeCallback('rtcOpenAudio', (data) => {
+                console.log('监听主界面是否开启麦克风');
+                // let startParams = {
+                //     fromLanguage: fromLanguage,
+                //     toLanguage: toLanguage,
+                //     useDevName: useDevName
+                // }
+                SpeechTranslate.startRecognition(currentDeviceId, sdkType)
+            })
+        });
+
+
+        $(".close_windows_btn").on('click', () => {
+            window.close();
+            SpeechTranslate.stopRecognition()
+        })
+        $(".minimize_windows_btn").on('click', () => {
+            window.RendererProcessHelper.minBtnForWindowFunction();
+        })
+        $('.maximize_windows_btn').on('click', () => {
+            $(".maximize_windows_btn").hide();
+            $(".maximize_recover").show();
+            window.RendererProcessHelper.maxBtnForWindowFunction();
+        })
+        $('.maximize_recover').on('click', () => {
+            $(".maximize_recover").hide();
+            $(".maximize_windows_btn").show();
+            window.RendererProcessHelper.unMaxBtnForWindowFunction();
+        })
+        // 清空翻译内容
+        $('.clean_translate').on('click', () => {
+            $('.text_one').empty();
+            $('.text_start_tip').show()
+            SpeechTranslate.clearRecognitionResult()
+        })
+        // 打开设置页面
+        $('.translate_setting i').on('click', () => {
+            RendererProcessHelper.openTranslateSetWindow()
+        })
+        function renderData(data) {
+            $('.text_start_tip').hide()
+            const $existingItem = $(".text").find(`[data-id="${data.id}"]`);
+
+            if ($existingItem.length) {
+                // 更新已存在的元素的内容
+                $existingItem.find("p").eq(0).text(data.srcText);
+                $existingItem.find("p").eq(1).text(data.dstText || '');
+
+            } else {
+                // 添加新元素
+                const $newItem = $(`<div class="text_one" data-id="${data.id}"><p>${data.srcText}</p><p>${data.dstText || ''}</p></div>`);
+                $(".text").append($newItem);
+            }
+
+            // 将滚动条定位到最下面
+            const $textContainer = $(".text");
+            $textContainer.scrollTop($textContainer[0].scrollHeight);
+        }
+
+
+
+
+    </script>
+    <!-- <script src="../static/js/viewJs/tencent_speech/speechrecognizer.js"></script>
+    <script src="../static/js/viewJs/sameTranslate.js"></script> -->
+
+    <script>
+
+
+
+    </script>
+</body>
+
+</html>

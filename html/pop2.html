@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			background-color: transparent;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+			overflow: hidden;
+		}
+
+		ul,
+		ol,
+		li {
+			list-style-type: none;
+		}
+
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		hr,
+		p,
+		blockquote,
+		dl,
+		dt,
+		dd,
+		ul,
+		ol,
+		li,
+		pre,
+		fieldset,
+		lengend,
+		button,
+		input,
+		textarea,
+		th,
+		td {
+			margin: 0;
+			padding: 0;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-weight: normal;
+		}
+
+		ul,
+		menu,
+		dir,
+		li {
+			list-style: none
+		}
+
+		b,
+		i,
+		strong,
+		em {
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		body {
+			font-size: 12px;
+		}
+
+		a {
+			text-decoration: none
+		}
+
+		a,
+		img,
+		div,
+		span,
+		nav,
+		li {
+			-webkit-tap-highlight-color: transparent
+		}
+
+		.clearfix {
+			zoom: 1;
+		}
+
+		.clearfix:after {
+			content: "";
+			clear: both;
+			height: 0;
+			font-size: 0;
+			line-height: 0;
+			overflow: hidden;
+			display: block;
+		}
+
+		.connectBox {
+			padding: 14px 22px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			background: rgba(79, 87, 98, 0.98);
+			border-radius: 8px;
+			font-size: 14px;
+			color: #fff;
+			text-align: center;
+			box-sizing: border-box;
+		}
+
+		.connectBox .icon {
+			display: none;
+			vertical-align: middle;
+			width: 20px;
+			height: 20px;
+			margin-right: 8px;
+			background: url(images/login_load.png) no-repeat;
+			-webkit-animation: loading 2s infinite linear;
+			animation: loading 2s infinite linear;
+			background-size: contain;
+		}
+
+		#show_content {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		#show_content.slice {
+			overflow: hidden;
+			flex: 1;
+		}
+
+		#content_tip {
+			display: none;
+			margin-left: 4px;
+			width: 60px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="connectBox">
+		<span class="icon"></span>
+		<span id="show_content"></span>
+		<span id="content_tip"></span>
+	</div>
+</body>
+<script>
+	const MAX_WIDTH = 1000;
+	window.RendererHelper.on("ready", async (data) => {
+		const hasIcon = data?.icon?.length > 0
+		const hasContentTip = data?.contentTip?.length > 0
+		if (hasIcon) {
+			document.querySelector('.icon').style.display = 'block';
+			document.querySelector('.icon').style.backgroundImage = `url(images/${data.icon}.png)`;
+		}
+		if (hasContentTip > 0) {
+			document.getElementById("content_tip").style.display = 'block';
+			document.getElementById("content_tip").innerText = data.contentTip;
+		}
+		document.getElementById("show_content").innerText = data.content;
+		let width = document.getElementById("show_content").clientWidth;
+		const height = document.querySelector(".connectBox").clientHeight;
+
+		// 左右内边距 22px * 2
+		const paddingWidth = 44;
+		// 图标大小 20 + 右边距 8
+		const iconWidth = 28;
+		width = width + paddingWidth;
+		if (hasIcon) {
+			width = width + 28;
+		}
+		if (hasContentTip) {
+			width = width + 60;
+		}
+		let isOverflow = false;
+		if (width > MAX_WIDTH) {
+			width = MAX_WIDTH;
+			isOverflow = true;
+		}
+		const bounds = await window.RendererHelper.getWindowBounds();
+		// 如果 HTML 宽度大于窗口宽度
+		if (width > bounds.width) {
+			const diff = width - bounds.width;
+			// 将窗口的 x 位置 - 减去 diff 的一半
+			const newX = bounds.x - diff / 2;
+			window.RendererHelper.setWindowBounds(newX, bounds.y, width, bounds.height);
+			if (isOverflow) {
+				document.getElementById("show_content").classList.add("slice");
+			}
+		}
+	});
+</script>
+
+</html>

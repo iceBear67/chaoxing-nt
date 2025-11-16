@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/baseWindow.css">
+</head>
+
+<body>
+    <div class="frame">
+        <header>
+            <div class="left">
+                <i class="red close"></i>
+                <i class="yellow minimize"></i>
+                <i class="green full-screen"></i>
+                <i class="green exit-full-screen"></i>
+            </div>
+            <span id="showTitle"></span>
+            <div class="right">
+                <i class="minimize"></i>
+                <i class="full-screen"></i>
+                <i class="exit-full-screen"></i>
+                <i class="close redAct"></i>
+            </div>
+        </header>
+    </div>
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(".exit-full-screen").hide();
+        $(".close").click(() => {
+            window.close();
+        })
+        $(".minimize").click(() => {
+            window.RendererProcessHelper.minBtnForWindowFunction();
+        })
+        $(".full-screen").click(() => {
+            window.RendererProcessHelper.maxBtnForWindowFunction();
+            $(".full-screen").hide();
+            $(".exit-full-screen").show();
+        })
+        $(".exit-full-screen").click(() => {
+            window.RendererProcessHelper.unMaxBtnForWindowFunction();
+            $(".exit-full-screen").hide();
+            $(".full-screen").show();
+        })
+
+        window.RendererProcessHelper.registeCallback("pageLoadFinish", data => {
+            if (data.minimizable === false) {
+                $(".minimize").hide();
+            }
+            if (data.maximizable === false) {
+                $(".full-screen").hide();
+            }
+            if (data.title) {
+                document.title = data.title;
+                $("#showTitle").text(data.title)
+            }
+            if (data.platform == "darwin") {
+                $(".left").css("display", "flex");
+            } else {
+                $(".right").css("display", "flex");
+            }
+        });
+
+        window.RendererProcessHelper.registeCallback("updateTitile", title => {
+            if (title) {
+                document.title = title;
+                $("#showTitle").text(title)
+            }
+        });
+    </script>
+</body>
+
+</html>

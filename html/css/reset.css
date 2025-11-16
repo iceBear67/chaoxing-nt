@@ -1,0 +1,19 @@
+@charset "utf-8";
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,fieldset,lengend,button,input,textarea,th,td{margin:0;padding:0;}
+pre{white-space:inherit}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+ul,menu,dir,li{list-style:none}
+b,i,strong,em{font-weight:normal; font-style:normal;}
+body{font-size:12px;}
+a{text-decoration:none}
+a,img,div,span,nav,li{-webkit-tap-highlight-color:transparent}
+legend{color:#000}
+fieldset,img{border:none}
+button,input,select,textarea{font-size:100%}
+input,button,select,textarea{outline:none;border:none}
+table{border-collapse:collapse;border-spacing:0}
+.clearfix{zoom:1;}
+.clearfix:after{content:"";clear:both;height:0;font-size:0;line-height:0;overflow:hidden;display: block;}
+.word{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.words{display:-webkit-box;display:box;overflow:hidden;text-overflow:ellipsis;word-break:break-all;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space: normal !important;}
+body,html{overflow: hidden;}

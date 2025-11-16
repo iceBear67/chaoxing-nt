@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+.recordingTip {
+  width: 179px;
+  height: 34px;
+  z-index: 1000;
+  position: fixed;
+}
+
+.recordingTip_con {
+  min-width: 94px;
+  height: 40px;
+  line-height: 33px;
+  background: var(--cxkt-dark-color-global-bg-3);
+  border-radius: 100px;
+  padding: 0 13px;
+  font-size: 12px;
+  color: #EAEAEC;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.recordingTip .recoding-text::before {
+  content: '问题上报录制中';
+}
+
+.recordingTip.pause .recoding-text::before {
+  content: '暂停录制';
+}
+
+.recordingTip_con .operation {
+  display: flex;
+  align-items: center;
+}
+
+.recordingTip_con .operation::before {
+  content: '';
+  width: 1px;
+  height: 12px;
+  display: inline-block;
+  background: #2D3F59;
+  border-radius: 0.5px;
+  margin: 0 10px;
+}
+
+.recordingTip_con .operation>span {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  background: var(--recordPic) center no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.recordingTip .recordingTip_con .operation>span.record-pause {
+  display: none;
+}
+
+.recordingTip_con .operation>span:not(:last-child) {
+  margin-right: 10px;
+}
+
+.recordingTip_con .operation>span.record-play {
+  --recordPic: url(../images/record-pause.png);
+}
+
+.recordingTip_con .operation>span.record-pause {
+  --recordPic: url(../images/record-play.png);
+}
+
+.recordingTip_con .operation>span.record-stop {
+  --recordPic: url(../images/record-stop.png);
+}
+
+.recordingTip i {
+  width: 8px;
+  height: 8px;
+  background: #1A79FF;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+  margin: 16px 6px 0 0;
+  animation: 800ms flash linear infinite alternate;
+}
+
+.recordingTip.pause i {
+  background: #909BA5;
+  animation: initial;
+}
+
+.recordingTip.pause .recordingTip_con .operation>span.record-play {
+  display: none;
+}
+
+.recordingTip.pause .recordingTip_con .operation>span.record-pause {
+  display: inline-block;
+}
+
+.recordingTip .recordingTip_con .recoding-text {
+  line-height: 40px;
+}
+
+.recordingTip.show {
+  display: block;
+}
+
+.recordingTip_hov {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  width: 224px;
+  background: rgba(29, 40, 64, .8);
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 7px 12px;
+  z-index: 9;
+  display: none;
+}
+
+.recordingTip_hov p {
+  font-size: 12px;
+  line-height: 17px;
+  color: #fff;
+}
+
+.recordingTip_hov .btn_stopRecord {
+  float: right;
+  font-size: 12px;
+  line-height: 17px;
+  margin-top: 2px;
+  color: #0084FF;
+}
+
+@keyframes flash {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: .4;
+  }
+}

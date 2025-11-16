@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+	<title></title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-size: 12px;
+			overflow: hidden;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+
+		.video_box {
+			width: 100%;
+			height: 100%;
+			background: #25282E;
+			box-shadow: 0px 0px 14px -4px rgba(0, 0, 0, 0.2);
+			/* border-radius: 8px; */
+		}
+
+		.video_box img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.video_box img.on {
+			-webkit-transform: rotateY(180deg);
+			-moz-transform: rotateY(180deg);
+			-ms-transform: rotateY(180deg);
+			-o-transform: rotateY(180deg);
+			transform: rotateY(180deg);
+		}
+
+		.clearfix {
+			zoom: 1;
+		}
+
+		.clearfix:after {
+			content: "";
+			clear: both;
+			height: 0;
+			font-size: 0;
+			line-height: 0;
+			overflow: hidden;
+			display: block;
+		}
+
+		.video_box_head {
+			display: -webkit-flex;
+			display: flex;
+		}
+
+		.header_pos {
+			-webkit-flex: 1;
+			-ms-flex: 1;
+			flex: 1;
+		}
+
+		.header_tools_mac {
+			background: #15191D;
+			text-align: left;
+			height: 30px;
+			float: left;
+			padding: 0 7px;
+		}
+
+		.header_tool_mac_item {
+			width: 22px;
+			height: 30px;
+			position: relative;
+			display: inline-block;
+		}
+
+		.header_tool_mac_item i {
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.close_mac_btn i {
+			background: url(./images/icon_close_mac_default.png) center center/12px auto no-repeat;
+		}
+
+		.close_mac_btn:hover i {
+			background: url(./images/icon_close_mac_hover.png) center center/12px auto no-repeat;
+		}
+
+		.close_mac_btn:active i {
+			background: url(./images/icon_close_mac_down.png) center center/12px auto no-repeat;
+		}
+
+		.minimize_mac_btn i {
+			background: url(./images/icon_minimize_mac_default.png) center center/12px auto no-repeat;
+		}
+
+		.minimize_mac_btn:hover i {
+			background: url(./images/icon_minimize_mac_hover.png) center center/12px auto no-repeat;
+		}
+
+		.minimize_mac_btn:active i {
+			background: url(./images/icon_minimize_mac_down.png) center center/12px auto no-repeat;
+		}
+
+		.maximize_mac_btn i {
+			background: url(./images/icon_maximize_mac_default.png) center center/12px auto no-repeat;
+		}
+
+		.maximize_mac_btn:hover i {
+			background: url(./images/icon_maximize_1_mac_hover.png) center center/12px auto no-repeat;
+		}
+
+		.maximize_mac_btn:active i {
+			background: url(./images/icon_maximize_1_mac_down.png) center center/12px auto no-repeat;
+		}
+
+		.header_tools_windows {
+			background: #15191D;
+			text-align: right;
+			height: 30px;
+			float: right;
+		}
+
+		.header_tool_windows_item {
+			width: 38px;
+			height: 30px;
+			position: relative;
+			display: inline-block;
+		}
+
+		.header_tool_windows_item i {
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.minimize_windows_btn i {
+			background: url(./images/icon_minimize_windows_default.png) center center/20px auto no-repeat;
+		}
+
+		.minimize_windows_btn:hover i {
+			background: url(./images/icon_minimize_windows_hover.png) center center/20px auto no-repeat;
+		}
+
+		.minimize_windows_btn:active i {
+			background: url(./images/icon_minimize_windows_down.png) center center/20px auto no-repeat;
+		}
+
+		.maximize_windows_btn i {
+			background: url(./images/icon_maximize_1_windows_default.png) center center/20px auto no-repeat;
+		}
+
+		.maximize_windows_btn:hover i {
+			background: url(./images/icon_maximize_1_windows_hover.png) center center/20px auto no-repeat;
+		}
+
+		.maximize_windows_btn:active i {
+			background: url(./images/icon_maximize_1_windows_down.png) center center/20px auto no-repeat;
+		}
+
+		.close_windows_btn:hover {
+			background: #FF3131;
+		}
+
+		.close_windows_btn i {
+			background: url(./images/icon_close_windows_default.png) center center/20px auto no-repeat;
+		}
+
+		.close_windows_btn:hover i {
+			background: url(./images/icon_close_windows_hover.png) center center/20px auto no-repeat;
+		}
+
+		.close_windows_btn:active {
+			background: #D24546;
+		}
+
+		.close_windows_btn:active i {
+			background: url(./images/icon_close_windows_down.png) center center/20px auto no-repeat;
+		}
+
+		.rotate {
+			width: 58px;
+			height: 36px;
+			position: absolute;
+			right: 20px;
+			bottom: 26px;
+			background: rgba(38, 51, 77, 0.8);
+			border-radius: 90px;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.rotate>i {
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+			background: url(./images/rotate-icon.png) center no-repeat;
+			background-size: 100% 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="video_box">
+		<div class="video_box_head clearfix">
+			<div class="header_tools_mac" style="-webkit-user-select: none;display: none;">
+				<span class="header_tool_mac_item close_mac_btn">
+					<i></i>
+				</span>
+				<!--<span class="header_tool_mac_item minimize_mac_btn">
+				<i></i>
+			</span>
+			<span class="header_tool_mac_item maximize_mac_btn">
+				<i></i>
+			</span>-->
+			</div>
+			<div class="header_pos" style="-webkit-app-region: drag;-webkit-user-select: none;"></div>
+			<div class="header_tools_windows" style="-webkit-user-select: none;display: none;">
+				<!--<span class="header_tool_windows_item minimize_windows_btn">
+				<i></i>
+			</span>
+			<span class="header_tool_windows_item maximize_windows_btn">
+				<i></i>
+			</span>-->
+				<span class="header_tool_windows_item close_windows_btn">
+					<i></i>
+				</span>
+			</div>
+		</div>
+		<div id="video_canvas" style="width:100%;height:100%"></div>
+		<div class="rotate" id="rotate">
+			<i></i>
+		</div>
+	</div>
+</body>
+<script>
+	if (typeof module === "object") {
+		window.module = module;
+		module = undefined;
+	}
+</script>
+<script src="./js/jquery-3.5.1.min.js"></script>
+<script>
+	if (window.module) module = window.module;
+</script>
+<script>
+	let direction = 1;
+	let angle = ['0deg', '90deg', '180deg', '270deg'];
+	let videoBox = document.getElementById('video_canvas');
+	$('#rotate').on('click', function () {
+		let videoCanvas = videoBox.querySelector('canvas');
+		let index = direction % 4;
+		videoCanvas.style.transform = `rotate(${angle[index]})`;
+		direction++;
+	});
+
+	$(".video_box_head").on("click", ".close_mac_btn,.close_windows_btn", function (e) {
+		window.close();
+	});
+
+	let currentUID = "";
+
+	let m_video_uid;
+	$(document).ready(function () {
+		let ua = navigator.userAgent.toLowerCase();
+		if (ua.indexOf('_windows_') > -1) {
+			$(".header_tools_windows").show();
+		} else {
+			$(".header_tools_mac").show();
+		}
+		$(".video_box").on("dblclick", function () {
+			if ($(".video_box img").length != 0) {
+				$(".video_box img").toggleClass("on");
+				useLoaclTransform = true;
+			}
+		});
+
+
+	});
+
+	window.RendererProcessHelper.registeCallback("pageLoadFinish", (data) => {
+		m_video_uid = data.video_uid;
+		VideoRendererHelper.initRender(m_video_uid, "video_canvas", 1);
+		console.info("pageLoadFinish", data)
+	});
+	window.RendererProcessHelper.registeCallback("updateVideoId", (data) => {
+		if (m_video_uid != data.video_uid) {
+			VideoRendererHelper.destroyRender(m_video_uid);
+			m_video_uid = data.video_uid;
+			VideoRendererHelper.initRender(m_video_uid, "video_canvas", 1);
+		}
+
+	});
+</script>
+
+</html>

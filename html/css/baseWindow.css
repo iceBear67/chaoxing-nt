@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+.frame {
+  cursor: default;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.frame>header {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -webkit-app-region: drag;
+}
+
+.frame>header>span {
+  font-size: 14px;
+  color: #131B26;
+  letter-spacing: 0.04em;
+}
+
+.frame>header .left {
+  height: 100%;
+  display: flex;
+  padding: 0 12px;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  display: none;
+}
+
+.frame>header .left>i {
+  width: 12px;
+  height: 12px;
+  background: var(--bgColor);
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  margin-right: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.frame>header .left .red {
+  --bgColor: #FF5E57;
+}
+
+.frame>header .left .yellow {
+  --bgColor: #FFBB2E;
+}
+
+.frame>header .left .green {
+  --bgColor: #38C149;
+}
+
+.frame>header .left:hover>i::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background: var(--bgIcon) center no-repeat;
+  background-size: 100% 100%;
+}
+
+.frame>header .left>i.close::before {
+  --bgIcon: url(../images/tit-close-mac.png);
+}
+
+.frame>header .left>i.minimize::before {
+  --bgIcon: url(../images/tit-minimize-mac.png);
+}
+
+.frame>header .left>i.full-screen::before {
+  --bgIcon: url(../images/tit-full-screen-mac.png);
+}
+
+.frame>header .left>i.exit-full-screen::before {
+  --bgIcon: url(../images/tit-exit-full-screen-mac.png);
+}
+
+.frame>header .left>i:active {
+  filter: brightness(.6);
+}
+
+.frame>header .right {
+  display: flex;
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+.frame>header .right>i {
+  width: 38px;
+  height: 30px;
+  display: inline-block;
+  background: var(--bgIcon) center no-repeat;
+  background-size: 12px 12px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+.frame>header .right>i:hover {
+  background-color: #F2F4F7;
+}
+
+.frame>header .right>i:active {
+  background-color: #F2F4F7;
+}
+
+.frame>header .right .minimize {
+  --bgIcon: url(../images/tit-minimize.png);
+}
+
+.frame>header .right .full-screen {
+  --bgIcon: url(../images/tit-full-screen.png);
+}
+
+.frame>header .right .exit-full-screen {
+  --bgIcon: url(../images/tit-exit-full-screen.png);
+}
+
+.frame>header .right .close {
+  --bgIcon: url(../images/tit-close.png);
+}
+
+.frame>header .right>i.redAct:hover {
+  background-color: #FF4D4D;
+  --bgIcon: url(../images/tit-close-white.png);
+}
+
+.frame>header .right>i.redAct:active {
+  background-color: #FF4D4D;
+  --bgIcon: url(../images/tit-close-white.png);
+}
