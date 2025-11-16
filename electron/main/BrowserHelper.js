@@ -522,11 +522,11 @@ function addWebContentsLisenter(wContents, win, bv, winid, disableLoadingPage = 
             });
         }
     });
-    wContents.on("devtools-opened", () => {
-        if (!(0, DevHelper_1.isDevMode)()) {
-            wContents.closeDevTools();
-        }
-    });
+    // wContents.on("devtools-opened", () => {
+    //     if (!(0, DevHelper_1.isDevMode)()) {
+    //         wContents.closeDevTools();
+    //     }
+    // });
     wContents.on("did-stop-loading", () => {
         m_PIdMap.set(wContents.getOSProcessId(), winid);
     });
