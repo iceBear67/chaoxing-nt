@@ -1,14 +1,1 @@
-<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_b_10295_104767)">
-<circle cx="11" cy="11" r="11" fill="white" fill-opacity="0.1"/>
-<circle cx="11" cy="11" r="10.5" stroke="#3A8BFF"/>
-</g>
-<defs>
-<filter id="filter0_b_10295_104767" x="-50" y="-50" width="122" height="122" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feGaussianBlur in="BackgroundImageFix" stdDeviation="25"/>
-<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_10295_104767"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_10295_104767" result="shape"/>
-</filter>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 22 22"><g filter="url(#filter0_b_10295_104767)"><circle cx="11" cy="11" r="11" fill="#fff" fill-opacity=".1"/><circle cx="11" cy="11" r="10.5" stroke="#3A8BFF"/></g><defs><filter id="filter0_b_10295_104767" width="122" height="122" x="-50" y="-50" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feGaussianBlur in="BackgroundImageFix" stdDeviation="25"/><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_10295_104767"/><feBlend in="SourceGraphic" in2="effect1_backgroundBlur_10295_104767" mode="normal" result="shape"/></filter></defs></svg>
