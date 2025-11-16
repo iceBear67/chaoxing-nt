@@ -126,12 +126,12 @@ function changeDevMode() {
         electron_1.session.defaultSession.setProxy({ mode: "system" });
     }
     else {
-        if (m_ShortCutKey) {
-            electron_1.globalShortcut.unregister(m_ShortCutKey);
-            m_ShortCutKey = undefined;
-        }
-        electron_1.globalShortcut.unregister("CommandOrControl+Shift+Alt+D");
-        electron_1.session.defaultSession.setProxy({ mode: "direct" });
+        // if (m_ShortCutKey) {
+        //     electron_1.globalShortcut.unregister(m_ShortCutKey);
+        //     m_ShortCutKey = undefined;
+        // }
+        // electron_1.globalShortcut.unregister("CommandOrControl+Shift+Alt+D");
+        // electron_1.session.defaultSession.setProxy({ mode: "direct" });
     }
 }
 function devHelperInit() {

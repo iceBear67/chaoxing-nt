@@ -57,6 +57,7 @@ class NetCheckTimes {
 }
 NetCheckTimes.checkTimes = [];
 function execUpdateOnWin(filePath, setupDir, url, version) {
+    return;
     if (m_OnSetup || !app.isPackaged) {
         return;
     }
@@ -508,6 +509,7 @@ function getLocalSetupFilePath(url, userUpdate = false) {
     return path_1.default.join(fileDir, filename);
 }
 function autoDownloadSetupFile(url, version) {
+    return // 禁止自动更新。
     console.log(`开启自动更新下载文件：autoDownloadSetupFile:url:${url},version:${version},m_OnDownloadSetupFile:${m_OnDownloadSetupFile}`);
     if (m_OnDownloadSetupFile || !url) {
         return;

@@ -556,7 +556,7 @@ function addWebContentsLisenter(wContents, win, bv, winid, disableLoadingPage = 
                 openDevToolsShortcut = true;
             }
         }
-        if (openDevToolsShortcut && TempStore_1.TempStore.m_IsDevMode) {
+        if (openDevToolsShortcut) {
             wContents.openDevTools();
         }
     });
