@@ -10,7 +10,7 @@ const UserHelper_1 = require("../main/UserHelper");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const StoreHelper_1 = __importDefault(require("../main/StoreHelper"));
-const { getDbKey } = require("../../module/compile/lib/CompileUtil");
+// encryption key generation removed — getDbKey no longer used
 let sqlite3 = sqlcipher_1.default.verbose();
 let m_DbMap = new Map();
 function clearDbMap() {
@@ -77,9 +77,7 @@ async function getDb(dbname, useDev) {
                 usePwd = false;
             }
             let db = new sqlite3.Database(path_1.default.join(dbFilePath, dbname));
-            if (usePwd) {
-                db.run(`PRAGMA key = '${getDbKey(uid + "" + dbname)}'`);
-            }
+            // encryption disabled: do not set SQLCipher key
             db.serialize(() => {
                 let sql = `CREATE TABLE IF NOT EXISTS __TABLE_INFO(name TEXT,version INTEGER,createTime INTEGER,updateTime INTEGER)`;
                 db.run(sql);
@@ -91,53 +89,8 @@ async function getDb(dbname, useDev) {
 }
 exports.getDb = getDb;
 async function resetPassword(dbpath, oldUid, newUid) {
-    let dbname = path_1.default.basename(dbpath);
-    let oldPwd = getDbKey(oldUid + "" + dbname);
-    if (!newUid) {
-        newUid = (0, UserHelper_1.getUID)();
-    }
-    let newPwd = getDbKey(newUid + "" + dbname);
-    return new Promise((resolve, reject) => {
-        let db = new sqlite3.Database(dbpath);
-        db.run(`PRAGMA key = '${oldPwd}'`, function (err1) {
-            if (err1) {
-                console.error("打开数据库出错:", err1);
-                return;
-            }
-            const tables = db.all('SELECT name FROM sqlite_master WHERE type="table";', (err2, rows) => {
-                if (err2) {
-                    db.close(function (err) {
-                        if (err) {
-                            console.error("关闭数据库连接出错:", err);
-                            reject(err);
-                            return;
-                        }
-                        resolve(false);
-                    });
-                    return;
-                }
-                console.log("数据库中的表:", rows);
-                db.serialize(() => {
-                    db.run(`PRAGMA rekey = "${newPwd}"`, function (err) {
-                        if (err) {
-                            console.error("修改密码出错:", err);
-                            reject(err);
-                            return;
-                        }
-                        console.log("数据库密码修改成功");
-                        db.close(function (err) {
-                            if (err) {
-                                console.error("关闭数据库连接出错:", err);
-                                reject(err);
-                                return;
-                            }
-                            resolve(true);
-                        });
-                    });
-                });
-            });
-        });
-    });
+    // encryption removed: no operation performed
+    return Promise.resolve(true);
 }
 exports.resetPassword = resetPassword;
 async function getDbFilePath(dbname, useDev, dbUid) {

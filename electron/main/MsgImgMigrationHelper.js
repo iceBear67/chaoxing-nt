@@ -7,7 +7,7 @@ exports.getMessageImageCachePath = exports.checkMsgImgMigration = void 0;
 const sqlcipher_1 = __importDefault(require("@journeyapps/sqlcipher"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
-const { getDbKey } = require("../../module/compile/lib/CompileUtil");
+// getDbKey removed; DB encryption disabled
 const MainHelper_1 = require("./MainHelper");
 const electron_1 = require("electron");
 const CryptoUtil_1 = require("../utils/CryptoUtil");
@@ -47,9 +47,7 @@ exports.checkMsgImgMigration = checkMsgImgMigration;
 async function msgImgMigration(dbPath, folderName, userDataPath) {
     let db = new sqlite3.Database(dbPath);
     let basename = path_1.default.basename(dbPath);
-    if (!basename.includes("__dev")) {
-        db.run(`PRAGMA key = '${getDbKey(folderName + "" + basename)}'`);
-    }
+    // encryption disabled: do not set SQLCipher key
     return new Promise((resovle, reject) => {
         db.serialize(() => {
             resovle(queryImgMsg(db, 0, folderName, userDataPath));
